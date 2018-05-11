@@ -127,6 +127,10 @@ fieldset{border: none;}
 .has-danger .form-control-feedback,.register-error {
     color: #d9534f;
 }
+
+.error-text{
+  color: red;
+}
 .register-success{color: #5cb85c;}
 .has-danger .form-control {
     border-color: #d9534f !important;

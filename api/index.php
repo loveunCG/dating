@@ -1442,7 +1442,7 @@ $app->post('/updateuser', function () use ($app) {
         $profileimages = $user['images'];
         $oldimages = $user['oldimages'];
         $gender = $user['regtype'];
-        define('UPLOAD_DIR', '../../uploads/profile/');
+        define('UPLOAD_DIR', '../uploads/profile/');
         if (count($profileimages) > 0) {
             $imgc = 0;
             foreach ($profileimages as $key => $values) {
@@ -1502,7 +1502,7 @@ $app->post('/updateuser', function () use ($app) {
         $profileimages = $user['images'];
         $oldimages = $user['oldimages'];
 
-        define('UPLOAD_DIR', '../../uploads/profile/');
+        define('UPLOAD_DIR', '../uploads/profile/');
         if (count($profileimages) > 0) {
             $imgc = 0;
             foreach ($profileimages as $key => $values) {
@@ -2069,16 +2069,13 @@ $app->post('/register', function () use ($app) {
     $response = array();
     $images = array();
     $adminadd = false;
-
     $db = new DbHandler();
-
     $siteinfo = $db->getSiteInfo();
     $imgprice = $siteinfo['imgprice'];
-
     if (isset($user->adminadd)) {
         $adminadd = $user->adminadd;
     }
-    define('UPLOAD_DIR', '../../uploads/profile/');
+    define('UPLOAD_DIR', '../uploads/profile/');
     if ('Female' == $user->regtype) {
         $firstname = $user->firstName;
         $lastname = $user->lastName;
@@ -2105,7 +2102,6 @@ $app->post('/register', function () use ($app) {
         if (isset($user->status)) {
             $status = $user->status;
         }
-        /*$status = $user->status;*/
         $password = $user->password;
         $profileimages = $user->images;
         $gender = $user->regtype;
@@ -2201,7 +2197,7 @@ $app->post('/updateprofile/:id', function ($userid) use ($app) {
     $gensets = $db->getSiteInfo();
     $imgprice = $gensets['imgprice'];
 
-    define('UPLOAD_DIR', '../../uploads/profile/');
+    define('UPLOAD_DIR', '../uploads/profile/');
     if ('Female' == $user['gender']) {
         $firstname = $user['firstName'];
         $lastname = $user['lastName'];
@@ -2356,7 +2352,7 @@ $app->post('/changefirstimg', function () use ($app) {
 
     $profileimages = $user->images;
 
-    define('UPLOAD_DIR', '../../uploads/profile/');
+    define('UPLOAD_DIR', '../uploads/profile/');
 
     if (count($profileimages) > 0) {
         $imgc = 0;

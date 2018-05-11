@@ -119,11 +119,12 @@ export class BoysignupComponent implements OnInit {
 register(formdata:any){
   if(this.myform.valid){
   this.registertext="Creating..";
-  //console.log(this.profiledata);
+  console.log(this.profiledata);
   formdata.regtype='Male';
   formdata.images=this.profiledata;
-  console.log(formdata.email);
-       this.userService.create(formdata)
+  console.log(formdata);
+
+  this.userService.create(formdata)
     .subscribe(
       data =>{
         if(data.error)
