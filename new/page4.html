@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit page</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/font_awesone.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!--w3 css-->
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body onLoad="clock()">
+<div class="page2 page4">
+ <nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt=""/></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+       <form class="navbar-form navbar-left" action="/action_page.php">
+         <div class="input-group">
+           <div class="input-group-btn">
+             <button class="btn btn-default" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+             </button>
+          </div>
+           <input type="text" class="form-control" placeholder="Search" name="search">
+        </div>
+      </form>
+     
+      <ul class="nav navbar-nav navbar-right">
+         <li ><a href="#home" >Dating Advice</a></li>
+         <li ><a href="#home" >Groups</a></li>
+         <li ><a href="#home" >Events</a></li>
+         <li ><a href="#home" >Help</a></li>
+         <li class="dropdown"><a href="#home" class="dropdown-toggle" data-toggle="dropdown">Aimee <img src="images/user-round.png" alt=""/></a>
+            <ul class="dropdown-menu">
+               <li><a href="#"><i class="fa fa-bell-o"></i>Edit Profile</a></li>
+               <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+               <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
+               <li><a href="#"><i class="fa fa-dollar"></i>Payments</a></li>
+               <li><a href="#"> <i class="fa fa-lock"></i>Logout</a></li>
+            </ul> <!--sub menu end-->
+         </li>
+      </ul>
+    </div>
+      <button type="button" class="btn navbar-btn collapse-btn visible-xs w3-display-topright" onclick="openNav()">&#9776;</button>
+    <ul id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+         <li>
+             <form class="" action="/action_page.php">
+         <div class="input-group">
+           <div class="input-group-btn">
+             <button class="btn btn-default" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+             </button>
+          </div>
+           <input type="text" class="form-control" placeholder="Search" name="search">
+        </div>
+      </form>
+         </li>
+          <li ><a href="#home" >Dating Advice</a></li>
+         <li ><a href="#home" >Groups</a></li>
+         <li ><a href="#home" >Events</a></li>
+         <li ><a href="#home" >Help</a></li>
+         <li class="dropdown"><a href="#home" class="dropdown-toggle" data-toggle="dropdown">Aimee <img src="images/user-round.png" alt=""/></a>
+            <ul class="dropdown-menu">
+               <li><a href="#"><i class="fa fa-bell-o"></i>Edit Profile</a></li>
+               <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+               <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
+               <li><a href="#"><i class="fa fa-dollar"></i>Payments</a></li>
+               <li><a href="#"> <i class="fa fa-lock"></i>Logout</a></li>
+            </ul> <!--sub menu end-->
+         </li>	
+</ul> 
+  </div>
+</nav>
+<section class="w3-white states text-center">
+   <div class="container">
+      <div class="w3-row">
+         <ul class="nav nav-pills nav-justified page4-top-nav">
+        <li ><a href="page2.html">Preview</a></li>
+         <li class="active"><a href="page4.html">Edit</a></li>
+         <li ><a href="page3.html">Payment</a></li>	
+         </ul>
+      </div> <!--row end-->
+   </div> <!--container end-->
+</section>
+
+<div class="container">
+   <div class="row">
+     <div class="col-xs-12 col-sm-offset-1 col-sm-10">
+        <div class="w3-row w3-panel p-0 w3-display-container">
+            <div class="col-md-12 text-center">
+               <div class="clock center-block text-pink">
+                   <div class="hours"></div><div class="minutes"></div><div class="seconds"></div><div class="twelvehr"></div>
+                  </div> <!--clock end-->
+               <div class="progress center-block">
+			   <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:70%"></div>
+              </div>
+              <button type="button" class="btn btn-lg bg-pink w3-round-xxlarge btn-pause">Pause</button>
+            </div> <!--col end-->
+            <div class="w3-display-topright page4-top-right-text text-right">
+             <h6>Your account balance</h6><span class="text-pink"><span class="add-card">Add Credit</span> $000.00</span>
+            </div> <!--cole nd-->
+       </div> <!--progress row emd-->
+       <div class="w3-row">
+       <a href="#" class="btn btn-lg btn-block bg-pink w3-round-xxlarge">Not Live</a>
+     
+   </div> <!--row end-->
+    <h3 class=" w3-padding text-center bg-pink edit-header">Edit</h3>
+       <div class="w3-row w3-panel w3-border-0 w3-white m-0"> <!--==================1 row================-->
+      
+          <div class="col-md-3 pl-0">
+             <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="images/product/pro_4.png" alt="" class="img-adjust">
+    </div>
+
+    <div class="item">
+      <img src="images/product/pro_4.png" alt="" class="img-adjust">
+    </div>
+    <div class="item">
+      <img src="images/product/pro_4.png" alt="" class="img-adjust">
+    </div>
+    <div class="item">
+      <img src="images/product/pro_4.png" alt="" class="img-adjust">
+    </div>
+    <div class="item">
+      <img src="images/product/pro_4.png" alt="" class="img-adjust">
+    </div>
+  </div>
+  <img src="images/lock.png" alt="" class="lock"/>
+<!-- Left and right controls -->
+<div class="move-arrow">
+  <a class="left w3-display-bottomleft" href="#">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right w3-display-bottomright" href="#">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+  </div>
+</div> <!--caro end-->
+ <ul class=" center-block thumb-list">
+                 <li><img src="images/gallery/thumb1.png" alt="" ></li>
+                 <li><img src="images/gallery/thumb1.png" alt=""></li>
+                 <li><img src="images/gallery/thumb1.png" alt=""></li>
+                 
+              </ul> <!--thumb img-->
+              <div class="read-this"><img src="images/gmail_red_icon.png" alt=""> Please read this!!!</div>
+          </div> <!--col 2 end-->
+          <div class="col-md-9 page2-topmiddle">
+          <div class="w3-row">
+            <div class="col-xs-6"><h3>Aimee</h3></div>
+            <div class="col-xs-6">
+               <!--col 3 end-->
+            </div>
+          </div> <!--row end-->
+          <p class="font-12"><img src="images/map_marker.png" alt=""/> Adaillaide, SA, 5000 <button type="button" class="btn edit-all">Edit/Add</button></p>
+          <h5 class="switch-toggle-main">Highlight Profile</h5>
+          <p><label class="switch">
+  <input type="checkbox" checked>
+  <span class="switch-toggle round"></span>
+</label><span class="cycle"> $2.50 Auto cycle <button type="button" class="btn edit-all">Edit Page</button></span></p>
+          <p>Damaged <span>180/1/1 <button type="button" class="btn edit-all">Edit/Add</button></span> </p>
+          <p>Age <span>20-25 <button type="button" class="btn edit-all">Edit/Add</button></span></p>
+          <p>Boob size <span>34B <button type="button" class="btn edit-all">Edit/Add</button></span></p>
+          <p>Height<span>170cm <button type="button" class="btn edit-all">Edit/Add</button></span></p>
+          <p>Room & CD <span>Included <button type="button" class="btn edit-all">Edit/Add</button></span></p>
+          <p>Service Location<span>Hotel Aparrtment <button type="button" class="btn edit-all">Edit/Add</button></span></p>
+          <h6><img src="images/phone_icon_green.png" alt=""/> Contact info</h6>
+          <p>Preferd contact method <span> Text only <button type="button" class="btn edit-all">Edit/Add</button></span></p>
+          <p>Mobile Number<a href="#" class="w3-right btn btn-link text-green">Click here to Reveal</a></p>
+          <p class="text-bold"><span> 0411 134... <button type="button" class="btn edit-all">Edit/Add</button></span></p>
+          <h6>Others Contacts</h6>
+          <p class="text-bold"><img src="images/chart.png" alt=""/> 0411 134... <img src="images/phone_icon1.png" alt=""/> 0411 134...</p>
+             
+          </div> <!--col 7 emd-->
+          
+       </div> <!--row end-->
+       <div class="w3-row w3-white w3-panel page2-row2"><!--==================2 row================-->
+          <p>My Services <button type="button" class="btn edit-all">Edit/Add</button></p>
+           <div class="w3-row check-row2">
+       <label class="checkbox-inline">
+      <input type="checkbox" value="">Option 1
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" value="">Option 2
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" value="">Option 3
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" value="">Option 4
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" value="">Option 5
+    </label>
+    
+      </div> <!--check box row-->
+      <p>About Me <button type="button" class="btn edit-all">Edit/Add</button></p>
+      <h6>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</h6>
+      <button type="button" class="btn edit-all w3-left">Edit/Upload</button>
+        <div class="col-sm-offset-2 col-sm-8">
+           <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e0CvgHEiTwk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+           </div>
+        </div> <!--youtube video-->
+       </div> <!--part 2 row end-->
+       <div class="w3-row w3-white w3-panel w3-padding-16 page2-3row"> <!--==================3 row================-->
+          <p class="text-bold text-gray">My photo gallery <button type="button" class="btn edit-all">Edit/Upload</button></p>
+          <div class="col-sm-4"><img src="images/gallery/1.png" class="img-adjust" onclick="onClick(this)"></div>
+          <div class="col-sm-4"><img src="images/gallery/2.png" class="img-adjust" onclick="onClick(this)"></div>
+          <div class="col-sm-4"><img src="images/gallery/3.png" class="img-adjust" onclick="onClick(this)"></div>
+          <div class="col-sm-4"><img src="images/gallery/4.png" class="img-adjust" onclick="onClick(this)"></div>
+          <div class="col-sm-4"><img src="images/gallery/5.png" class="img-adjust" onclick="onClick(this)"></div>
+          <div class="col-sm-4"><img src="images/gallery/1.png" class="img-adjust" onclick="onClick(this)"></div>
+       </div> <!--part 3 row end----------->
+       <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright" onClick="w3_close()">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>  <!--modal end-->
+        <div class="w3-row w3-panel w3-white w3-padding-16"> <!--=================4 row======================-->
+           <p class="text-bold">Comments</p>
+             <ul class="nav nav-tabs bottom-tab">
+            <li class="active"><a data-toggle="tab" href="#Comments">Comments	</a></li>
+            <li><a data-toggle="tab" href="#Complaints">Complaints</a></li>
+             <li class="bg-pink"><a data-toggle="tab" href="#report" class="btn">Report</a></li>
+          </ul>
+
+<div class="tab-content">
+  <div id="Comments" class="tab-pane fade in active">
+      <p class="resent-comment">Recent Comments</p>
+      <div class="col-sm-9">
+         <h6 class="comment-name"><img src="images/user.png" alt=""> User Jammy2o3o3</h6>
+         <p class="comment-text">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. </p>
+      </div> <!--comment 1 end-->
+       <div class="col-sm-offset-1 col-sm-9">
+           <h6 class="comment-name"><img src="images/user.png" alt=""> User Jammy2o3o3</h6>
+         <p class="comment-text">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. </p>
+       </div> <!--comment 2-->
+       <div class="col-sm-offset-2 col-sm-9">
+           <h6 class="comment-name">Your comment</h6>
+           <textarea rows="4"></textarea>
+           <div class="text-right"><input type="button" class="btn bg-pink btn-post" value="post"></div>
+       </div> <!--comment 2-->
+  </div> <!--==========================comments end============================-->
+  <div id="Complaints" class="tab-pane fade">
+    <h3>Menu 1</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+   <div id="report" class="tab-pane fade">
+    <h3>Menu 1</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  
+</div>  <!--tab-content end-->
+        </div> <!--part 4 row end-->
+     </div> <!--main col end-->
+   </div> <!--row end-->
+</div> <!--container end-->
+<section class="footer">
+  <div class="container">
+    <div class="w3-row">
+        <p class="copy-right">Copyright &copy; 2018 xys. All Rights Reserved.</p>
+    </div> <!--row end-->
+  </div> <!--container end-->
+</section> 
+</div> <!--page 2 end-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+$("document").ready(function(){
+	 $(".dropdown-toggle").on({
+        mouseenter: function(){
+            $(".navbar li img").attr("src","images/user-round-pink.png");
+        },  
+        mouseleave: function(){
+            $(".navbar li img").attr("src","images/user-round.png");
+        }
+    });
+});
+function openNav() {
+    document.getElementById("mySidenav").style.width = "90%";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("modal01").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+//set time
+$(document).ready(function() {
+  var clock = function () {
+      clearTimeout(timer);
+      date = new Date();    
+      hours = date.getHours();
+      minutes = date.getMinutes();
+      seconds = date.getSeconds();
+      dd = (hours >= 12) ? 'pm' : 'am';
+       hours = (hours > 12) ? (hours - 12) : hours
+      var timer = setTimeout(clock, 1000);
+    $('.hours').html('<p>' + Math.floor(hours) + ':</p>');
+    $('.minutes').html('<p>' + Math.floor(minutes) + ':</p>');
+    $('.seconds').html('<p>' + Math.floor(seconds) + '</p>');
+      $('.twelvehr').html('<p>' + dd + '</p>');
+  };
+  clock();
+  $(".btn-pause").click(function(){
+	  $(".progress-bar").removeClass("progress-bar-striped"); 
+  });
+});
+
+</script>
+
+</body>
+</html>

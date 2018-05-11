@@ -1,0 +1,75 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> </button>
+      <a [routerLink]="['']" class="navbar-brand" *ngIf="currentUrl!='/about-us'">
+        <img calss= "img-logo" src="./assets/images/logo.png" style="max-height: 57px" />
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+      <ul class="nav navbar-nav navbar-right">
+        <span   *ngIf="isLoggedIn()" class="navbar-text">Signup to <a [routerLink]="['boysignup']"> Browse</a> | <a [routerLink]="['girlsignup']"> Advertise</a></span>
+        <li>
+          <a  *ngIf="isLoggedIn()" [routerLink]="['/login']" class="bg-white">Login</a>
+        </li>
+        <li  *ngIf="!isLoggedIn()"  class="dropdown">
+            <a href="#home" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.first_name}}
+                <img class="profile-pic"  *ngIf="currentUser.images.length > 0" src="{{imageurl}}{{currentUser.images[0].image}}" />
+                <img class="profile-pic"  *ngIf="!currentUser.images && currentUser.gender=='Female' " src="./assets/images/female.jpg" />
+                <img class="profile-pic"  *ngIf="!currentUser.images && currentUser.gender=='Male' " src="./assets/images/male.jpg" />
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                  <a *ngIf="currentUser.gender=='Female'" class="dropdown-item" (click)="closemenu()" [routerLink]="['/edit-girlprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a>
+
+              </li>
+              <li>
+                  <a *ngIf="currentUser.gender=='Male'" class="dropdown-item" (click)="closemenu()" [routerLink]="['/edit-boyprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a>
+
+              </li>
+              <li>
+                  <a class="dropdown-item" [routerLink]="['/messagelist']" (click)="closemenu()"><i class="fa fa-envelope-o"></i>Messages ({{msgcount}})</a>
+
+              </li>
+              <li>
+                  <a class="dropdown-item achange" (click)="openprofile()"><i class="fa fa-user"></i>Profile</a>
+
+              </li>
+              <li>
+                  <a class="dropdown-item achange" (click)="openpayments()"><i class="fa fa-usd"></i>Payments</a>
+
+              </li>
+              <li>
+                  <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-lock"></i>Logout</a>
+
+              </li>
+            </ul>
+            <!--sub menu end-->
+          </li>
+      </ul>
+    </div>
+    <!--collapse end-->
+    <button type="button" class="btn navbar-btn collapse-btn visible-xs w3-display-topright" (click)="openNav()">&#9776;</button>
+    <ul id="mySidenav" [ngStyle]="{'width': ismobileNav ? '90%' : '0%' }" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="colseNav()">&times;</a>
+      <li style="margin-top: 30px;"></li>
+      <li *ngIf="isLoggedIn()" class="nav-text1">Signup to <span (click)="colseNav()"  [routerLink]="['boysignup']"> Browse</span> | <span (click)="colseNav()"  [routerLink]="['girlsignup']"> Advertise</span></li>
+      <li>
+        <a *ngIf="isLoggedIn()" (click)="colseNav()"   [routerLink]="['/login']" class="mobile-log">Login </a>
+      </li>
+      <span  *ngIf="!isLoggedIn()">
+          <li class="menu_mobile"><a *ngIf="currentUser.gender=='Female'" class="dropdown-item" (click)="colseNav()" [routerLink]="['/edit-girlprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a></li>
+          <li class="menu_mobile"><a *ngIf="currentUser.gender=='Male'" class="dropdown-item" (click)="colseNav()" [routerLink]="['/edit-boyprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a></li>
+          <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+          <!-- <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment</a></li> -->
+          <li class="menu_mobile"><a class="dropdown-item" (click)="openprofile()"><i class="fa fa-user"></i>Profile</a></li>
+          <!-- <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a></li> -->
+          <li class="menu_mobile"><a class="dropdown-item" (click)="openpayments()"><i class="fa fa-usd"></i>Payments</a></li>
+          <!-- <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a></li> -->
+          <li class="menu_mobile"><a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-lock"></i>Logout</a>  </li>
+      </span>
+    </ul>
+  </div>
+  <!--container end-->
+</nav>

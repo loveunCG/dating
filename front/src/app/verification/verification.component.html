@@ -1,0 +1,36 @@
+<div class="loginform">	
+	<form class="login-form"  novalidate [formGroup]="verifyform" (ngSubmit)="verification(verifyform.value)">
+	<p class="login-texts">Verify account</p>
+  <div class="input-field-firstName" 
+         [ngClass]="{
+        'has-danger': textverify.invalid && (textverify.dirty ),
+        'has-success': textverify.valid && (textverify.dirty )
+      }">
+	      <input type="text"
+	      		 placeholder="Enter code" 	
+	             class="form-control"
+	             formControlName="textverify"
+	             required>
+       
+      <div class="form-control-feedback"
+           *ngIf="textverify.errors && (textverify.dirty )">
+        <p *ngIf="textverify.errors.required">Activation code is required</p>
+      </div>
+
+      <!--
+        <pre>Valid? {{ myform.controls.name.controls.firstName.valid }}</pre>
+        <pre>Dirty? {{ myform.controls.name.controls.firstName.dirty }}</pre>
+      -->
+    </div>
+    <div class="row">
+		<p  class="center register-error">{{errormsg}}</p>
+		<p  class="center register-success">{{successmsg}}</p>
+	</div>
+		 <div class="row">
+			<div class="input-field col s12">
+				<button [disabled]="!verifyform.valid" class="btn signup-button" type="submit" >{{logintext}}</button>
+			</div>
+		</div>
+	</form>
+	<p class="signup-text" (click)="resendcode(email)"> <span class="site-name">Resend verification code</span></p>
+</div>

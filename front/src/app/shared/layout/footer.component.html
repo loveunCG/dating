@@ -1,0 +1,37 @@
+<footer class="footer" [ngClass]="footerclass">
+	<div class="top-footer-section">
+		<div class="columnList">
+			<div class="footer-1">
+				<ul>
+				<p class="foot-text">{{setting.fustitle}}</p>
+				<p class="social-desc">{{setting.fusdesc}}</p>
+				<a target="_blank" class="fb" href="{{setting.fburl}}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+				<a target="_blank" class="tw" href="{{setting.tweeturl}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a target="_blank" class="in" href="{{setting.linkedinurl}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+				<a target="_blank" class="dr" href="{{setting.dribbleurl}}"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+				<a target="_blank" class="gp" href="{{setting.googlepurl}}"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+				<a target="_blank" class="insta" href="{{setting.instaurl}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>	
+				<a target="_blank" class="yp" href="{{setting.youtubeurl}}"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+			</ul>		
+			</div>
+			<div class="footer-2">  
+				<ul class="footer-info">
+					<li class="foot-text">Information</li>
+					<li  *ngFor="let page of cmspages.data;let i=index;">
+						<a *ngIf="i<3"[routerLink]="['/'+ page.handle]">{{page.title}}</a>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="footer-3"> 
+				<ul class="footer-links">
+					<li class="foot-text">Useful Links</li>
+					<li  *ngFor="let page of cmspages.data;let i=index;">
+						<a *ngIf="i>2"[routerLink]="['/'+ page.handle]">{{page.title}}</a>
+					</li>
+				</ul>     
+			</div>
+		</div>
+	</div>
+	<div class="copyright-section" [innerHtml]="setting.cptext"></div>
+</footer>

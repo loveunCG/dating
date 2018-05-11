@@ -1,0 +1,271 @@
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title m-subheader__title--separator">
+				Edit page
+			</h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a routerLink="/index" class="m-nav__link m-nav__link--icon">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<a routerLink="/cms-pages" class="m-nav__link">
+						<span class="m-nav__link-text">
+							Pages
+						</span>
+					</a>
+				</li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<span class="m-nav__link-text">
+						Edit page
+					</span>
+				</li>
+
+      </ul>
+		</div>
+
+	</div>
+</div>
+<div class="m-content">
+<div class="m-portlet m-portlet--mobile">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					Edit page
+				</h3>
+			</div>
+		</div>
+	</div>
+	<!--begin::Form-->
+	<form class="m-form" (ngSubmit)="f.form.valid && addUser(f)" #f="ngForm">
+		<ng-template #alertAddUser></ng-template>
+
+		<div class="m-portlet__body ">
+			<div class="m-form__section m-form__section--first">
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': title.invalid && (title.dirty || title.touched),
+			 'has-success': title.valid && (title.dirty || title.touched)
+		 }">
+					<label for="example_input_full_name">
+						Title
+					</label>
+					<input type="text" class="form-control m-input" placeholder="Enter page title" [ngClass]="{
+				 'form-control-danger': title.invalid && (title.dirty || title.touched),
+				 'form-control-success': title.valid && (title.dirty || title.touched)
+			 }" [(ngModel)]="model.title" #title="ngModel" name="title" (input)="genHandle($event.target.value)" required>
+				 <div class="form-control-feedback" *ngIf="title.errors && (title.dirty || title.touched)">
+					 <p *ngIf="title.errors.required">Title is required</p>
+				 </div>
+				</div>
+
+				<div class="form-group m-form__group ">
+					<label for="example_input_full_name">
+						Header image
+					</label>
+					<image-upload
+						url="http://54.218.127.55/projects/Dating/uploads/cmspages"
+						[max]="5"
+						buttonCaption="Upload"
+						dropBoxMessage=""
+						(removed)="onRemovedHeader($event)"
+							(uploadFinished)="onUploadFinishedHeader($event)"
+							(uploadStateChanged)="onUploadStateChangedHeader($event)"></image-upload>
+
+		     			    <img class="tops-image" *ngIf="currentheaderimg" src="{{uploadpath}}/{{currentheaderimg}}" height="100px"/>
+				</div>
+
+				<div class="form-group m-form__group ">
+					<label for="example_input_full_name">
+						Banner image
+					</label>
+					<image-upload
+						url="http://54.218.127.55/projects/Dating/uploads/cmspages"
+						[max]="5"
+						buttonCaption="Upload"
+						dropBoxMessage=""
+						(removed)="onRemovedBanner($event)"
+							(uploadFinished)="onUploadFinishedBanner($event)"
+							(uploadStateChanged)="onUploadStateChangedBanner($event)"></image-upload>
+
+		          <img class="tops-image" *ngIf="currentbannerimg" src="{{uploadpath}}/{{currentbannerimg}}" height="100px"/>
+				</div>
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': desc.invalid && (desc.dirty || desc.touched),
+			 'has-success': desc.valid && (desc.dirty || desc.touched)
+		 }">
+					<label for="example_input_full_name">
+						Description
+					</label>
+					<textarea class="form-control" data-provide="markdown" rows="10" [(ngModel)]="model.desc" #desc="ngModel" name="desc"></textarea>
+
+				 <div class="form-control-feedback" *ngIf="desc.errors && (desc.dirty || desc.touched)">
+					 <p *ngIf="desc.errors.required">Firstname is required</p>
+				 </div>
+				</div>
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': handle.invalid && (handle.dirty || handle.touched),
+			 'has-success': handle.valid && (handle.dirty || handle.touched)
+		 }">
+					<label for="example_input_full_name">
+						Handle
+					</label>
+					<input type="text" class="form-control m-input" placeholder="Enter handle" [ngClass]="{
+				 'form-control-danger': handle.invalid && (handle.dirty || handle.touched),
+				 'form-control-success': handle.valid && (handle.dirty || handle.touched)
+			 }" [(ngModel)]="model.handle" #handle="ngModel" name="handle" required>
+				 <div class="form-control-feedback" *ngIf="handle.errors && (handle.dirty || handle.touched)">
+					 <p *ngIf="handle.errors.required">Handle is required</p>
+				 </div>
+				</div>
+
+				<div *ngIf="contacttrue">
+					<div class="form-group m-form__group " [ngClass]="{
+				 'has-danger': htitle.invalid && (htitle.dirty || htitle.touched),
+				 'has-success': htitle.valid && (htitle.dirty || htitle.touched)
+			 }">
+						<label for="example_input_full_name">
+							Header title
+						</label>
+						<input type="text" class="form-control m-input" placeholder="Enter page heading title" [ngClass]="{
+					 'form-control-danger': htitle.invalid && (htitle.dirty || htitle.touched),
+					 'form-control-success': htitle.valid && (htitle.dirty || htitle.touched)
+				 }" [(ngModel)]="model.htitle" #htitle="ngModel" name="htitle" required>
+					 <div class="form-control-feedback" *ngIf="htitle.errors && (htitle.dirty || htitle.touched)">
+						 <p *ngIf="htitle.errors.required">Header title is required</p>
+					 </div>
+					</div>
+
+					<div class="form-group m-form__group ">
+						<label for="example_input_full_name">
+							Image
+						</label>
+						<image-upload
+							url="http://54.218.127.55/projects/Dating/uploads/cmspages"
+							[max]="5"
+							buttonCaption="Upload"
+							dropBoxMessage=""
+							(removed)="onRemovedPost($event)"
+								(uploadFinished)="onUploadFinishedPost($event)"
+								(uploadStateChanged)="onUploadStateChangedPost($event)"></image-upload>
+
+			          <img class="tops-image" *ngIf="currentpostimg" src="{{uploadpath}}/{{currentpostimg}}" height="100px"/>
+					</div>
+
+					<div class="form-group m-form__group " [ngClass]="{
+				 'has-danger': ftdesc.invalid && (ftdesc.dirty || ftdesc.touched),
+				 'has-success': ftdesc.valid && (ftdesc.dirty || ftdesc.touched)
+			 }">
+						<label for="example_input_full_name">
+							Above footer description
+						</label>
+						<textarea class="form-control" data-provide="markdown" rows="10" [(ngModel)]="model.ftdesc" #ftdesc="ngModel" name="ftdesc"></textarea>
+					 <div class="form-control-feedback" *ngIf="ftdesc.errors && (ftdesc.dirty || ftdesc.touched)">
+						 <p *ngIf="ftdesc.errors.required">Header title is required</p>
+					 </div>
+					</div>
+
+					<div class="form-group m-form__group " [ngClass]="{
+				 'has-danger': location.invalid && (location.dirty || location.touched),
+				 'has-success': location.valid && (location.dirty || location.touched)
+			 }">
+						<label for="example_input_full_name">
+							Location
+						</label>
+						<input type="text" class="form-control m-input" placeholder="Enter location" [ngClass]="{
+					 'form-control-danger': location.invalid && (location.dirty || location.touched),
+					 'form-control-success': location.valid && (location.dirty || location.touched)
+				 }" [(ngModel)]="model.location" #location="ngModel" name="location" required>
+					 <div class="form-control-feedback" *ngIf="location.errors && (location.dirty || location.touched)">
+						 <p *ngIf="location.errors.required">Location is required</p>
+					 </div>
+					</div>
+
+					<div class="form-group m-form__group " [ngClass]="{
+				 'has-danger': callus.invalid && (callus.dirty || callus.touched),
+				 'has-success': callus.valid && (callus.dirty || callus.touched)
+			 }">
+						<label for="example_input_full_name">
+							Call us
+						</label>
+						<input type="text" class="form-control m-input" placeholder="Enter page title" [ngClass]="{
+					 'form-control-danger': callus.invalid && (callus.dirty || callus.touched),
+					 'form-control-success': callus.valid && (callus.dirty || callus.touched)
+				 }" [(ngModel)]="model.callus" #callus="ngModel" name="callus" [textMask]="{mask: mask}"
+	           pattern="\d{3}\-\d{3}-\d{4}" required>
+					 <div class="form-control-feedback" *ngIf="callus.errors && (callus.dirty || callus.touched)">
+						 <p *ngIf="callus.errors.required">Contact information is required</p>
+					 </div>
+					</div>
+
+
+				</div>
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': seotitle.invalid && (seotitle.dirty || seotitle.touched),
+			 'has-success': seotitle.valid && (seotitle.dirty || seotitle.touched)
+		 }">
+					<label for="example_input_full_name">
+						SEO Title
+					</label>
+					<input class="form-control m-input" placeholder="Enter title" [ngClass]="{
+				 'form-control-danger': seotitle.invalid && (seotitle.dirty || seotitle.touched),
+				 'form-control-success': seotitle.valid && (seotitle.dirty || seotitle.touched)
+			 }" type="text" [(ngModel)]="model.seotitle" #seotitle="ngModel" name="seotitle" required>
+				 <div class="form-control-feedback" *ngIf="seotitle.errors && (seotitle.dirty || seotitle.touched)">
+					 <p *ngIf="seotitle.errors.required">Title is required</p>
+				 </div>
+				</div>
+
+				<div class="form-group m-form__group " >
+					<label for="example_input_full_name">
+						SEO Description
+					</label>
+					<textarea class="form-control m-input" [(ngModel)]="model.seodesc" #seodesc="ngModel" name="seodesc"></textarea>
+				</div>
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': seokey.invalid && (seokey.dirty || seokey.touched),
+			 'has-success': seokey.valid && (seokey.dirty || seokey.touched)
+		 }">
+					<label for="example_input_full_name">
+						SEO Keyword
+					</label>
+					<input class="form-control m-input" placeholder="Enter keyword" [ngClass]="{
+				 'form-control-danger': seokey.invalid && (seokey.dirty || seokey.touched),
+				 'form-control-success': seokey.valid && (seokey.dirty || seokey.touched)
+			 }" type="text" [(ngModel)]="model.seokey" #seokey="ngModel" name="seokey" required>
+				 <div class="form-control-feedback" *ngIf="seokey.errors && (seokey.dirty || seokey.touched)">
+					 <p *ngIf="seokey.errors.required">Keyword is required</p>
+				 </div>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="m-portlet__foot m-portlet__foot--fit">
+			<div class="m-form__actions m-form__actions">
+				<button type="submit" class="btn btn-primary">
+					Submit
+				</button>
+			</div>
+		</div>
+
+	</form>
+	<!--end::Form-->
+</div>
+</div>

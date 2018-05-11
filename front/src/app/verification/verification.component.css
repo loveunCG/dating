@@ -1,0 +1,185 @@
+.mat-dialog-container{
+    padding:0px !important;
+    width: 800px !important;
+    height: 600px !important;
+    margin-top: -300px !important;
+    margin-left: -400px !important;
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    overflow: hidden !important;
+}
+ .loginform{
+    text-align: center;
+    background: antiquewhite;
+    width: 50%;
+    margin: 20px auto;
+    width: 473px;
+    height: auto;
+    border-radius: 10px;
+    background-color: #ffffff;
+     box-shadow: 0px 0px 5px #bdb8b8;
+    padding: 50px 10px;
+    /*margin: 20px 0px;*/ 
+    padding-bottom: 15px;  
+    clear: both;
+}
+.login-texts{
+    font-size: 43px;
+line-height: 50px;
+color: rgb(255,74,74);
+font-family: "Karla";
+text-align: center;
+margin-top: 0px;
+}
+.close-btn{
+    display: inherit;
+    cursor: pointer;
+   
+}
+.mat-dialog-title{width: 100%;}
+
+
+.signup-button{
+    width: 313px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ff4949;
+    font-size: 16px;
+    color: rgb(254,254,254);
+    font-family: "Karla";
+    text-align: center;
+    border-style: none;
+    cursor: pointer;
+}
+.loginform input{
+    font-size: 16px;
+    color: rgb(84,82,79);
+    font-family: "Karla";
+    text-align: center;
+    border-radius: 5px;
+    background-color: #efefef;
+    margin: 10px 3px;
+    width: 313px;
+    height: 40px;
+    border-style: none;
+}
+
+.input-field-email input,.input-field-password input {width: 313px;}
+.forgot-text{
+  font-size: 14px;
+  line-height: 50px;
+  color: rgb(84,82,79);
+  font-family: "Karla";
+  text-align: center;
+  margin-top: 0px;
+}
+.signup-text{
+  font-size: 14px;
+line-height: 50px;
+color: rgb(84,82,79);
+font-family: "Karla";
+text-align: center;
+margin-top: 50px;
+}
+.site-name{
+font-size: 16px;
+color: rgb(255,74,74);
+cursor: pointer;
+}
+.has-danger .form-control-feedback,.register-error {
+    color: #d9534f;
+}
+.register-success{color: #5cb85c;}
+.has-danger .form-control {
+    border-color: #d9534f !important;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.has-success .form-control {
+    border-color: #5cb85c;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.forgot-text{
+  cursor: pointer;
+}
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+ 
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+    .loginform{width: 100%;padding: 0;}
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 767px) {
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .login-texts {
+    font-size: 28px;
+    line-height: 30px;            
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .loginform{width: 95%;padding: 0;}
+  .signup-text {margin-top: 10px;}
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .loginform{width: 95%;padding: 0;}
+  .input-field-email input, .input-field-password input,
+  .signup-button {
+      width: 260px;
+  }
+  .loginform input{   
+    width: 260px;
+}
+
+}

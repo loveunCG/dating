@@ -1,0 +1,14 @@
+.closebutton{
+  right: -20px;
+  position: relative;
+  background: transparent;
+  border: none;
+  float: right;
+  top: -20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.row{
+  text-align: center;
+}

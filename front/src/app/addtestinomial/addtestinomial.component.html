@@ -1,0 +1,44 @@
+<style type="text/css">
+/deep/ mat-dialog-container.mat-dialog-container {
+  width: 400px;max-width: 400px !important;
+}
+</style>
+<button (click)="cancel()" class="closebutton" title="Close">x</button>
+
+<p class="head-title">
+  Add Testimonial
+</p>
+
+<form class="m-form" (ngSubmit)="f.form.valid && submittestinomy(f)" #f="ngForm">
+
+<div class="form-group" [ngClass]="{'has-danger': username.invalid && (username.dirty), 'has-success': username.valid && (username.dirty)}">
+   <!-- <label class="label-left">Video link</label> -->
+   <input type="text" placeholder="Nickname" class="form-control" [(ngModel)]="model.username" #username="ngModel" name="username" required>
+   <div class="form-control-feedback" *ngIf="username.errors && (username.dirty)">
+      <p *ngIf="username.errors.required" class="error_msg">Nickname is required</p>
+   </div>
+</div>
+
+<div class="form-group" [ngClass]="{'has-danger': number.invalid && (number.dirty), 'has-success': number.valid && (number.dirty)}">
+   <!-- <label class="label-left">Upload video</label> -->
+   <input type="text" placeholder="Boy's number" class="form-control" [(ngModel)]="model.number" #number="ngModel" name="number" [textMask]="{mask: mask}" required>
+   <div class="form-control-feedback" *ngIf="number.errors && (number.dirty)">
+      <p *ngIf="number.errors.required" class="error_msg">Number is required</p>
+   </div>
+</div>
+
+<div class="form-group" [ngClass]="{'has-danger': testinomial.invalid && (testinomial.dirty), 'has-success': testinomial.valid && (testinomial.dirty)}">
+   <!-- <label class="label-left">Upload video</label> -->
+   <!-- <input type="text" placeholder="Testinomial" class="form-control" [(ngModel)]="model.testinomial" #testinomial="ngModel" name="testinomial"> -->
+   <textarea class="form-control" [(ngModel)]="model.testinomial" #testinomial="ngModel" name="testinomial" id="addtestinomial" placeholder="Testinomial"></textarea>
+   <div class="form-control-feedback" *ngIf="testinomial.errors && (testinomial.dirty)">
+      <p *ngIf="testinomial.errors.required" class="error_msg">Testinomial is required</p>
+   </div>
+</div>
+
+<div class="submit-section"><button [disabled]="f.invalid" class="edit-submit">Add</button></div>
+<div class="row">
+   <p  class="center register-error">{{errormsg}}</p>
+   <p  class="center register-success">{{successmsg}}</p>
+</div>
+</form>

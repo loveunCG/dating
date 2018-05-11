@@ -1,0 +1,167 @@
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title m-subheader__title--separator">
+				Add subadmin
+			</h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a routerLink="/index" class="m-nav__link m-nav__link--icon">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<a routerLink="/sub-admins" class="m-nav__link">
+						<span class="m-nav__link-text">
+							Sub admins
+						</span>
+					</a>
+				</li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<span class="m-nav__link-text">
+						Add sub admin
+					</span>
+				</li>
+
+      </ul>
+		</div>
+
+	</div>
+</div>
+
+<div class="m-content">
+<div class="m-portlet m-portlet--mobile">
+
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					Add sub admin
+				</h3>
+			</div>
+		</div>
+	</div>
+	<!--begin::Form-->
+	<form class="m-form" (ngSubmit)="f.form.valid && addUser(f)" #f="ngForm">
+
+	  <ng-template #alertAddUser></ng-template>
+
+		<div class="m-portlet__body " >
+	    <div class="m-form__section m-form__section--first">
+
+				<div class="form-group m-form__group " [ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched), 'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
+	        <label for="example_input_full_name">
+	          Name:
+	        </label>
+	        <input type="text" class="form-control m-input" placeholder="Enter name" [ngClass]="{
+	       'form-control-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+	       'form-control-success': firstName.valid && (firstName.dirty || firstName.touched)
+	     }" type="text" [(ngModel)]="model.firstName" #firstName="ngModel" name="firstName" required>
+
+	         <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+	           <p *ngIf="firstName.errors.required">Name is required </p>
+	         </div>
+
+	      </div>
+
+				<div class="form-group m-form__group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched), 'has-success': email.valid && (email.dirty || email.touched)}">
+	        <label>
+	          Email address:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter email" [ngClass]="{'form-control-danger': email.invalid && (email.dirty || email.touched), 'form-control-success': email.valid && (email.dirty || email.touched)}" type="email" [(ngModel)]="model.email" #email="ngModel" name="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off">
+
+	       <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+	         <span *ngIf="email.errors.required">Email is required</span>
+	         <span *ngIf="email.errors.pattern">Email format should be joe@abc.com</span>
+	       </div>
+
+	      </div>
+
+				<div class="form-group m-form__group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched), 'has-success': password.valid && (password.dirty || password.touched)}">
+	        <label>
+	          Password:
+	        </label>
+	        <input type="email" class="form-control m-input" placeholder="Enter password" [ngClass]="{
+	       'form-control-danger': password.invalid && (password.dirty || password.touched),
+	       'form-control-success': password.valid && (password.dirty || password.touched)
+	     }" type="password" [(ngModel)]="model.password" #password="ngModel" name="password" required>
+	       <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)" autocomplete="off">
+	         <span *ngIf="password.errors.required">Password is required</span>
+	       </div>
+       </div>
+
+
+
+      <div class="form-group m-form__group">
+        <label>Privileges:</label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.users" #checkuser="ngModel" name="privileges" value="checkuser"> Users
+          <span></span>
+        </label>
+				<br>
+				<label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.addtowallet" #addtowallet="ngModel" name="privileges" value="addtowallet"> Add to wallet
+          <span></span>
+        </label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.profilelist" #checkapprovals="ngModel" name="privileges" value="checkapprovals"> Profile approvals
+          <span></span>
+        </label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.cmspages" #checkcms="ngModel" name="privileges" value="checkcms"> CMS pages
+          <span></span>
+        </label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.packages" #checkpackages="ngModel" name="privileges" value="checkpackages"> Packages
+          <span></span>
+        </label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.userchats" #checkchats="ngModel" name="privileges" value="checkchats"> User chats
+          <span></span>
+        </label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.earnings" #checkearnings="ngModel" name="privileges" value="checkearnings"> Earnings
+          <span></span>
+        </label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.transactions" #checktransactions="ngModel" name="privileges" value="checktransactions"> Transactions
+          <span></span>
+        </label>
+        <br>
+        <label class="m-checkbox m-checkbox--state-success">
+          <input type="checkbox" [(ngModel)]="model.privileges.inactiveusers" #checklessactive="ngModel" name="privileges" value="checklessactive"> Less active users
+          <span></span>
+        </label>
+      </div>
+
+			</div>
+		</div>
+
+		<div class="m-portlet__foot m-portlet__foot--fit">
+	    <div class="m-form__actions m-form__actions">
+	      <button type="submit" class="btn btn-primary">
+	        Submit
+	      </button>
+	    </div>
+	  </div>
+
+	</form>
+	<!--end::Form-->
+</div>
+</div>

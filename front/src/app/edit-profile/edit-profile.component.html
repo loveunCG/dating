@@ -1,0 +1,716 @@
+<div class="profilepage home_container">
+<button _ngcontent-c3="" class="timer-button"><span id="timeleft">{{timeleft}}</span></button>
+<mat-tab-group (selectedTabChange)="loadpayjs($event)" [(selectedIndex)]="selectedIndex">
+   <mat-tab label="Edit">
+      <div class="">
+      <form class="edit-form"  novalidate [formGroup]="myform" (ngSubmit)="update(myform.value)">
+      <div class="x6 o6 ">
+         <div class="image-section1">
+            <div class="profile-image">
+               <div class="image-listing-sec">
+                  <div class="image_profile">
+                  <img [src]="firstimage" class="main-image lock" [hidden]="!firstimage">
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Female' " src="./assets/images/female.jpg" />
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Male' " src="./assets/images/male.jpg" />
+                  <span class="edit-back" [hidden]="!firstimage">
+                  <!-- <img src="./assets/images/edit.png" class="edit-icon"> -->
+                  <image-upload
+                  url="./uploads/profile"
+                  class="customClass"
+                  [max]="1"
+                  [uploadedFiles]="uimages"
+                  buttonCaption="Upload image"
+                  dropBoxMessage=""
+                  (removed)="firstiRemoved($event)"
+                  (uploadFinished)="firstiUpload($event)"
+                  (uploadStateChanged)="firstiStateChange($event)">
+                  </image-upload>
+                  </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="setting-info">
+            <section class="example-section">
+               <mat-slide-toggle *ngIf="userwallet > 0" formControlName="pausetime" (change)="ptimestat()" >Pause Time</mat-slide-toggle>
+               <mat-slide-toggle *ngIf="userwallet < 1" formControlName="pausetime" (change)="ptimestat()" disabled>Pause Time</mat-slide-toggle>
+            </section>
+            <section class="example-section">
+               <mat-checkbox *ngIf="userwallet > 0" class="example-margin" formControlName="highlight">Highlight Your Profile $10</mat-checkbox>
+               <mat-checkbox *ngIf="userwallet < 1" class="example-margin" formControlName="highlight" disabled>Highlight Your Profile $10</mat-checkbox>
+
+            </section>
+            <p class="changepass" (click)="changepassword()">Change Your Password</p>
+            <div class="input-field-password" *ngIf="showpass"
+                [ngClass]="{
+                 'has-danger': password.invalid && (password.dirty ),
+                 'has-success': password.valid && (password.dirty )
+            }">
+      <input type="password"
+           class="form-control"
+           formControlName="password"
+           placeholder="Enter new password"
+           required>
+    <div class="form-control-feedback"
+         *ngIf="password.errors && (password.dirty )">
+      <p *ngIf="password.errors.required">Password is required</p>
+      <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
+    </div>
+  </div>
+         </div>
+
+      </div>
+      <div class="col-1">
+         <div class="input-field-firstName control_form"
+            [ngClass]="{
+            'has-danger': firstName.invalid && (firstName.dirty),
+            'has-success': firstName.valid && (firstName.dirty)
+            }">
+            <label class="label-left">First Name</label>
+            <input type="text"
+               placeholder="First Name"
+               class="form-control"
+               formControlName="firstName"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="firstName.errors && (firstName.dirty)">
+               <p *ngIf="firstName.errors.required">First Name is required</p>
+            </div>
+         </div>
+
+
+
+         <div class="input-field-lastName control_form"
+            [ngClass]="{
+            'has-danger': lastName.invalid && (lastName.dirty),
+            'has-success': lastName.valid && (lastName.dirty )
+            }">
+            <label class="label-left">Last Name</label>
+            <input type="text"
+               placeholder="Last Name"
+               class="form-control"
+               formControlName="lastName"
+               required>
+            <div class="form-control-feedback control_form"
+               *ngIf="lastName.errors && (lastName.dirty)">
+               <p *ngIf="lastName.errors.required">Last Name is required</p>
+            </div>
+         </div>
+
+         <div class="input-field-username control_form"
+            [ngClass]="{
+            'has-danger': username.invalid && (username.dirty),
+            'has-success': username.valid && (username.dirty )
+            }">
+            <label class="label-left">User Name</label>
+            <input type="text"
+               placeholder="Username"
+               class="form-control"
+               formControlName="username">
+            <div class="form-control-feedback control_form"
+               *ngIf="username.errors && (username.dirty)">
+               <p *ngIf="username.errors.required">username is required</p>
+            </div>
+         </div>
+      </div>
+      <div class="col-2">
+        <div class="input-field-height control_form"
+           [ngClass]="{
+           'has-danger': height.invalid && (height.dirty),
+           'has-success': height.valid && (height.dirty )
+           }">
+           <label class="label-left">Height</label>
+           <!-- <input type="text"
+              placeholder="Height"
+              class="form-control"
+              formControlName="height"
+              required> -->
+              <select placeholder="Height" class="form-control" formControlName="height" required>
+                <option *ngFor="let hn of heights" [value]="hn">{{hn}}</option>
+              </select>
+           <div class="form-control-feedback"
+              *ngIf="height.errors && (height.dirty)">
+              <p *ngIf="height.errors.required">Height is required</p>
+           </div>
+        </div>
+        <div class="input-field-weight control_form"
+           [ngClass]="{
+           'has-danger': weight.invalid && (weight.dirty),
+           'has-success': weight.valid && (weight.dirty )
+           }">
+           <label class="label-left">Weight</label>
+           <!-- <input type="text"
+              placeholder="Weight"
+              class="form-control"
+              formControlName="weight"
+              required> -->
+              <select placeholder="Weight" class="form-control" formControlName="weight" required>
+                <option *ngFor="let wn of weightvals" [value]="wn">{{wn}}</option>
+              </select>
+           <div class="form-control-feedback"
+              *ngIf="weight.errors && (weight.dirty)">
+              <p *ngIf="weight.errors.required">weight is required</p>
+           </div>
+        </div>
+
+
+         <div class="input-field-email control_form"
+            [ngClass]="{
+            'has-danger': email.invalid && (email.dirty),
+            'has-success': email.valid && (email.dirty)
+            }">
+            <label class="label-left">Your Email</label>
+            <input type="email"
+               class="form-control"
+               placeholder="Email"
+               formControlName="email"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="email.errors && (email.dirty)">
+               <p *ngIf="email.errors.required">Email is required</p>
+               <p *ngIf="email.errors.pattern">Email format should be joe@abc.com</p>
+            </div>
+         </div>
+      </div>
+      <div class="col-3">
+        <div class="input-field-gender control_form" [ngClass]="{'has-danger': gender.invalid && (gender.dirty || gender.touched), 'has-success': gender.valid && (gender.dirty || gender.touched)}">
+           <label class="label-left">Gender</label>
+           <select class="form-control" formControlName="gender" disabled>
+              <option value="">Please select a gender</option>
+              <option *ngFor="let lang of langs"
+              [value]="lang">{{lang}}
+              </option>
+           </select>
+        </div>
+        <div class="input-field-age control_form" [ngClass]="{'has-danger': age.invalid && (age.dirty ), 'has-success': age.valid && (age.dirty )}">
+           <label class="label-left">Age</label>
+           <br>
+           <input type="number"
+              placeholder="Age"
+              class="form-control"
+              formControlName="age"
+              required>
+           <div class="form-control-feedback"
+              *ngIf="age.errors && (age.dirty )">
+              <p *ngIf="age.errors.required">Age is required</p>
+           </div>
+        </div>
+         <div class="input-field-phone control_form" [ngClass]="{'has-danger': phone.invalid && (phone.dirty), 'has-success': phone.valid && (phone.dirty )}">
+            <label class="label-left">Phone number(mobile)</label>
+            <input type="text"
+               class="form-control"
+               placeholder="Mobile Number"
+               formControlName="phone"
+               [textMask]="{mask: mask}"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="phone.errors && (phone.dirty)">
+               <p *ngIf="phone.errors.required">Mobile Number is required</p>
+               <p *ngIf="phone.errors.pattern">Mobile Number is required</p>
+            </div>
+         </div>
+
+      </div>
+      <div class="col-4 half_contain">
+
+        <div class="input-field-sex control_form"
+           [ngClass]="{
+           'has-danger': sex.invalid && (sex.dirty ),
+           'has-success': sex.valid && (sex.dirty )
+           }">
+           <label class="label-left">Sexual Preference</label>
+           <input type="text" pattern="^[a-zA-Z]+$"
+              placeholder="Sexual Preference"
+              class="form-control"
+              formControlName="sex">
+           <div class="form-control-feedback"
+              *ngIf="sex.errors && (sex.dirty )">
+              <!-- <p *ngIf="sex.errors.required">Sexual Preference is required</p> -->
+              <p *ngIf="sex.errors.pattern">Only alphabets allowed.</p>
+           </div>
+        </div>
+        <div class="input-field-skype control_form"
+           [ngClass]="{
+           'has-danger': skype.invalid && (skype.dirty ),
+           'has-success': skype.valid && (skype.dirty )
+           }">
+           <label class="label-left">Skype</label>
+           <br>
+           <input type="text"
+              placeholder="Skype"
+              class="form-control"
+              formControlName="skype">
+           <div class="form-control-feedback" *ngIf="skype.errors && (skype.dirty )">
+           </div>
+        </div>
+         <div class="input-field-whatsapp control_form"
+            [ngClass]="{
+            'has-danger': whatsapp.invalid && (whatsapp.dirty),
+            'has-success': whatsapp.valid && (whatsapp.dirty )
+            }">
+            <label class="label-left">Whatsapp</label>
+            <input type="text"
+               class="form-control"
+               placeholder="Whatsapp"
+               formControlName="whatsapp"
+               [textMask]="{mask: mask}">
+            <div class="form-control-feedback" *ngIf="whatsapp.errors && (whatsapp.dirty)">
+              <p *ngIf="whatsapp.errors.pattern">Only alphabets allowed.</p>
+            </div>
+         </div>
+
+
+      </div>
+      <div class="col-5 half_contain">
+        <div class="input-field-viber control_form"
+           [ngClass]="{
+           'has-danger': viber.invalid && (viber.dirty ),
+           'has-success': viber.valid && (viber.dirty )
+           }">
+           <label class="label-left">Viber</label>
+           <br>
+           <input type="text"
+              placeholder="Viber"
+              class="form-control"
+              formControlName="viber"
+              [textMask]="{mask: mask}">
+           <div class="form-control-feedback" *ngIf="viber.errors && (viber.dirty )">
+           </div>
+        </div>
+        <div class="input-field-wechat control_form"
+           [ngClass]="{
+           'has-danger': wechat.invalid && (wechat.dirty ),
+           'has-success': wechat.valid && (wechat.dirty )
+           }">
+           <label class="label-left">Wechat</label>
+           <input type="text"
+              placeholder="Wechat"
+              class="form-control"
+              formControlName="wechat"
+              [textMask]="{mask: mask}">
+           <div class="form-control-feedback" *ngIf="wechat.errors && (wechat.dirty )">
+           </div>
+        </div>
+      </div>
+      <div class="col-3">
+         <div class="input-field-location control_form"
+            [ngClass]="{
+            'has-danger': location.invalid && (location.dirty ),
+            'has-success': location.valid && (location.dirty )
+            }">
+            <label class="label-left">Your Location</label>
+            <input type="text"
+               placeholder="Your Location"
+               class="form-control"
+               formControlName="location" #hsearch
+               required>
+            <div class="form-control-feedback"
+               *ngIf="location.errors && (location.dirty )">
+               <p *ngIf="location.errors.required">Your Location is required</p>
+            </div>
+         </div>
+
+         <div class="input-field-location control_form">
+            <label class="label-left">State</label>
+            <br>
+            <input type="text" placeholder="State" class="form-control" formControlName="locstate" readonly required>
+            <div class="form-control-feedback" *ngIf="locstate.errors && (locstate.dirty )">
+               <p *ngIf="locstate.errors.required">State is required</p>
+            </div>
+         </div>
+
+         <div class="input-field-location control_form">
+            <label class="label-left">Suburb</label>
+            <br>
+            <input type="text" placeholder="State" class="form-control" readonly [value]="suburb">
+
+         </div>
+
+         <div class="input-field-service control_form"
+            [ngClass]="{
+            'has-danger': service.invalid && (service.dirty ),
+            'has-success': service.valid && (service.dirty )
+            }">
+            <label class="label-left">Service Location</label>
+            <input type="text"
+               placeholder="Service Location"
+               class="form-control"
+               formControlName="service"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="service.errors && (service.dirty )">
+               <p *ngIf="service.errors.required">Service Location is required</p>
+            </div>
+         </div>
+      </div>
+      <div class="input-field-aboutme control_form"
+         [ngClass]="{
+         'has-danger': aboutme.invalid && (aboutme.dirty ),
+         'has-success': aboutme.valid && (aboutme.dirty )
+         }">
+         <label class="label-left">About me</label>
+         <textarea
+            class="form-control"
+            formControlName="aboutme"
+            placeholder="About me"
+            id="aboutme"
+            required></textarea>
+         <div class="form-control-feedback" *ngIf="aboutme.errors && (aboutme.dirty )">
+           <p *ngIf="aboutme.errors.required">Please enter some info about you.</p>
+         </div>
+      </div>
+
+      <div class="images-section picked_images">
+         <div class="header-title-without">Images</div>
+
+         <div class="p-thumbnails">
+            <div class="profile-thumbnails" *ngIf="sliderimages">
+               <div class="profile-upload">
+            <image-upload
+            url="./uploads/profile"
+            [style]="customStyle"
+            [max]="1"
+            [uploadedFiles]="uimages"
+            buttonCaption="Upload image"
+            dropBoxMessage=""
+            (removed)="onRemoved($event)"
+            (uploadFinished)="onUploadFinished($event)"
+            (uploadStateChanged)="onUploadStateChanged($event)">
+            </image-upload>
+            <p class="upload-label">
+              <input type="checkbox" class="form-controlc" formControlName="enlock" />
+              Upload Image by Lock</p>
+            <!-- (change)="changeprice()" -->
+            <!-- <input type="text" class="form-control price-control" placeholder="Enter amount" formControlName="price" (input)="checkprice()">
+            <div class="form-control-feedback">
+        		<p *ngIf="imgerror" class="error" style="color: #d9534f;">Price is required</p>
+        		</div> -->
+            <a class="edit-submit uploadclass" (click)="addimages()">Upload</a>
+         </div>
+               <div class="image-listing-sec2" *ngFor="let image of sliderimages;let i = index">
+                  <div class="new_images">
+                    <div class="image_center">
+                      <span *ngIf="image.lock" class="lock-back"><img src="./assets/images/lock.png" class="lock-icon"></span>
+                      <img   [src]="image.image" class="image lock-edit">
+                      <span class="delete-back" (click)="deleteimg(i)">
+                      <img src="./assets/images/delete.png" class="delete-icon">
+                      </span>
+                      <span *ngIf="image.lock" class="lock_price">{{imgprice}}</span>
+
+                    </div>
+
+                  </div>
+                  <span class="lock-unlock">
+                    <input type="checkbox" (change)="lockunlock(i, $event)" class="check-lock-unlock" *ngIf="image.lock" checked>
+                    <input type="checkbox" (change)="lockunlock(i, $event)" class="check-lock-unlock" *ngIf="!image.lock" >
+                    Lock/Unlock Image
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="videos picked_videos">
+         <div class="header-title-without">Videos</div>
+         <div class="edit-video-section">
+            <!-- <div class="upload-video" (click)="openuploadvideo()"></div> -->
+            <div class="upload-video" (click)="openuploadvideo()"><span>Upload Video</span></div>
+            <div class="video-content" *ngFor="let video of videos;let i=index">
+               <iframe *ngIf="video.type=='youtube'" width="264" height="223" [src]="video.videosource" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+               <iframe *ngIf="video.type=='vimeo'" [src]="video.videosource" width="264" height="223" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+               <video *ngIf="video.type=='upload'" width="215" height="215" controls>
+                 <source [src]="video.videosource" >
+               </video>
+                <span class="delete-back" (click)="deletevideo(i)">
+                  <img src="./assets/images/delete.png" class="delete-icon">
+                  </span>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <p  class="center register-error">{{errormsg}}</p>
+         <p  class="center register-success">{{successmsg}}</p>
+      </div>
+      <div class="submit-section"><button class="edit-submit">{{registertext}}</button></div>
+      </form>
+    </div>
+   </mat-tab>
+   <mat-tab label="Preview">
+      <div class="header">
+         <h4 class="user-name">{{profileinfo.name}}</h4>
+         <a [routerLink]="['/messagelist']"><img  class="messages" src="./assets/images/msg.png"></a>
+         <button value="Add Testimonial" class="top-button" (click)="opentestinomial()">Add Testimonial</button>
+      </div>
+      <div class="x6 o6 edit_preview">
+         <div class="image-section">
+            <div class="profile-image">
+               <div class="image-listing-sec">
+                  <div class="image_profile">
+                  <img [src]="firstimage" class="main-image lock" [hidden]="!firstimage">
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Female' " src="./assets/images/female.jpg" />
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Male' " src="./assets/images/male.jpg" />
+                  <span class="lock-back" [hidden]="!firstimage">
+                  <img src="./assets/images/lock.png" class="lock-icon">
+
+                  </span></div>
+               </div>
+            </div>
+            <div class="profile-thumbnails" *ngIf="sliderimages">
+               <div class="image-listing-sec1">
+                  <img  *ngFor="let image of sliderimages;let i = index" [src]="image.image" class="image lock"(mouseenter)="showimage(i)">
+               </div>
+            </div>
+         </div>
+         <div class="basic-info">
+            <table>
+               <tr>
+                  <td class="label">Username:</td>
+                  <td class="value" *ngIf="profileinfo.username">{{profileinfo.username}}</td>
+                  <td class="value" *ngIf="!profileinfo.username"> N/A </td>
+               </tr>
+               <tr>
+                  <td class="label">Weight:</td>
+                  <td class="value" *ngIf="profileinfo.weight">{{profileinfo.weight}}</td>
+                  <td class="value" *ngIf="!profileinfo.weight"> N/A </td>
+               </tr>
+               <tr class="show_info">
+                  <td class="label">Gender:</td>
+                  <td class="value" *ngIf="profileinfo.gender">{{profileinfo.gender}}</td>
+                  <td class="value" *ngIf="!profileinfo.gender"> N/A  </td>
+               </tr>
+               <tr class="show_info">
+                  <td class="label">Height:</td>
+                  <td class="value" *ngIf="profileinfo.height">{{profileinfo.height}}</td>
+                  <td class="value" *ngIf="!profileinfo.height"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Sexual Preference:</td>
+                  <td class="value" *ngIf="profileinfo.sexual">{{profileinfo.sexual}}</td>
+                  <td class="value" *ngIf="!profileinfo.sexual"> N/A </td>
+               </tr>
+               <tr>
+                  <td class="label">Profile Location:</td>
+                  <td class="value" *ngIf="profileinfo.location">{{profileinfo.location}}</td>
+                  <td class="value" *ngIf="!profileinfo.location"> N/A </td>
+               </tr>
+               <tr>
+                  <td class="label">Work Location:</td>
+                  <td class="value" *ngIf="profileinfo.service_location">{{profileinfo.service_location}}</td>
+                  <td class="value" *ngIf="!profileinfo.service_location"> N/A </td>
+               </tr>
+               <tr>
+                  <td class="label">Mobile Number:</td>
+                  <td class="value" *ngIf="profileinfo.phone">{{profileinfo.phone}}</td>
+                  <td class="value" *ngIf="!profileinfo.phone"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Email Address:</td>
+                  <td class="value" *ngIf="profileinfo.email">{{profileinfo.email}}</td>
+                  <td class="value" *ngIf="!profileinfo.email"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Skype:</td>
+                  <td class="value" *ngIf="profileinfo.skype">{{profileinfo.skype}}</td>
+                  <td class="value" *ngIf="!profileinfo.skype"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Whatsapp:</td>
+                  <td class="value" *ngIf="profileinfo.whatsapp">{{profileinfo.whatsapp}}</td>
+                  <td class="value" *ngIf="!profileinfo.whatsapp"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Viber:</td>
+                  <td class="value" *ngIf="profileinfo.viber">{{profileinfo.viber}}</td>
+                  <td class="value" *ngIf="!profileinfo.viber"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Wechat:</td>
+                  <td class="value" *ngIf="profileinfo.wechat">{{profileinfo.wechat}}</td>
+                  <td class="value" *ngIf="!profileinfo.wechat"> N/A  </td>
+               </tr>
+            </table>
+         </div>
+         <div class="extra-info">
+            <table>
+               <tr class="hide_info">
+                  <td class="label">Gender:</td>
+                  <td class="value" *ngIf="profileinfo.gender">{{profileinfo.gender}}</td>
+                  <td class="value" *ngIf="!profileinfo.gender"> N/A  </td>
+               </tr>
+               <tr class="hide_info">
+                  <td class="label">Height:</td>
+                  <td class="value" *ngIf="profileinfo.height">{{profileinfo.height}}</td>
+                  <td class="value" *ngIf="!profileinfo.height"> N/A  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+      <div class="aboutme" *ngIf="profileinfo.aboutme">
+         <div class="header-title">About me</div>
+         <div class="content">{{profileinfo.aboutme}}</div>
+      </div>
+      <div class="videos">
+         <div class="header-title" *ngIf="videos.length > 0">Videos</div>
+         <div class="video-section" *ngIf="videos.length > 0">
+            <div class="video-content" *ngFor="let video of videos;let i=index">
+              <iframe *ngIf="video.type=='youtube'" width="264" height="223" [src]="video.videosource" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+              <iframe *ngIf="video.type=='vimeo'" [src]="video.videosource" width="264" height="223" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              <video *ngIf="video.type=='upload'" width="215" height="215" controls>
+                <source [src]="video.videosource" >
+              </video>
+               <span class="delete-back" (click)="deletevideo(i)">
+                 <img src="./assets/images/delete.png" class="delete-icon">
+                 </span>
+            </div>
+         </div>
+         <div class="testimonial" *ngIf="tlength > 0">
+            <div class="header-title">Testimonial</div>
+            <div class="testi-content" *ngFor="let testi of testimonials;let i=index;">
+               <p class="nickname">{{testi.nickname}}</p>
+               <p class="tcomment">{{testi.comment}}</p>
+            </div>
+         </div>
+         <div class="comment" *ngIf="comments">
+            <div class="header-title">Comments</div>
+            <div class="comment-content" *ngFor="let comm of comments;let i=index">
+               <div class="top-section">
+                  <img *ngIf="comm.images" class="profile-pic" src="{{imageurl}}{{comm.images[0].image}}">
+                  <p *ngIf="comm.first_name" class="username">{{comm.first_name}}</p>
+                  <p *ngIf="!comm.first_name && comm.addedby" class="username">{{comm.addedby}}</p>
+                  <span class="deleteicon" (click)="deletecomment(i)"><img  src="./assets/images/dlt_r.png"></span>
+                  <p class="date">{{comm.date| date :  "d MMM,y"}}</p>
+               </div>
+               <p class="description">{{comm.description}}</p>
+            </div>
+         </div>
+         <div class="comment" *ngIf="complaints">
+            <div class="header-title">Complaints</div>
+            <div class="comment-content" *ngFor="let comp of complaints;let i=index">
+               <div class="top-section">
+                  <img *ngIf="comp.images" class="profile-pic" src="{{imageurl}}{{comp.images[0].image}}">
+                  <p *ngIf="comp.first_name" class="username">{{comp.first_name}}</p>
+                  <p *ngIf="!comp.first_name && comp.addedby" class="username">{{comp.addedby}}</p>
+                  <span class="deleteicon" (click)="deletecomplaint(i)"><img  src="./assets/images/dlt_r.png"></span>
+                  <p class="date">{{comp.date| date :  "d MMM,y"}}</p>
+               </div>
+               <p class="description">{{comp.description}}</p>
+            </div>
+         </div>
+      </div>
+   </mat-tab>
+ <mat-tab label="Payment" class="payment_details">
+      <div class="payment_tab">
+         <mat-tab-group (selectedTabChange)="loadinnerpay($event)">
+             <mat-tab label="Packages" >
+               <div class="package_grids" (window:resize)="onResize($event)">
+
+                  <mat-grid-list cols="{{test}}" rowHeight="{{rowheight}}">
+                     <mat-grid-tile *ngFor="let package of packages;let i = index">
+                        <div class="grid_tiles" [ngClass]="psel" id="packagediv{{package.id}}">
+                           <h1>{{package.name}}</h1>
+                           <p>{{package.desc}}</p>
+                           <span>{{package.bonus}}</span>
+                           <h2>$ {{package.price}}</h2>
+                           <button (click)="selectpackage(package.id, package.price, package.bonus)">Select Package</button>
+                        </div>
+                     </mat-grid-tile>
+
+                     <mat-grid-tile>
+                        <div class="grid_tiles enter_amount">
+                           <h1>manual payment</h1>
+                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting </p>
+
+                             <input type="text" [(ngModel)]="model.manualamount" #manualamount="ngModel" name="manualamount" placeholder="Enter Amount" >
+
+
+
+                           <button (click)="addextra()">Add extra amount</button>
+                        </div>
+                     </mat-grid-tile>
+                  </mat-grid-list>
+                  <input type="hidden" value="" id="oldpsel">
+               </div>
+               <!-- <mat-checkbox>Highlight Your Profile, $10</mat-checkbox> -->
+
+               <input type="checkbox" name="highlightpay" [(ngModel)]="model.highlightpay" #highlightpay="ngModel" (change)="addhighlight()" id="addhighlightpro">Highlight Your Profile, ${{highlightfees}}
+
+
+               <h3 class="current_bal">Current Account Balance is $<span id="wallamount">{{userwallet}}</span></h3>
+               <h4 class="current_bal">Current earnings ${{earnings}}</h4>
+
+               <h4 class="current_bal">Total amount: {{totalpay}}</h4>
+               <input type="hidden" value="{{totalpay}}" id="finaltpay">
+               <input type="hidden" value="{{girlid}}" id="userid">
+               <input type="hidden" value="" id="bonus">
+               <div id="paypal-button" class="paypal-button"></div>
+               <p  class="center register-error" id="paymenterror"></p>
+               <p  class="center register-success" id="paymentsuccess"></p>
+               <!-- <button [disabled]="buttonstat" class="paybutton">Pay</button> -->
+            </mat-tab>
+            <mat-tab label="Transaction Log">
+               <!-- <div class="example-header">
+                 <mat-form-field>
+                   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                 </mat-form-field>
+               </div> -->
+
+               <div class="example-container mat-elevation-z8 payment_table" >
+                 <div class="control_form">
+                    <input matInput [max]="maxDate" [matDatepicker]="picker1" placeholder="Date from" class="form-control" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" #fromdate="ngModel" name="fromdate" [(ngModel)]="datemodel.fromdate" (click)="picker1.open()">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                 </div>
+                  <div class="control_form">
+                    <input matInput [max]="maxDate" [matDatepicker]="picker2" placeholder="Date to" class="form-control" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" #todate="ngModel" name="todate" [(ngModel)]="datemodel.todate" (click)="picker2.open()">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </div>
+                 <mat-table [dataSource]="dataSource" matSort matSortActive="trdate" matSortDisableClear matSortDirection="desc">
+
+                   <!-- ID Column -->
+                   <ng-container matColumnDef="trdate">
+                     <mat-header-cell *matHeaderCellDef > Date </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.trdate}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Progress Column -->
+                   <ng-container matColumnDef="trtime">
+                     <mat-header-cell *matHeaderCellDef > Time </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.trtime}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Name Column -->
+                   <ng-container matColumnDef="type">
+                     <mat-header-cell *matHeaderCellDef > Type </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.type}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Color Column -->
+                   <ng-container matColumnDef="money">
+                     <mat-header-cell *matHeaderCellDef > Money </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.money}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Color Column -->
+                   <ng-container matColumnDef="remark">
+                     <mat-header-cell *matHeaderCellDef > Additional Remarks </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.remark}} </mat-cell>
+                   </ng-container>
+
+                   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                   <mat-row *matRowDef="let row; columns: displayedColumns;">
+                   </mat-row>
+                 </mat-table>
+                 <div *ngIf="resultsLength==0" class="norecords">
+                   No records found
+                 </div>
+                 <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="resultsLength"></mat-paginator> -->
+                 <mat-paginator [length]="resultsLength" [pageSize]="10">
+                 </mat-paginator>
+               </div>
+
+
+            </mat-tab>
+         </mat-tab-group>
+      </div>
+   </mat-tab>
+</mat-tab-group>

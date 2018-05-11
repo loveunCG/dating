@@ -1,0 +1,490 @@
+<!-- BEGIN: Subheader -->
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title m-subheader__title--separator">
+				My Profile
+			</h3>
+			<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a routerLink="/index" class="m-nav__link m-nav__link--icon">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<span class="m-nav__link-text">
+						My Profile
+					</span>
+				</li>
+
+      </ul>
+		</div>
+
+	</div>
+</div>
+<!-- END: Subheader -->
+<div class="m-content">
+	<div class="row">
+		<div class="col-xl-3 col-lg-4">
+			<div class="m-portlet m-portlet--full-height">
+				<div class="m-portlet__body">
+					<div class="m-card-profile">
+						<div class="m-card-profile__title m--hide">
+							Your Profile
+						</div>
+						<!-- <div class="m-card-profile__pic">
+							<div class="m-card-profile__pic-wrapper">
+								<img src="./assets/app/media/img/users/user4.jpg" alt=""/>
+							</div>
+						</div> -->
+						<div class="m-card-profile__details">
+							<span class="m-card-profile__name">
+								{{dpusername}}
+							</span>
+							<a href="" class="m-card-profile__email m-link">
+								{{adminemail}}
+							</a>
+						</div>
+					</div>
+					<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+						<li class="m-nav__separator m-nav__separator--fit"></li>
+						<li class="m-nav__section m--hide">
+							<span class="m-nav__section-text">
+								Section
+							</span>
+						</li>
+						<li class="m-nav__item">
+							<a routerLink="/header/profile" class="m-nav__link">
+								<i class="m-nav__link-icon flaticon-profile-1"></i>
+								<span class="m-nav__link-title">
+									<span class="m-nav__link-wrap">
+										<span class="m-nav__link-text">
+											My Profile
+										</span>
+										<!-- <span class="m-nav__link-badge">
+											<span class="m-badge m-badge--success">
+												2
+											</span>
+										</span> -->
+									</span>
+								</span>
+							</a>
+						</li>
+						<!-- <li class="m-nav__item">
+							<a routerLink="/header/profile" class="m-nav__link">
+								<i class="m-nav__link-icon flaticon-share"></i>
+								<span class="m-nav__link-text">
+									Activity
+								</span>
+							</a>
+						</li> -->
+
+					</ul>
+					<div class="m-portlet__body-separator"></div>
+					<!-- <div class="m-widget1 m-widget1--paddingless">
+						 <div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Member Profit
+									</h3>
+									<span class="m-widget1__desc">
+										Awerage Weekly Profit
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-brand">
+										+$17,800
+									</span>
+								</div>
+							</div>
+						</div>
+
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-9 col-lg-8">
+			<div class="m-portlet m-portlet--full-height m-portlet--tabs">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-tools">
+						<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+							<li class="nav-item m-tabs__item">
+								<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+									<i class="flaticon-share m--hide"></i>
+									Update Profile
+								</a>
+							</li>
+							<li *ngIf="!subadmin" class="nav-item m-tabs__item">
+								<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+									General Settings
+								</a>
+							</li>
+							<li *ngIf="!subadmin" class="nav-item m-tabs__item">
+								<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+									Footer Settings
+								</a>
+							</li>
+							<!-- <li class="nav-item m-tabs__item">
+								<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+									Settings
+								</a>
+							</li> -->
+						</ul>
+					</div>
+
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane active" id="m_user_profile_tab_1">
+						<form (ngSubmit)="f.form.valid && saveProfile()" #f="ngForm" class="m-form m-form--fit m-form--label-align-right" autocomplete="off" novalidate>
+							<div class="m-portlet__body">
+								<ng-template #alertUpdate></ng-template>
+								<!-- <div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											1. Details
+										</h3>
+									</div>
+								</div> -->
+								<div class="form-group m-form__group row" [ngClass]="{
+			         'has-danger': username.invalid && (username.dirty || username.touched),
+			         'has-success': username.valid && (username.dirty || username.touched)
+			       }">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Full Name
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" [ngClass]="{
+					         'form-control-danger': username.invalid && (username.dirty || username.touched),
+					         'form-control-success': username.valid && (username.dirty || username.touched)
+					       }" type="text" [(ngModel)]="model.username" #username="ngModel" name="username" required>
+										<div class="form-control-feedback" *ngIf="username.errors && (username.dirty || username.touched)">
+											<p *ngIf="username.errors.required">Name is required</p>
+										</div>
+									</div>
+								</div>
+								<div class="form-group m-form__group row" [ngClass]="{
+			         'has-danger': email.invalid && (email.dirty || email.touched),
+			         'has-success': email.valid && (email.dirty || email.touched)
+			       }">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Email
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" autocomplete="off" [ngClass]="{
+					         'form-control-danger': email.invalid && (email.dirty || email.touched),
+					         'form-control-success': email.valid && (email.dirty || email.touched)
+					       }" type="text" [(ngModel)]="model.email" #email="ngModel" name="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+										<div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+											<p *ngIf="email.errors.required">Email is required</p>
+											<p *ngIf="email.errors.pattern">Email format should be joe@abc.com</p>
+										</div>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Password
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" autocomplete="off" type="password" [(ngModel)]="model.password" #password="ngModel" name="password">
+										<span class="m-form__help">
+											Leave blank in case of no change.
+										</span>
+									</div>
+								</div>
+
+							</div>
+							<div class="m-portlet__foot m-portlet__foot--fit">
+								<div class="m-form__actions">
+									<div class="row">
+										<div class="col-2"></div>
+										<div class="col-7">
+											<!-- <button class="btn btn-accent m-btn m-btn--air m-btn--custom">
+												Save changes
+											</button> -->
+											<button [disabled]="loading" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" class="btn btn-accent m-btn m-btn--air m-btn--custom" type="submit">
+												Save changes
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="m_user_profile_tab_2">
+						<form (ngSubmit)="fgs.form.valid && saveGenSets()" #fgs="ngForm" class="m-form m-form--fit m-form--label-align-right" novalidate>
+							<div class="m-portlet__body">
+								<ng-template #alertgenset></ng-template>
+								<!-- <div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											1. Details
+										</h3>
+									</div>
+								</div> -->
+
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Support email
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="generalmodel.supportemail" #supportemail="ngModel" name="supportemail">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Locked image price
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="generalmodel.imgprice" #imgprice="ngModel" name="imgprice">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Highlight profile price
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="generalmodel.highlightprice" #highlightprice="ngModel" name="highlightprice">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Daily profile amount
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="generalmodel.dailyamount" #dailyamount="ngModel" name="dailyamount">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Commission %
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="generalmodel.commission" #commission="ngModel" name="commission">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Favicon image
+									</label>
+									<div class="col-7">
+										<image-upload
+									url="http://54.218.127.55/projects/Dating/uploads"
+									[max]="1"
+									buttonCaption="Upload"
+									dropBoxMessage=""
+									(removed)="onRemovedFav($event)"
+								  	(uploadFinished)="onUploadFinishedFav($event)"
+								  	(uploadStateChanged)="onUploadStateChangedFav($event)"></image-upload>
+
+										<img *ngIf="faviconimg" [src]="cfavimg" height="45px">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Logo image
+									</label>
+									<div class="col-7">
+										<image-upload
+									url="http://54.218.127.55/projects/Dating/uploads"
+									[max]="1"
+									buttonCaption="Upload"
+									dropBoxMessage=""
+									(removed)="onRemovedLogo($event)"
+								  	(uploadFinished)="onUploadFinishedLogo($event)"
+								  	(uploadStateChanged)="onUploadStateChangedLogo($event)"></image-upload>
+										<img *ngIf="clogoimg" [src]="logoimg" height="45px">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Default boy profile image
+									</label>
+									<div class="col-7">
+										<image-upload
+									url="http://54.218.127.55/projects/Dating/uploads"
+									[max]="1"
+									buttonCaption="Upload"
+									dropBoxMessage=""
+									(removed)="onRemovedPb($event)"
+								  	(uploadFinished)="onUploadFinishedPb($event)"
+								  	(uploadStateChanged)="onUploadStateChangedPb($event)"></image-upload>
+										<img *ngIf="cboyimg" [src]="boyimg" height="45px">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Default girl profile image
+									</label>
+									<div class="col-7">
+										<image-upload
+									url="http://54.218.127.55/projects/Dating/uploads"
+									[max]="1"
+									buttonCaption="Upload"
+									dropBoxMessage=""
+									(removed)="onRemovedGp($event)"
+								  	(uploadFinished)="onUploadFinishedGp($event)"
+								  	(uploadStateChanged)="onUploadStateChangedGp($event)"></image-upload>
+										<img *ngIf="cgirlimg" [src]="girlimg" height="45px">
+									</div>
+								</div>
+
+							</div>
+							<div class="m-portlet__foot m-portlet__foot--fit">
+								<div class="m-form__actions">
+									<div class="row">
+										<div class="col-2"></div>
+										<div class="col-7">
+											<!-- <button class="btn btn-accent m-btn m-btn--air m-btn--custom">
+												Save changes
+											</button> -->
+											<button [disabled]="loading" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" class="btn btn-accent m-btn m-btn--air m-btn--custom" type="submit">
+												Save changes
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="m_user_profile_tab_3">
+						<form (ngSubmit)="ff.form.valid && saveFooter()" #ff="ngForm" class="m-form m-form--fit m-form--label-align-right" novalidate>
+							<div class="m-portlet__body">
+								<ng-template #alertfooter></ng-template>
+								<!-- <div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											1. Details
+										</h3>
+									</div>
+								</div> -->
+
+								<div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											1. Social Links
+										</h3>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Blog
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.blogurl" #blogurl="ngModel" name="blogurl">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Linkedin
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.linkedinurl" #linkedinurl="ngModel" name="linkedinurl">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Facebook
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.fburl" #fbrul="ngModel" name="fburl">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Twitter
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.tweeturl" #tweeturl="ngModel" name="tweeturl">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Instagram
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.instaurl" #instaurl="ngModel" name="instaurl">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Youtube
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.youtubeurl" #youtubeurl="ngModel" name="youtubeurl">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Dribble
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.dribbleurl" #dribbleurl="ngModel" name="dribbleurl">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Google+
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.googlepurl" #googlepurl="ngModel" name="googlepurl">
+									</div>
+								</div>
+								<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+								<div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											2. Footer section
+										</h3>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Follow us title
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="footermodel.fustitle" #fustitle="ngModel" name="fustitle">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Follow us description
+									</label>
+									<div class="col-7">
+										<textarea class="form-control m-input" [(ngModel)]="footermodel.fusdesc" #fusdesc="ngModel" name="fusdesc"></textarea>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Copyright text
+									</label>
+									<div class="col-7">
+										<textarea class="form-control m-input" [(ngModel)]="footermodel.cptext" #cptext="ngModel" name="cptext"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="m-portlet__foot m-portlet__foot--fit">
+								<div class="m-form__actions">
+									<div class="row">
+										<div class="col-2"></div>
+										<div class="col-7">
+											<!-- <button class="btn btn-accent m-btn m-btn--air m-btn--custom">
+												Save changes
+											</button> -->
+											<button [disabled]="loading" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" class="btn btn-accent m-btn m-btn--air m-btn--custom" type="submit">
+												Save changes
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+.heading {
+	color: #f34747;
+	font-size: 46px;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+}
+.faq_question {
+	margin: 4px 0;
+	display: inline-block;
+	color: #404040;
+}
+
+h3 {
+	font-size: 30px;
+	font-family: karla;
+	font-weight: normal;
+}
+h4 {
+	font-size: 18px;
+	font-weight: normal;
+	margin: 5px 0;
+}
+p {
+	font-size: 16px;
+	color: #404040;
+	margin: 5px 0;
+}
+
+@media (max-width: 767px) {
+	.heading {		
+		font-size: 25px;								
+	}
+	h3 {
+		margin: 5px 0;
+	}
+}

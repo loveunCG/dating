@@ -1,0 +1,7 @@
+{
+    "require": {
+        "palanik/corsslim": "*",
+        "slim/slim": "~2.0",
+        "twilio/sdk": "^5.18"
+    }
+}

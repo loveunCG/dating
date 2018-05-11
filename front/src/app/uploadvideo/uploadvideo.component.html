@@ -1,0 +1,41 @@
+<div>
+<button (click)="cancel()" class="closebutton" title="Close">x</button>
+</div>
+
+<form class="m-form upload_video_popup" (ngSubmit)="f.form.valid && addvideo(f)" #f="ngForm">
+
+<div class="form-group" [ngClass]="{'has-danger': videotype.invalid && (videotype.dirty || videotype.touched), 'has-success': videotype.valid && (videotype.dirty || videotype.touched)}">
+   <label class="label-left">Video type</label>
+   <select class="form-control" [(ngModel)]="model.videotype" #videotype="ngModel" name="videotype" (change)="changeVt($event.target.value)" required>
+      <option value="">Please select video type</option>
+      <option value="youtube">Youtube</option>
+      <option value="vimeo">Vimeo</option>
+      <option value="upload">Upload</option>
+   </select>
+   <div class="form-control-feedback" *ngIf="videotype.errors && (videotype.dirty)">
+      <p *ngIf="videotype.errors.required">Type is required</p>
+   </div>
+</div>
+
+<div *ngIf="!def" class="form-group" [ngClass]="{'has-danger': videolink.invalid && (videolink.dirty), 'has-success': videolink.valid && (videolink.dirty)}">
+   <label class="label-left">Video link</label>
+   <input type="text" placeholder="Video link" class="form-control" [(ngModel)]="model.videolink" #videolink="ngModel" name="videolink" required>
+   <div class="form-control-feedback" *ngIf="videolink.errors && (videolink.dirty)">
+      <p *ngIf="videolink.errors.required">Link is required</p>
+   </div>
+</div>
+
+<div *ngIf="def" class="form-group" [ngClass]="{'has-danger': file.invalid && (file.dirty), 'has-success': file.valid && (file.dirty)}">
+   <label class="label-left">Upload video</label>
+   <input type="file" (change)="onFileChange($event)" placeholder="Select file" class="form-control" [(ngModel)]="model.file" #file="ngModel" name="file">
+   <div class="form-control-feedback" *ngIf="file.errors && (file.dirty)">
+      <p *ngIf="file.errors.required">File is required</p>
+   </div>
+</div>
+
+<div class="submit-section"><button [disabled]="f.invalid" class="edit-submit">Save</button></div>
+<div class="row">
+   <p  class="center register-error">{{errormsg}}</p>
+   <p  class="center register-success">{{successmsg}}</p>
+</div>
+</form>

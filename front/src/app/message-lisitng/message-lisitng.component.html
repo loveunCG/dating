@@ -1,0 +1,43 @@
+<div class="page_container">
+<h1 class="page_heading" flex="100">Messages</h1>
+
+<!-- <div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+ -->
+<div class="example-container mat-elevation-z8 message_listing">
+
+  <mat-table [dataSource]="dataSource" matSort matSortActive="cdate" matSortDisableClear matSortDirection="desc">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="cdate">
+      <mat-header-cell *matHeaderCellDef > Time </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.cdate}} </mat-cell>
+    </ng-container>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="tousername">
+      <mat-header-cell *matHeaderCellDef > From </mat-header-cell>
+      <mat-cell *matCellDef="let row" (click) = "click(row.toid)" class="gotouser"> {{row.tousername}} <span class="unread">({{row.unread}}) </span> </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="lastmsg">
+      <mat-header-cell *matHeaderCellDef > Message </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.lastmsg}} </mat-cell>
+    </ng-container>    
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+
+  </mat-table>
+  <div *ngIf="resultsLength==0" class="norecords">
+    No records found
+  </div>
+  <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
+</div>
+
+</div>

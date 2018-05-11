@@ -1,0 +1,40 @@
+<!-- <a class="login-close close-btn" (click)="cancel()"><i class="material-icons">close</i></a> -->
+<div class="loginform">
+
+	<form class="login-form" novalidate [formGroup]="loginform" (ngSubmit)="login(loginform.value)">
+		<p class="login-texts">LOG IN</p>
+		<div class="input-field-email col-sm-10 col-sm-offset-1" [ngClass]="{
+        'has-danger': email.invalid && (email.dirty),
+        'has-success': email.valid && (email.dirty )
+   }">
+			<input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+			<div class=" has-error" has-error *ngIf="email.errors && (email.dirty)">
+				<p *ngIf="email.errors.required" class="error">Email is required</p>
+				<p *ngIf="email.errors.pattern" class="error">Email format should be joe@abc.com</p>
+			</div>
+		</div>
+		<div class="input-field-email col-sm-10 col-sm-offset-1" [ngClass]="{
+        'has-danger': password.invalid && (password.dirty),
+        'has-success': password.valid && (password.dirty)
+   }">
+			<input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+			<div class="has-error" *ngIf="password.errors && (password.dirty)">
+				<p *ngIf="password.errors.required" class="error">Password is required</p>
+			</div>
+		</div>
+
+		<div class="col-sm-12">
+			<p class="error">{{errormsg}}</p>
+			<p class="register-success">{{successmsg}}</p>
+		</div>
+		<div class="">
+			<div class="input-field col-sm-10 col-sm-offset-1">
+				<!-- <button [disabled]='!loginform.valid'  class="btn signup-button" type="submit" >{{logintext}}</button> -->
+				<button class="btn signup-button" type="submit">{{logintext}}</button>
+			</div>
+		</div>
+	</form>
+	<p class="forgot-text" [routerLink]="['/forgot']">Forgot your password?</p>
+
+	<p class="signup-text"> Create Acoount to <span class="site-name" [routerLink]="['/boysignup']">browse</span> | <span class="site-name" [routerLink]="['/girlsignup']">advertise</span></p>
+</div>

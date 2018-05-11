@@ -1,0 +1,97 @@
+.heading {
+	color: #3f3f3f;
+	font-size: 44px;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	font-weight: bold;
+}
+
+p {
+	font-size: 18px;
+	color: #45494d;
+	text-align: center;
+}
+
+.banner {
+	background: url('../../assets/images/aboutus.jpg');
+    background-size: cover;
+    position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-position: center;
+	text-align: center;
+}
+.banner img {
+	padding-top: 13%;
+}
+.banner p {
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+	padding: 5% 0;
+}
+.page_container {
+    padding-top: 535px;
+}
+@media (max-width: 767px) {
+	.banner p {
+		font-size: 17px;
+	}
+	.banner[_ngcontent-c3] img[_ngcontent-c3] {
+		max-width: 300px;
+	}
+	.page_container {
+		padding-top: 45%;
+	}
+}
+@media (min-width: 992px) {
+	.inner-container {
+		min-height: 100%;
+		position: relative;
+		 padding-bottom: 350px; 
+	}
+	html, body {
+		height: 100%;
+		margin: 0;
+	}
+	.footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%; 
+	}
+
+}
+@media (max-width: 1199px) {
+	.page_container {
+    padding-top: 475px;
+}
+}
+@media (max-width: 991px) {
+	.page_container {
+    padding-top: 425px;
+}
+}
+@media (max-width: 767px) {
+	.page_container {
+    padding-top: 290px;
+}
+}
+@media (max-width: 630px) {
+	.page_container {
+		padding-top: 45%;
+	}
+}
+@media (max-width: 480px) {
+	.page_container {
+		padding-top: 60%;
+	}
+}
+@media (max-width: 345px) {
+	.page_container {
+		padding-top: 71%;
+	}
+}

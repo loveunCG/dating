@@ -1,0 +1,25 @@
+<div class="loginform">
+	<form class="login-form" novalidate [formGroup]="forgotform" (ngSubmit)="forgot(forgotform.value)">
+		<p class="login-texts">Forgotten Password?</p>
+		<div class="input-field-email col-sm-10 col-sm-offset-1" [ngClass]="{
+        'has-danger': email.invalid && (email.dirty || email.touched),
+        'has-success': email.valid && (email.dirty || email.touched)
+   }">
+			<input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+			<div class="col-sm-12" *ngIf="email.errors && (email.dirty || email.touched)">
+				<p *ngIf="email.errors.required">Email is required</p>
+				<p *ngIf="email.errors.pattern">Email format should be joe@abc.com</p>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<p class="center register-error">{{errormsg}}</p>
+			<p class="center register-success">{{successmsg}}</p>
+		</div>
+		<div class="">
+			<div class="input-field col-sm-10 col-sm-offset-1">
+				<button [disabled]="!forgotform.valid" class="btn signup-button" type="submit">{{logintext}}</button>
+			</div>
+		</div>
+	</form>
+	<p class="signup-text"><span class="site-name" [routerLink]="['/login']">Login</span>
+</div>

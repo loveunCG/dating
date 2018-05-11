@@ -1,0 +1,266 @@
+<section class="w3-white states text-center hidden-xs">
+  <div class="container">
+    <div class="w3-row">
+      <ul class="nav nav-pills nav-justified">
+        <li>
+          <a href="#">States: </a>
+        </li>
+        <li [ngClass]="selstate=='South Australia' ? 'active' : '' " (click)="changestate('South Australia')"> <a href="#">SA</a></li>
+        <li [ngClass]="selstate=='Victoria' ? 'active' : '' " (click)="changestate('Victoria')"><a href="#">VIC</a></li>
+        <li [ngClass]="selstate=='New South Wales' ? 'active' : '' " (click)="changestate('New South Wales')"><a href="#">NSW</a></li>
+        <li [ngClass]="selstate=='Queensland' ? 'active' : '' " (click)="changestate('Queensland')"><a href="#">SA</a></li>
+        <li [ngClass]="selstate=='Western Australia' ? 'active' : '' " (click)="changestate('Western Australia')"><a href="#">WA</a></li>
+        <li [ngClass]="selstate=='Northern Territory' ? 'active' : '' " (click)="changestate('Northern Territory')"><a href="#">NT</a></li>
+      </ul>
+    </div>
+    <!--row end-->
+  </div>
+  <!--container end-->
+</section>
+<section class="invite text-center">
+  <div class="container">
+    <div class="w3-row">
+      <h3>Can’t see your girl here? Invite here at just 100$
+        <a href="#" class="btn btn-all bg-pink">Invite</a>
+      </h3>
+    </div>
+    <!--row end-->
+  </div>
+</section>
+<section class="part1">
+  <div class="container">
+    <div class="row flex-row">
+      <div class="col-left w3-col">
+        <div class="btn-group-vertical center-block">
+          <a href="#" class="btn">
+            <img src="./assets/images/google_play.png" alt="" />
+          </a>
+          <a href="#" class="btn">
+            <img src="./assets/images/app_store.png" alt="" />
+          </a>
+        </div>
+      </div>
+      <!--cole nd-->
+      <div class="col-right w3-white w3-col top-form">
+        <form class="form-inline" [formGroup]="myform">
+          <div class="w3-row">
+            <ul class="top-list">
+              <li class="first-child text-bold">
+                <span>Filter By</span>
+              </li>
+              <li>
+                <span>Name</span>
+              </li>
+              <li>
+                  <input class="search-field" type="text" formControlName="name" name="name" />
+              </li>
+              <li>
+                <span>Weight</span>
+              </li>
+              <li>
+                  <input class="search-field" type="text" formControlName="weight" name="weight" />
+              </li>
+              <li>
+                <span>To</span>
+              </li>
+              <li>
+                  <input class="search-field" type="text" name="maxweight" />
+              </li>
+              <li>
+                <span>Height</span>
+              </li>
+              <li>
+                  <input class="search-field" type="text" formControlName="height" name="height" />
+              </li>
+              <li>
+                <span>To</span>
+              </li>
+              <li>
+                  <input class="search-field" type="text"name="maxheight" />
+              </li>
+            </ul>
+          </div>
+          <!--row end-->
+          <div class="w3-row form-row2">
+            <ul class="top-list top-list2">
+              <li>
+                <span>Location</span>
+              </li>
+              <li>
+                  <input class="search-field location" type="text" name="location" #hsearch formControlName="searchControl">
+              </li>
+              <li>
+                <span>Within</span>
+              </li>
+              <li>
+                <select>
+                  <option>option 1</option>
+                  <option>option 1</option>
+                  <option>option 1</option>
+                  <option>option 1</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+          <!--row end-->
+          <div class="w3-row check-row">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 1
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 2
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 3
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 1
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 2
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 3
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 1
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 2
+            </label>
+          </div>
+          <!--row end-->
+        </form>
+      </div>
+      <!--col end-->
+    </div>
+    <!--row end-->
+  </div>
+</section>
+<section class="part2">
+  <div class="container">
+    <div class="row flex-row">
+      <div class="col-left p-col">
+        <div class="w3-row">
+          <p class="recent">Recent</p>
+          <div class="box" *ngFor="let recent of recentist;let i=index;" >
+            <p class="img-title">{{recent.name}}</p>
+            <h6 class="img-text">
+              <img src="./assets/images/map_marker.png" alt="" class="marker" />{{recent.location}}</h6>
+            <div class="product">
+               <a [routerLink]="['/girl/'+ recent.id]">
+              <img *ngIf="!ietrue" [class.lockimage]="recent.profile_pic[0].lock==true" src="{{imageurl}}{{recent.profile_pic[0].image}}"
+                            style="pointer-events: none;" class="img-product" />
+              <img *ngIf="recent.profile_pic[0].lock==true" src="./assets/images/lock.png" alt="" class="lock" />
+              </a>
+            </div>
+            <h6 class="img-text">Age
+              <span class="age-value">{{recent.age}} </span>
+            </h6>
+          </div>
+        </div>
+        <!--inner row end-->
+      </div>
+      <!--col end-->
+      <div class="w3-col col-right">
+        <div class="bg-pink panel w3-row w3-display-container">
+          <span class="w3-display-middle"> Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</span>
+          <a href="#" class="btn btn-all w3-right bg-white">Report</a>
+        </div>
+        <div class="w3-row part2-top w3-white">
+          <div class="col-sm-7 pr-0">
+            <div class="w3-row">
+              <div class="col-xs-5 p-0">
+                <img src="./assets/images/product/pro_1.png" alt="" class="img-adjust">
+              </div>
+              <!--col end-->
+              <div class="col-xs-7 pr-0">
+
+                <p class="img-title"> <a [routerLink]="['/girl/'+ highlight.id]">{{highlight.name}}</a>
+                  <span>$185/1/1</span>
+                  <h6 class="img-text">
+                    <img src="./assets/images/map_marker.png" alt="" class="marker" />{{highlight.location}}
+                    <span class="w3-right">{{highlight.service_location}} </span>
+                  </h6>
+                  <div>
+                    <img src="./assets/images/heart.png" alt="" />
+                    <img src="./assets/images/heart-brack.png" alt="" />
+                    <h6 class="reveal">Reveal Number
+                      <span class="w3-right">123456789</span>
+                    </h6>
+                    <h6 class="connents-text">Recent Comments {{highlight.comment}}</h6>
+                    <h6 class="user-name">
+                      <img src="./assets/images/user.png" alt=" " /> {{highlight.username}}</h6>
+                  </div>
+                  <div class="w3-tiny">{{highlight.aboutme}}</div>
+              </div>
+              <!--col emnd-->
+            </div>
+            <!--row end-->
+          </div>
+          <!--col end-->
+          <div class="col-sm-5 pl-0">
+            <div class="w3-row">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators index-caro-indicators">
+                    <li *ngFor="let pics of highlight.profile_pic;let i=index" data-target="#myCarousel" [attr.data-slide-to]="i" class="{{i==0 ? 'active':'item'}}"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  <div  *ngFor="let pics of highlight.profile_pic;let i=index" class="{{i==0 ? 'item active':'item'}}" >
+                    <div class="w3-row">
+                      <div class="col-xs-6 pr-0">
+                          <img *ngIf="!ietrue" src="{{imageurl}}{{pics.image}}"  class="img-adjust" />
+                          </div>
+                      <div class="col-xs-6 pr-0">
+                          <img *ngIf="!ietrue" src="{{imageurl}}{{pics.image}}" class="img-adjust" />
+                      </div>
+                    </div>
+                    <!--col end-->
+                  </div>
+                </div>
+
+              </div>
+              <!--caro end-->
+            </div>
+            <!--row end-->
+          </div>
+        </div>
+        <!--inner row end-->
+        <div class="w3-row" *ngIf="!noprofile && !searching">
+          <div class="col-xs-3"  *ngFor="let profile of profiledata;let i=index">
+            <div class="box">
+                <a [routerLink]="['/girl/'+ profile.id]"><p class="img-title">{{profile.name}}</p></a>
+              <h6 class="img-text">
+                <img src="./assets/images/map_marker.png" alt="" class="marker" />{{profile.location}} </h6>
+              <div class="product">
+                  <img *ngIf="!ietrue" [class.lockimage]="profile.profile_pic[0].lock==true" src="{{imageurl}}{{profile.profile_pic[0].image}}"
+                  class="img-product" style="pointer-events:none;" />
+                <img  *ngIf="profile.profile_pic[0].lock==true" src="./assets/images/lock.png" alt="" class="lock" />
+              </div>
+              <p class="like-row">${{profile.profile_pic[0].lock?imgprice:0}}/{{profile.comment==null?0:profile.comment}}/{{profile.complaint==null?0:profile.comment}}
+                <span class="">
+                  <img src="./assets/images/heart.png" alt="" /> {{profile.comment}}
+                  <span>
+                    <img src="./assets/images/heart-brack.png" alt="" /> {{profile.complaint}}</span>
+                </span>
+              </p>
+              <h6 class="location">Location
+                <span>{{profile.service_location}}</span>
+              </h6>
+              <h6 class="img-text">Age
+                <span class="age-value">{{profile.age}} </span>
+              </h6>
+            </div>
+            <!--box end-->
+          </div>
+          <!--col end-->
+        </div>
+        <!--inner roe emd-->
+      </div>
+      <!--col end-->
+    </div>
+    <!--row end-->
+  </div>
+</section>

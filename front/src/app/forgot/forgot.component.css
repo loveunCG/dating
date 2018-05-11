@@ -1,0 +1,142 @@
+ .loginform{
+    text-align: center;
+    background: antiquewhite;
+    width: 50%;
+    margin: 0 auto;
+    width: 473px;
+    height: auto;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px #bdb8b8;
+    padding: 50px 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+}
+.login-texts{
+    font-size: 43px;
+line-height: 50px;
+color: rgb(255,74,74);
+font-family: "Karla";
+text-align: center;
+margin-top: 0px;
+}
+
+.signup-button{
+    width: 100% !important;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ff4949;
+    font-size: 16px;
+    color: rgb(254,254,254);
+    font-family: "Karla";
+    text-align: center;
+    border-style: none;
+    cursor: pointer;
+}
+.loginform input{
+    font-size: 16px;
+    color: rgb(84,82,79);
+    font-family: "Karla";
+    text-align: center;
+    border-radius: 5px;
+    background-color: #efefef;
+    margin: 10px 3px;
+    width: 152px;
+    height: 40px;
+    border-style: none;
+}
+
+.input-field-email input,.input-field-password input {width: 100%;}
+.forgot-text{
+	font-size: 14px;
+	line-height: 50px;
+	color: rgb(84,82,79);
+	font-family: "Karla";
+	text-align: center;
+	margin-top: 0px;
+}
+.signup-text{
+	font-size: 14px;
+line-height: 50px;
+color: rgb(84,82,79);
+font-family: "Karla";
+text-align: center;
+margin-top: 50px;
+}
+.site-name{
+font-size: 16px;
+color: rgb(255,74,74);
+}
+.has-danger .form-control-feedback,.register-error {
+    color: #d9534f;
+}
+.register-success{color: #5cb85c;}
+.has-danger .form-control {
+    border-color: #d9534f !important;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.has-success .form-control {
+    border-color: #5cb85c;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.site-name{
+  cursor: pointer;
+}
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .loginform{width: 100%;padding: 0;}
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .loginform{width: 100%;padding: 0;}
+}

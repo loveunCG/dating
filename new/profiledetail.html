@@ -1,0 +1,225 @@
+<div class="profilepage home_container">
+	<div class="header">
+		<h4 class="user-name">{{profileinfo.name}}</h4>
+		<a [routerLink]="['/messages/' + girlid]" title="Start Private Chat here."><img  class="messages" src="./assets/images/msg.png"></a>(Start Private Chat here.)
+		<button value="Search Testimonial" class="top-button" (click)="opensearch()" *ngIf="loggedintype=='Female'">Search Testimonial</button>
+	</div>
+	<div class="x6 o6 single_profile profiledetail">
+		<div class="image-section">
+			<div class="profile-image">
+				<div class="image-listing-sec">
+					<div class="image_profile">
+						<svg *ngIf="ietrue" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svgBlur">
+
+							<filter id="svgBlurFilter">
+								<feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+							</filter>
+
+							<image *ngIf="firstimage.lock" [attr.xlink:href]="firstimage.image" x="0" y="0" height="285" width="285" class="blurred" filter="url(#svgBlurFilter)" />
+
+							<image *ngIf="!firstimage.lock" [attr.xlink:href]="firstimage.image" x="0" y="0" height="285" width="285" class="nonblurred"  />
+
+						</svg>
+						<img *ngIf="!ietrue" [src]="firstimage.image" class="main-image" [ngClass]="firstimage.lock ? 'lock' : '' ">
+						<span class="lock-back" *ngIf="firstimage.lock" (click)="unlockimg()">
+							<img src="./assets/images/lock.png" class="lock-icon">
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="profile-thumbnails" *ngIf="sliderimages">
+				<div class="image-listing-sec1">
+					<span *ngIf="ietrue">
+						<svg *ngFor="let image of sliderimages;let i = index" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svgBlur">
+
+							<filter id="svgBlurFilter">
+								<feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+							</filter>
+
+							<image *ngIf="image.lock" [attr.xlink:href]="image.image" x="0" y="0" height="50" width="50" class="blurred" filter="url(#svgBlurFilter)" (mouseenter)="showimage(i)" />
+
+							<image *ngIf="!image.lock" [attr.xlink:href]="image.image" x="0" y="0" height="50" width="50" class="nonblurred" (mouseenter)="showimage(i)" />
+
+						</svg>
+					</span>
+					<span *ngIf="!ietrue">
+						<img *ngFor="let image of sliderimages;let i = index" [src]="image.image" class="image" [ngClass]="image.lock ? 'lock' : '' " (mouseenter)="showimage(i)">
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="basic-info">
+		<table>
+			<tr>
+				<td class="label">Username:</td>
+				<td class="value" *ngIf="profileinfo.username">{{profileinfo.username}}</td>
+				<td class="value" *ngIf="!profileinfo.username"> N/A </td>
+			</tr>
+			<tr>
+				<td class="label">Weight:</td>
+				<td class="value" *ngIf="profileinfo.weight">{{profileinfo.weight}}</td>
+				<td class="value" *ngIf="!profileinfo.weight"> N/A </td>
+			</tr>
+			<tr>
+				<td class="label">Sexual Preferance:</td>
+				<td class="value" *ngIf="profileinfo.sexual">{{profileinfo.sexual}}</td>
+				<td class="value" *ngIf="!profileinfo.sexual"> N/A </td>
+			</tr>
+			<tr>
+				<td class="label">Profile Location:</td>
+				<td class="value" *ngIf="profileinfo.location">{{profileinfo.location}}</td>
+				<td class="value" *ngIf="!profileinfo.location"> N/A </td>
+			</tr>
+			<tr>
+				<td class="label">Work Location:</td>
+				<td class="value" *ngIf="profileinfo.service_location">{{profileinfo.service_location}}</td>
+				<td class="value" *ngIf="!profileinfo.service_location"> N/A </td>
+			</tr>
+			<tr>
+				<td class="label">Mobile Number:</td>
+				<td class="value" *ngIf="profileinfo.phone">{{profileinfo.phone}}</td>
+				<td class="value" *ngIf="!profileinfo.email"> N/A  </td>
+			</tr>
+			<tr>
+				<td class="label">Email Address:</td>
+				<td class="value" *ngIf="profileinfo.email">{{profileinfo.email}}</td>
+				<td class="value" *ngIf="!profileinfo.email"> N/A  </td>
+			</tr>
+			<tr>
+				<td class="label">Skype:</td>
+				<td class="value" *ngIf="profileinfo.skype">{{profileinfo.skype}}</td>
+				<td class="value" *ngIf="!profileinfo.skype"> N/A  </td>
+			</tr>
+			<tr>
+				<td class="label">Whatsapp:</td>
+				<td class="value" *ngIf="profileinfo.whatsapp">{{profileinfo.whatsapp}}</td>
+				<td class="value" *ngIf="!profileinfo.whatsapp"> N/A  </td>
+			</tr>
+			<tr>
+				<td class="label">Viber:</td>
+				<td class="value" *ngIf="profileinfo.viber">{{profileinfo.viber}}</td>
+				<td class="value" *ngIf="!profileinfo.viber"> N/A  </td>
+			</tr>
+			<tr>
+				<td class="label">Wechat:</td>
+				<td class="value" *ngIf="profileinfo.wechat">{{profileinfo.wechat}}</td>
+				<td class="value" *ngIf="!profileinfo.wechat"> N/A  </td>
+			</tr>
+		</table>
+		</div>
+		<div class="extra-info">
+		<table>
+			<tr>
+				<td class="label">Gender:</td>
+				<td class="value" *ngIf="profileinfo.gender">{{profileinfo.gender}}</td>
+				<td class="value" *ngIf="!profileinfo.gender"> N/A  </td>
+			</tr>
+			<tr>
+				<td class="label">Height:</td>
+				<td class="value" *ngIf="profileinfo.height">{{profileinfo.height}}</td>
+				<td class="value" *ngIf="!profileinfo.height"> N/A  </td>
+			</tr>
+		</table>
+		</div>
+	</div>
+	<div class="aboutme">
+		<div class="header-title">About me</div>
+		<div class="content">{{profileinfo.aboutme}}</div>
+	</div>
+
+	<div class="videos" [hidden]="!videos.length>0">
+		<div class="header-title">Videos</div>
+		<div class="video-section">
+		<div class="video-content" *ngFor="let video of videos;let i=index">
+			<iframe *ngIf="video.type=='youtube'" width="310" height="223" [src]="video.source" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen target="_blank"></iframe>
+			<iframe *ngIf="video.type=='vimeo'" [src]="video.source" width="310" height="223" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<video *ngIf="video.type=='upload'" width="264" height="223" controls>
+				<source [src]="video.source" >
+			</video>
+		</div>
+	</div>
+	</div>
+	<!-- <div class="testimonial" [hidden]="!testimonials.length>0">
+		<div class="header-title">Testimonial</div>
+		<div class="testi-content" *ngFor="let testi of testimonials;let i=index;">
+			<p class="nickname">{{testi.nickname}}</p>
+			<p class="tcomment">{{testi.comment}}</p>
+		</div>
+	</div> -->
+	<div class="comment" *ngIf="comments && opencomment">
+		<div class="header-title">Comments</div>
+		<div class="comment-content" *ngFor="let comm of comments;let i=index">
+			<div class="top-section">
+				<img *ngIf="comm.images" class="profile-pic" src="{{imageurl}}{{comm.images[0].image}}">
+				<p class="username" *ngIf="comm.first_name">{{comm.first_name}}</p>
+				<p class="username" *ngIf="comm.addedby">{{comm.addedby}}</p>
+				<p [ngClass]="comm.first_name ? 'date' : 'datenouser'">{{comm.date| date :  "d MMM,y"}}</p>
+			</div>
+			<p class="description">{{comm.description}}</p>
+		</div>
+
+	</div>
+
+	<div class="comment" *ngIf="complaints && opencomplaint">
+		<div class="header-title">Complaints</div>
+		<div class="comment-content" *ngFor="let comp of complaints;let i=index">
+			<div class="top-section">
+				<img *ngIf="comp.images" class="profile-pic" src="{{imageurl}}{{comp.images[0].image}}">
+				<p class="username" *ngIf="comp.first_name">{{comp.first_name}}</p>
+				<p class="username" *ngIf="comp.addedby">{{comp.addedby}}</p>
+				<p [ngClass]="comp.first_name ? 'date' : 'datenouser'">{{comp.date| date :  "d MMM,y"}}</p>
+			</div>
+			<p class="description">{{comp.description}}</p>
+		</div>
+
+	</div>
+
+
+
+<mat-tab-group *ngIf="girlid != userid" (selectedTabChange)="changetabs($event)">
+	 <mat-tab label="Add comment">
+
+		 <div *ngIf="!ifloggedin" class="input-field-firstName form_field" [ngClass]="{'has-danger': username.invalid && (username.dirty ), 'has-success': username.valid && (username.dirty )}">
+				<input type="text" class="form-control" [(ngModel)]="commentmodel.username" #username="ngModel" name="username" placeholder="Name">
+				<div class="form-control-feedback" *ngIf="namecommerror">
+					<p class="error" style="color:#d9534f;">Name is required</p>
+				</div>
+		 </div>
+		 <div class="input-field-aboutme control_form" [ngClass]="{'has-danger': comment.invalid && (comment.dirty ), 'has-success': comment.valid && (comment.dirty )}">
+				<!-- <label class="label-left">About me</label> -->
+
+				<textarea class="form-control" id="aboutme" [(ngModel)]="commentmodel.comment" #comment="ngModel" name="comment" required></textarea>
+				<div class="form-control-feedback" *ngIf="commerror">
+					<p class="error" style="color:#d9534f;">Comment is required</p>
+				</div>
+		 </div>
+		 <div class="submit-section"><button class="edit-submit" (click)="submitcomment()">{{addtext}}</button></div>
+	 </mat-tab>
+	 <mat-tab label="Add complaint">
+		 <div *ngIf="!ifloggedin" class="input-field-firstName form_field" [ngClass]="{'has-danger': username.invalid && (username.dirty ), 'has-success': username.valid && (username.dirty )}">
+				<input type="text" class="form-control" [(ngModel)]="complaintmodel.username" #username="ngModel" name="username" placeholder="Name">
+				<div class="form-control-feedback" *ngIf="namecomperror">
+					<p class="error" style="color:#d9534f;">Name is required</p>
+				</div>
+		 </div>
+		 <div class="input-field-aboutme control_form" [ngClass]="{'has-danger': complaint.invalid && (complaint.dirty ), 'has-success': complaint.valid && (complaint.dirty )}">
+				<!-- <label class="label-left">About me</label> -->
+				<textarea class="form-control" id="aboutme" [(ngModel)]="complaintmodel.complaint" #complaint="ngModel" name="complaint" required></textarea>
+				<div class="form-control-feedback" *ngIf="comperror">
+					<p class="error" style="color:#d9534f;">Complaint is required</p>
+				</div>
+		 </div>
+		 <div class="submit-section"><button class="edit-submit" (click)="submitcomplaint()">{{addtext}}</button></div>
+	 </mat-tab>
+</mat-tab-group>
+<div class="modal fade modal-fullscreen openimage" style="display:none;" id="imgmodel" role="dialog">
+	<div class="container">
+		<button (click)="closeimg()" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+		<br>
+		<div class="row">
+		<img [src]="actopenimg" width="auto" >
+		</div>
+	</div>
+</div>

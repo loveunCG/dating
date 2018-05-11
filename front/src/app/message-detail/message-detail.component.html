@@ -1,0 +1,45 @@
+<div class="page_container">
+	<h1 class="page_heading" flex="100">Messages</h1>
+	<div class="messages">
+		<!-- (window:resize)="onResize($event)" -->
+		<div class="message_list" style="height: '{{height}}'">
+			<div *ngFor="let chat of chatlist;let i=index;" class="message_notification" (click)="startchat(chat.id, chat.toid, chat.tousername, i)" [ngClass]="chat.id==chatid?'unread':''">
+				<span class="name">{{chat.tousername}}</span>
+				<span class="time">{{chat.cdate}} ({{chat.unread}})</span>
+				<span class="message_line">
+			{{chat.lastmsg}}
+		</span>
+			</div>
+			<!-- <div class="message_notification unread">
+		<span class="name">john deo</span>
+		<span class="time">04/18/2016 &nbsp;&nbsp; 09:00 PM</span>
+		<span class="message_line">
+			Lorem Ipsum is simply dummy text of the printi been the industry's...
+		</span>
+	</div> -->
+
+		</div>
+		<div class="message_detail">
+			<div class="message_header">
+				<a [routerLink]="['/girl/'+firstid]">
+					<</a>
+						<span class="sender_name">{{tousername}}</span>
+			</div>
+			<div class="coversation" id="convo">
+				<div class="message_scroll">
+					<div *ngFor="let msg of chatmessages;let i=index;" [ngClass]="msg.flag==1?'sent_message':received_message">
+						<p>{{msg.message}}</p>
+						<span class="datetime">{{msg.sdate}}</span>
+					</div>
+				</div>
+
+			</div>
+			<div class="write_message">
+				<textarea #sendnewmsg="ngModel" name="sendnewmsg" [(ngModel)]="msgmodel.sendnewmsg" [disabled]="checkdisabled"></textarea>
+				<button (click)="sendmessage()">Send Message</button>
+			</div>
+		</div>
+	</div>
+
+	<p class="bottom-message">* Messages will disappear in 1 minute. Please read and reply within.</p>
+</div>

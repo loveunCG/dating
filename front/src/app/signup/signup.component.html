@@ -1,0 +1,177 @@
+<!--  <a class="login-close close-btn" (click)="cancel()"><i class="material-icons">close</i></a> -->
+<div class="signupform">
+	<form class="signup-form" novalidate [formGroup]="myform" (ngSubmit)="register(myform.value)">
+		<p class="signup-texts">Create Account to advertise</p>
+		<div class="profile-upload">
+			<image-upload url="./uploads/profile" [style]="customStyle" [max]="1" [uploadedFiles]="uimages" buttonCaption="" dropBoxMessage="" (removed)="onRemoved($event)" (uploadFinished)="onUploadFinished($event)" (uploadStateChanged)="onUploadStateChanged($event)"></image-upload>
+			<p class="upload-label">
+				<input type="checkbox" class="form-control" formControlName="enlock" />Upload Image by Lock
+			</p>
+			<div class="form-control-feedback">
+				<p *ngIf="imgerror" class="error" style="color: #d9534f;">Price is required</p>
+			</div>
+		</div>
+
+		<div class="input-field-firstName form_field" [ngClass]="{
+        'has-danger': firstName.invalid && (firstName.dirty),
+        'has-success': firstName.valid && (firstName.dirty)
+      }">
+			<input type="text" placeholder="First Name" class="form-control" formControlName="firstName" required>
+			<div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty)">
+				<p *ngIf="firstName.errors.required" class="error">First Name is required</p>
+			</div>
+			<!--
+        <pre>Valid? {{ myform.controls.name.controls.firstName.valid }}</pre>
+        <pre>Dirty? {{ myform.controls.name.controls.firstName.dirty }}</pre>
+      -->
+		</div>
+
+		<div class="input-field-lastName form_field" [ngClass]="{
+        'has-danger': lastName.invalid && (lastName.dirty),
+        'has-success': lastName.valid && (lastName.dirty )
+      }">
+			<input type="text" placeholder="Last Name" class="form-control" formControlName="lastName" required>
+			<div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty)">
+				<p *ngIf="lastName.errors.required" class="error">Last Name is required</p>
+			</div>
+		</div>
+
+		<div class="input-field-email form_field" align="center" [ngClass]="{
+        'has-danger': email.invalid && (email.dirty),
+        'has-success': email.valid && (email.dirty)
+   }">
+			<input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+			<div class="form-control-feedback" *ngIf="email.errors && (email.dirty)">
+				<p *ngIf="email.errors.required" class="error">Email is required</p>
+				<p *ngIf="email.errors.pattern" class="error">Email format should be joe@abc.com</p>
+			</div>
+
+			<!--
+      <pre>Valid? {{ myform.controls.email.valid }}</pre>
+      <pre>Dirty? {{ myform.controls.email.dirty }}</pre>
+    -->
+
+		</div>
+		<div class="input-field-phone form_field " align="center" [ngClass]="{
+        'has-danger': phone.invalid && (phone.dirty),
+        'has-success': phone.valid && (phone.dirty )
+   }">
+			<input type="text" class="form-control" placeholder="Mobile Number" formControlName="phone" [textMask]="{mask: mask}" required>
+			<div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty)">
+				<p *ngIf="phone.errors.required" class="error">Mobile Number is required</p>
+			</div>
+
+			<!--
+      <pre>Valid? {{ myform.controls.email.valid }}</pre>
+      <pre>Dirty? {{ myform.controls.email.dirty }}</pre>
+    -->
+
+		</div>
+		<div class="input-field-age form_field" align="center" [ngClass]="{
+        'has-danger': age.invalid && (age.dirty ),
+        'has-success': age.valid && (age.dirty )
+      }">
+			<input type="number" min="18" placeholder="Age" class="form-control" formControlName="age" required>
+			<div class="form-control-feedback" *ngIf="age.errors && (age.dirty )">
+				<p *ngIf="age.errors.required" class="error">Age is required</p>
+				<p *ngIf="age.errors.min" class="error">Age must be greater than 18 years.</p>
+			</div>
+		</div>
+
+		<div class="input-field-sex form_field" [ngClass]="{
+        'has-danger': sex.invalid && (sex.dirty ),
+        'has-success': sex.valid && (sex.dirty )
+      }">
+			<!-- <input type="text"
+      		 placeholder="Sexual Preference"
+             class="form-control"
+             formControlName="sex"
+             required> -->
+			<select placeholder="Height" class="form-control" formControlName="sex" required>
+							 <option value="">Height</option>
+							 <option *ngFor="let hn of heights" [value]="hn">{{hn}}</option>
+						 </select>
+			<div class="form-control-feedback" *ngIf="sex.errors && (sex.dirty )">
+				<p *ngIf="sex.errors.required" class="error">Height is required</p>
+			</div>
+		</div>
+
+
+		<div class="input-field-location form_field" align="center" [ngClass]="{
+        'has-danger': searchControl.invalid && (searchControl.dirty ),
+        'has-success': searchControl.valid && (searchControl.dirty )
+      }">
+			<input type="text" autocorrect="off" autocapitalize="off" spellcheck="off" placeholder="Your Location" class="form-control" required #hsearch formControlName="searchControl">
+			<div class="form-control-feedback" *ngIf="searchControl.errors && (searchControl.dirty )">
+				<p *ngIf="searchControl.errors.required" class="error">Your Location is required</p>
+			</div>
+		</div>
+
+		<div class="input-field-location form_field" align="center" [ngClass]="{
+         'has-danger': locstate.invalid && (locstate.dirty ),
+         'has-success': locstate.valid && (locstate.dirty )
+       }">
+			<input type="text" autocorrect="off" autocapitalize="off" spellcheck="off" placeholder="State" class="form-control" required formControlName="locstate" readonly>
+			<div class="form-control-feedback" *ngIf="locstate.errors && (locstate.dirty )">
+				<p *ngIf="locstate.errors.required" class="error">Your Location is required</p>
+			</div>
+		</div>
+
+		<div class="input-field-service form_field" align="center" [ngClass]="{
+        'has-danger': service.invalid && (service.dirty ),
+        'has-success': service.valid && (service.dirty )
+      }">
+			<select placeholder="Service Location" class="form-control service-location" formControlName="service" required>
+        <option value="">Service Location</option>
+        <option *ngFor="let service_location of serviceLocation" [value]="service_location">{{service_location}}</option>
+      </select>
+			<div class="form-control-feedback" *ngIf="service.errors && (service.dirty )">
+				<p *ngIf="service.errors.required" class="error">Service Location is required</p>
+			</div>
+		</div>
+
+
+		<div class="input-field-password form_field" align="center" [ngClass]="{
+        'has-danger': password.invalid && (password.dirty ),
+        'has-success': password.valid && (password.dirty )
+   }">
+			<input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+			<div class="form-control-feedback" *ngIf="password.errors && (password.dirty )">
+				<p *ngIf="password.errors.required" class="error">Password is required</p>
+				<p *ngIf="password.errors.minlength" class="error">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
+			</div>
+		</div>
+
+		<div class="input-field-cpassword form_field" align="center" [ngClass]="{
+        'has-danger': cpassword.invalid && (cpassword.dirty ),
+        'has-success': cpassword.valid && (cpassword.dirty )
+   }">
+			<input type="password" class="form-control" formControlName="cpassword" placeholder="Confirm Password" required>
+			<div class="form-control-feedback" *ngIf="cpassword.errors && (cpassword.dirty )">
+				<p *ngIf="cpassword.errors.required" class="error">Password is required</p>
+				<p *ngIf="cpassword.errors.minlength" class="error">Password must be 8 characters long, we need another {{cpassword.errors.minlength.requiredLength - cpassword.errors.minlength.actualLength}} characters </p>
+				<p *ngIf="cpassword.errors.invalid" class="error">Password and confirm password does not match.</p>
+
+			</div>
+		</div>
+		<div class="input-field-aboutme form_field" align="center" [ngClass]="{
+        'has-danger': aboutme.invalid && (aboutme.dirty ),
+        'has-success': aboutme.valid && (aboutme.dirty )
+      }">
+			<textarea class="form-control" formControlName="aboutme" placeholder="About me" id="aboutme" required></textarea>
+			<div class="form-control-feedback" *ngIf="aboutme.errors && (aboutme.dirty )">
+				<p *ngIf="aboutme.errors.required" class="error">Please enter some info about you</p>
+			</div>
+		</div>
+		<div class="row">
+			<p class="center register-error error">{{errormsg}}</p>
+			<p class="center register-success">{{successmsg}}</p>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 submit_button">
+				<!-- <button [disabled]="!myform.valid" class="btn signup-button" type="submit" >{{registertext}}</button> -->
+				<button class="btn signup-button" type="submit">{{registertext}}</button>
+			</div>
+		</div>
+	</form>
+</div>

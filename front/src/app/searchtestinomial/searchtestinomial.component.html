@@ -1,0 +1,32 @@
+<button (click)="cancel()" class="closebutton" title="Close">x</button>
+
+<p class="head-title">
+  Search Tesinomial by Boy's Number
+</p>
+
+<form class="m-form" (ngSubmit)="f.form.valid && submittestinomy(f)" #f="ngForm">
+
+<div class="form-group" [ngClass]="{'has-danger': number.invalid && (number.dirty), 'has-success': number.valid && (number.dirty)}">
+   <!-- <label class="label-left">Upload video</label> -->
+   <input type="text" placeholder="Enter Boy's number" class="form-control" [(ngModel)]="model.number" #number="ngModel" name="number" [textMask]="{mask: mask}" autocomplete="off" required>
+   <div class="form-control-feedback" *ngIf="number.errors && (number.dirty)">
+      <p *ngIf="number.errors.required">Number is required</p>
+   </div>
+</div>
+
+<div class="submit-section"><button [disabled]="f.invalid" class="edit-submit">{{subtext}}</button></div>
+<div class="row">
+   <p  class="center register-error">{{errormsg}}</p>
+   <p  class="center register-success">{{successmsg}}</p>
+</div>
+</form>
+
+<div class="testimonial" *ngIf="testinomials.length>0">
+  <div class="header-title">Testimonial</div>
+  <div class="testi_scroll">
+    <div class="testi-content" *ngFor="let testi of testinomials;let i=index;">
+      <p class="nickname">{{testi.nickname}}</p>
+      <p class="tcomment">{{testi.comment}}</p>
+    </div>
+  </div>
+</div>

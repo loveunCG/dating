@@ -1,0 +1,98 @@
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title m-subheader__title--separator">
+				Add to wallet
+			</h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a routerLink="/index" class="m-nav__link m-nav__link--icon">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<a routerLink="/add-to-wallet" class="m-nav__link">
+						<span class="m-nav__link-text">
+							Add to wallet
+						</span>
+					</a>
+				</li>
+
+      </ul>
+		</div>
+
+	</div>
+</div>
+
+<div class="m-content">
+<div class="m-portlet m-portlet--mobile">
+
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					Add to wallet
+				</h3>
+			</div>
+		</div>
+	</div>
+	<!--begin::Form-->
+	<form class="m-form" (ngSubmit)="f.form.valid && addtoWallet(f)" #f="ngForm">
+
+	  <ng-template #alertAddUser></ng-template>
+
+
+	    <div class="m-portlet__body m-form__section m-form__section--first">
+
+        <div class="form-group m-form__group col-md-6" [ngClass]="{'has-danger': adduser.invalid && (adduser.dirty || adduser.touched), 'has-success': adduser.valid && (adduser.dirty || adduser.touched)}">
+	        <label for="example_input_full_name">
+	          User:
+	        </label>
+          <select class="form-control m-input" [(ngModel)]="model.adduser" #adduser="ngModel" name="adduser" required>
+            <option value="">Select user</option>
+            <option *ngFor="let un of users;let i = index" [value]="un.id">{{un.name}}</option>
+          </select>
+
+		      <div class="form-control-feedback" *ngIf="adduser.errors && (adduser.dirty || adduser.touched)">
+		        <p *ngIf="adduser.errors.required">User is required</p>
+		      </div>
+
+	      </div>
+
+	      <div class="form-group m-form__group col-md-6" [ngClass]="{'has-danger': (amount.invalid && (amount.dirty || amount.touched)) || amounterror, 'has-success': amount.valid && (amount.dirty || amount.touched)}">
+	        <label for="example_input_full_name">
+	          Amount:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter amount" [ngClass]="{'form-control-danger': amount.invalid && (amount.dirty || amount.touched), 'form-control-success': amount.valid && (amount.dirty || amount.touched)}" type="number" min="1" [(ngModel)]="model.amount" #amount="ngModel" name="amount" required>
+
+		      <div class="form-control-feedback" *ngIf="amount.errors && (amount.dirty || amount.touched)">
+		        <p *ngIf="amount.errors.required">Amount is required</p>
+						<p *ngIf="amount.errors.min">Amount is required</p>
+		      </div>
+					<div class="form-control-feedback" *ngIf="amounterror">
+		        <p>Amount is required</p>
+		      </div>
+
+	      </div>
+
+
+	    </div>
+
+		<div class="m-portlet__foot m-portlet__foot--fit">
+	    <div class="m-form__actions m-form__actions">
+	      <button type="submit" class="btn btn-primary">
+	        Submit
+	      </button>
+	    </div>
+	  </div>
+
+	</form>
+	<!--end::Form-->
+</div>
+</div>

@@ -1,0 +1,365 @@
+<div class="profilepage home_container">
+<!-- <button _ngcontent-c3="" class="timer-button">02:10:00 Left</button> -->
+<mat-tab-group (selectedTabChange)="loadpayjs($event)" [(selectedIndex)]="selectedIndex">
+   <mat-tab label="Edit">
+      <form class="edit-form"  novalidate [formGroup]="myform" (ngSubmit)="update(myform.value)">
+      <div class="x6 o6">
+         <div class="image-section1">
+            <div class="profile-image">
+               <div class="image-listing-sec">
+                 <div class="image_profile">
+                  <img [src]="firstimage" class="main-image lock" [hidden]="!firstimage">
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Female' " src="./assets/images/female.jpg" />
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Male' " src="./assets/images/male.jpg" />
+                  <span class="edit-back" >
+                  <!-- <img src="./assets/images/edit.png" class="edit-icon"> -->
+                  <image-upload
+                  [url]="imageurl"
+                  class="customClass"
+                  [max]="1"
+                  [uploadedFiles]="uimages"
+                  buttonCaption="Upload image"
+                  dropBoxMessage=""
+                  (removed)="firstiRemoved($event)"
+                  (uploadFinished)="firstiUpload($event)"
+                  (uploadStateChanged)="firstiStateChange($event)">
+                  </image-upload>
+                  </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="setting-info">
+            <!-- <section class="example-section">
+               <mat-slide-toggle formControlName="pausetime">Pause Time</mat-slide-toggle>
+            </section> -->
+            <!-- <section class="example-section">
+               <mat-checkbox class="example-margin" formControlName="highlight">Highlight Your Profile $10</mat-checkbox>
+            </section> -->
+            <p class="changepass" (click)="changepassword()">Change Your Password</p>
+            <div class="input-field-password" *ngIf="showpass"
+       [ngClass]="{
+        'has-danger': password.invalid && (password.dirty ),
+        'has-success': password.valid && (password.dirty )
+   }">
+    <input type="password"
+           class="form-control"
+           formControlName="password"
+           placeholder="Enter new password"
+           required>
+    <div class="form-control-feedback"
+         *ngIf="password.errors && (password.dirty )">
+      <p *ngIf="password.errors.required">Password is required</p>
+      <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
+    </div>
+  </div>
+         </div>
+      </div>
+      <div class="col-1">
+         <div class="input-field-firstName control_form"
+            [ngClass]="{
+            'has-danger': firstName.invalid && (firstName.dirty),
+            'has-success': firstName.valid && (firstName.dirty)
+            }">
+            <label class="label-left">Nickname</label>
+            <input type="text"
+               placeholder="First Name"
+               class="form-control"
+               formControlName="firstName"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="firstName.errors && (firstName.dirty)">
+               <p *ngIf="firstName.errors.required">Nickname is required</p>
+            </div>
+         </div>
+         <!-- <div class="input-field-lastName control_form"
+            [ngClass]="{
+            'has-danger': lastName.invalid && (lastName.dirty),
+            'has-success': lastName.valid && (lastName.dirty )
+            }">
+            <label class="label-left">Last Name</label>
+            <input type="text"
+               placeholder="Last Name"
+               class="form-control"
+               formControlName="lastName"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="lastName.errors && (lastName.dirty)">
+               <p *ngIf="lastName.errors.required">Last Name is required</p>
+            </div>
+         </div> -->
+         <div class="form-group control_form"
+            [ngClass]="{
+            'has-danger': gender.invalid && (gender.dirty || gender.touched),
+            'has-success': gender.valid && (gender.dirty || gender.touched)
+            }">
+            <label class="label-left">Gender</label>
+            <select class="form-control" formControlName="gender" disabled>
+               <option value="">Please select a gender</option>
+               <option *ngFor="let lang of langs"
+               [value]="lang">{{lang}}
+               </option>
+            </select>
+         </div>
+         <div class="input-field-age control_form"
+            [ngClass]="{
+            'has-danger': age.invalid && (age.dirty ),
+            'has-success': age.valid && (age.dirty )
+            }">
+            <label class="label-left">Age</label>
+            <input type="number"
+               placeholder="Age"
+               class="form-control"
+               formControlName="age"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="age.errors && (age.dirty )">
+               <p *ngIf="age.errors.required">Age is required</p>
+            </div>
+         </div>
+      </div>
+      <div class="col-2">
+
+
+
+
+         <div class="input-field-email control_form"
+            [ngClass]="{
+            'has-danger': email.invalid && (email.dirty),
+            'has-success': email.valid && (email.dirty)
+            }">
+            <label class="label-left">Your Email</label>
+            <input type="email"
+               class="form-control"
+               placeholder="Email"
+               formControlName="email"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="email.errors && (email.dirty)">
+               <p *ngIf="email.errors.required">Email is required</p>
+               <p *ngIf="email.errors.pattern">Email format should be joe@abc.com</p>
+            </div>
+         </div>
+         <div class="input-field-phone control_form"
+            [ngClass]="{
+            'has-danger': phone.invalid && (phone.dirty),
+            'has-success': phone.valid && (phone.dirty )
+            }">
+            <label class="label-left">Phone number(mobile)</label>
+            <input type="text"
+               class="form-control"
+               placeholder="Mobile Number"
+               formControlName="phone"
+               [textMask]="{mask: mask}"
+               required>
+            <div class="form-control-feedback"
+               *ngIf="phone.errors && (phone.dirty)">
+               <p *ngIf="phone.errors.required">Mobile Number is required</p>
+            </div>
+         </div>
+      </div>
+      <div class="col-3">
+
+
+
+      </div>
+
+
+
+
+      <div class="row">
+         <p  class="center register-error">{{errormsg}}</p>
+         <p  class="center register-success">{{successmsg}}</p>
+      </div>
+
+      <div class="submit-section"><button class="edit-submit">{{registertext}}</button></div>
+      </form>
+   </mat-tab>
+   <mat-tab label="Preview">
+      <div class="header">
+         <h4 class="user-name">{{profileinfo.name}}</h4>
+         <img  class="messages" src="./assets/images/msg.png">
+
+      </div>
+      <div class="x6 o6 edit_preview">
+         <div class="image-section">
+            <div class="profile-image">
+               <div class="image-listing-sec">
+                  <img [src]="firstimage" class="main-image lock" [hidden]="!firstimage">
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Female' " src="./assets/images/female.jpg" />
+                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Male' " src="./assets/images/male.jpg" />
+                  <!-- <span class="lock-back edit-back" [hidden]="!firstimage">
+                  <img src="./assets/images/lock.png" class="lock-icon">
+                  </span> -->
+               </div>
+            </div>
+
+         </div>
+         <div class="basic-info">
+            <table>
+               <tr>
+                  <td class="label">Mobile Number:</td>
+                  <td class="value" *ngIf="profileinfo.phone">{{profileinfo.phone}}</td>
+                  <td class="value" *ngIf="!profileinfo.phone"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Email Address:</td>
+                  <td class="value" *ngIf="profileinfo.email">{{profileinfo.email}}</td>
+                  <td class="value" *ngIf="!profileinfo.email"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Gender:</td>
+                  <td class="value" *ngIf="profileinfo.gender">{{profileinfo.gender}}</td>
+                  <td class="value" *ngIf="!profileinfo.gender"> N/A  </td>
+               </tr>
+               <tr>
+                  <td class="label">Age:</td>
+                  <td class="value" *ngIf="profileinfo.age">{{profileinfo.age}}</td>
+                  <td class="value" *ngIf="!profileinfo.age"> N/A  </td>
+               </tr>
+            </table>
+         </div>
+         <div class="extra-info">
+
+         </div>
+      </div>
+      <div class="aboutme" *ngIf="profileinfo.aboutme">
+         <div class="header-title">About me</div>
+         <div class="content">{{profileinfo.aboutme}}</div>
+      </div>
+      <div class="videos">
+
+
+         <!-- <div class="testimonial">
+            <div class="header-title">Testimonial</div>
+            <div class="testi-content" *ngFor="let testi of testimonials;let i=index;">
+               <p class="nickname">{{testi.nickname}}</p>
+               <p class="tcomment">{{testi.comment}}</p>
+            </div>
+         </div> -->
+         <div class="comment" *ngIf="comments">
+            <div class="header-title">Comments</div>
+            <div class="comment-content" *ngFor="let comm of comments;let i=index">
+               <div class="top-section">
+                  <img class="profile-pic" src="{{imageurl}}{{comm.images[0].image}}">
+                  <p class="username">{{comm.username}}</p>
+                  <span class="deleteicon"><img  src="./assets/images/dlt_r.png"></span>
+                  <p class="date">{{comm.date| date :  "d MMM,y"}}</p>
+               </div>
+               <p class="description">{{comm.description}}</p>
+            </div>
+         </div>
+      </div>
+   </mat-tab>
+ <mat-tab label="Payment" class="payment_details">
+      <div class="payment_tab">
+         <mat-tab-group (selectedTabChange)="loadinnerpay($event)">
+           <mat-tab label="Packages">
+             <div class="package_grids" (window:resize)="onResize($event)">
+
+                <mat-grid-list cols="{{test}}" rowHeight="{{rowheight}}">
+                  <mat-grid-tile *ngFor="let package of packages;let i = index">
+                     <div class="grid_tiles" [ngClass]="psel" id="packagediv{{package.id}}">
+                        <h1>{{package.name}}</h1>
+                        <p>{{package.desc}}</p>
+                        <span>{{package.bonus}}</span>
+                        <h2>$ {{package.price}}</h2>
+                        <button (click)="selectpackage(package.id, package.price, package.bonus)">Select Package</button>
+                     </div>
+                  </mat-grid-tile>
+                   <mat-grid-tile>
+                      <div class="grid_tiles enter_amount">
+                         <h1>manual payment</h1>
+                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting </p>
+
+                           <input type="text" [(ngModel)]="model.manualamount" #manualamount="ngModel" name="manualamount" placeholder="Enter Amount">
+
+                         <button (click)="addextra()">Add extra amount</button>
+                      </div>
+                   </mat-grid-tile>
+                </mat-grid-list>
+                <input type="hidden" value="" id="oldpsel">
+             </div>
+             <!-- <input type="checkbox" name="highlightpay" [(ngModel)]="model.highlightpay" #highlightpay="ngModel" (change)="addhighlight()">Highlight Your Profile, $10 -->
+
+
+             <h3 class="current_bal">Current Account Balance is $<span id="wallamount">{{userwallet}}</span></h3>
+
+             <h4 class="current_bal">Total amount: {{totalpay}}</h4>
+             <input type="hidden" value="{{totalpay}}" id="finaltpay">
+             <input type="hidden" value="" id="bonus">
+             <input type="hidden" value="{{girlid}}" id="userid">
+
+             <div id="paypal-button" class="paypal-button"></div>
+             <p  class="center register-error" id="paymenterror"></p>
+             <p  class="center register-success" id="paymentsuccess"></p>
+          </mat-tab>
+            <mat-tab label="Transaction Log">
+               <!-- <div class="example-header">
+                 <mat-form-field>
+                   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                 </mat-form-field>
+               </div> -->
+
+               <div class="example-container mat-elevation-z8 payment_table">
+
+                 <div class="control_form">
+                    <input matInput [max]="maxDate" [matDatepicker]="picker1" placeholder="Date from" class="form-control" (input)="applyFilter()" #fromdate="ngModel" name="fromdate" [(ngModel)]="datemodel.fromdate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                 </div>
+                  <div class="control_form">
+                    <input matInput [max]="maxDate" [matDatepicker]="picker2" placeholder="Date to" class="form-control" (input)="applyFilter()" #todate="ngModel" name="todate" [(ngModel)]="datemodel.todate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </div>
+                 <mat-table [dataSource]="dataSource" matSort matSortActive="trdate" matSortDisableClear matSortDirection="desc">
+
+                   <!-- ID Column -->
+                   <ng-container matColumnDef="trdate">
+                     <mat-header-cell *matHeaderCellDef > Date </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.trdate}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Progress Column -->
+                   <ng-container matColumnDef="trtime">
+                     <mat-header-cell *matHeaderCellDef > Time </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.trtime}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Name Column -->
+                   <ng-container matColumnDef="type">
+                     <mat-header-cell *matHeaderCellDef > Type </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.type}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Color Column -->
+                   <ng-container matColumnDef="money">
+                     <mat-header-cell *matHeaderCellDef > Money </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.money}} </mat-cell>
+                   </ng-container>
+
+                   <!-- Color Column -->
+                   <ng-container matColumnDef="remark">
+                     <mat-header-cell *matHeaderCellDef > Additional Remarks </mat-header-cell>
+                     <mat-cell *matCellDef="let row"> {{row.remark}} </mat-cell>
+                   </ng-container>
+
+                   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                   <mat-row *matRowDef="let row; columns: displayedColumns;">
+                   </mat-row>
+                 </mat-table>
+                 <div *ngIf="resultsLength==0" class="norecords">
+                   No records found
+                 </div>
+                 <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="resultsLength"></mat-paginator> -->
+                 <mat-paginator [length]="resultsLength" [pageSize]="10">
+                 </mat-paginator>
+               </div>
+
+            </mat-tab>
+
+         </mat-tab-group>
+      </div>
+   </mat-tab>
+</mat-tab-group>

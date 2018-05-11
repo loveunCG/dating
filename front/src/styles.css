@@ -1,0 +1,197 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+body {font-family: karla;}
+a {text-decoration: none !important;}
+* {outline: 0;}
+
+.page_container {box-sizing: border-box; -webkit-box-sizing: border-box;}
+#loader {
+	border: 6px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 6px solid #ff4a4a;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 1s linear infinite;
+	display: block;
+	position: relative;
+	left: 0;
+	top: auto;
+	bottom: auto;
+	right: 0;
+	margin: 0 auto;
+}
+.load_cell {
+	display: table-cell;
+	vertical-align: middle;
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+.loader_container {
+	height: 100%;
+	width: 100%;
+	display: table;
+	text-align: center;
+	position: relative;
+}
+#loader-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: #222222;
+	text-align: center;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.page_heading {
+	font-family: "Cookie";
+	font-size: 38px;
+	color: #fff;
+	background: #f34747;
+	text-align: left;
+	font-weight: normal;
+	padding: 5px 6px;
+	display: inline-block;
+	width: 99%;
+}
+.logo-header img {
+	max-width: 100%;
+	height: auto;
+	max-height: 125px;
+}
+.page_container {
+	max-width: 1116px;
+	width: 1116px;
+	margin: 0 auto;
+}
+.mat-header-cell {
+    font-size: 20px;
+    color: #f34747 !important;
+    font-family: karla;
+    font-weight: 700;
+}
+.header {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	/* z-index: 9; */
+}
+p.error {
+    margin: 0;
+    line-height: 18px;
+    font-size: 14px;
+}
+button.signup-button:hover, button.signup-button:focus {
+	background: #fff;
+	border: 1px solid #ff4949;
+	color: #ff4949;
+}
+.forgot-text:hover, .forgot-text:focus {
+	color: #ff4949 !important;
+}
+.signup-text span:hover, .signup-text span:focus {
+	color: #000 !important;
+}
+/*Profile image popup starts*/
+.openimage img {
+    width: auto;
+    max-width: 100%;
+    vertical-align: middle;
+    max-height: 100%;
+}
+button.close {
+    position: absolute;
+}
+.openimage {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: rgba(0,0,0,0.8);
+
+}
+.openimage .container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    font: 0/0 a;
+    padding: 10px;
+}
+button.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border: none;
+    box-shadow: none;
+    background: none;
+    color: #fff;
+    font-size: 53px;
+    line-height: 27px;
+}
+.openimage .container .row {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;
+}
+.openimage .container .row::before {
+    content: '';
+    /* width: 100%; */
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+/*Profile image popup ends*/
+
+@media (min-width: 992px) {
+	/*.inner-container {
+		min-height: 100%;
+		position: relative;
+		 padding-bottom: 350px;
+	}
+	html, body {
+		height: 100%;
+		margin: 0;
+	}
+	.footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+	}*/
+
+}
+
+@media (max-width: 1199px) {
+	.page_container {
+		max-width: 900px;
+		width: 900px;
+	}
+}
+@media (max-width: 991px) {
+	.page_container {
+		max-width: 700px;
+		width: 700px;
+	}
+}
+@media (max-width: 767px) {
+	.page_container {
+		max-width: 100%;
+		width: 100%;
+		padding: 0 10px;
+	}
+}

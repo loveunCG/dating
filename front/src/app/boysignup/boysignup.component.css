@@ -1,0 +1,240 @@
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/deep/ .img-ul-container {
+    position: absolute!important;
+    top: 0!important;
+    left: 0!important;
+    right: 0!important;
+    margin: 0 auto!important;
+    width: auto!important;
+}
+/deep/ .profile-upload {
+    position: relative;
+    text-align: center;
+}
+/deep/ .img-ul-image {
+        float: none !important;
+}
+/deep/ .input-field-password, /deep/ .input-field-cpassword {
+    width: 160px !important;
+}
+.close-btn{
+    display: inherit;
+    cursor: pointer;
+}
+.mat-dialog-container{
+    padding:0px !important;
+    width: 800px !important;
+    height: 600px !important;
+    margin-top: -300px !important;
+    margin-left: -400px !important;
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    overflow: hidden !important;
+}
+.mat-dialog-title{width: 100%;}
+.signupform{
+    text-align: center;
+    background: antiquewhite;
+    width: 50%;
+    margin: 0 auto;
+    width: 473px;
+    height: auto;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px #bdb8b8;
+    padding: 10px 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    /*padding: 0px 10px 50px 10px;*/
+}
+.signup-button[disabled] {
+    opacity: 0.6;
+}
+.signup-button[disabled]:hover {
+    background: #ff4949;
+    color: #fff;
+    border: 1px solid #ff4949;
+    cursor: not-allowed;
+}
+.signup-texts{
+    font-size: 26px;
+    color: rgb(255,34,34);
+    font-family: "Karla";
+    text-align: center;
+}
+.upload-label{
+       margin: 0px;
+    font-size: 16px;
+    letter-spacing: 0px;
+    color: rgb(34,34,34);
+    font-family: "Karla";
+}
+.signup-button{
+    width: 313px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ff4949;
+    font-size: 16px;
+    color: rgb(254,254,254);
+    font-family: "Karla";
+    text-align: center;
+    border-style: none;
+    cursor: pointer;
+}
+.signupform input[type='text'],.signupform input[type='email'],.signupform input[type='number'],.signupform input[type='password']{
+    font-size: 16px;
+    color: rgb(84,82,79);
+    font-family: "Karla";
+    text-align: center;
+    border-radius: 5px;
+    background-color: #efefef;
+    margin: 10px 3px;
+    width: 152px;
+    height: 40px;
+    border-style: none;
+}
+.input-field-firstName,.input-field-lastName,.input-field-age,.input-field-sex,.input-field-password,.input-field-cpassword{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.nickname{
+    width:313px !important;
+}
+
+#aboutme{
+    width: 313px;
+    height: 119px;
+    border-radius: 5px;
+    background-color: #efefef;
+    font-size: 16px;
+    color: rgb(84,82,79);
+    font-family: "Karla";
+    text-align: center;
+    border-style: none;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+.input-field-email input,.input-field-phone input,.input-field-location input,.input-field-service input{width: 313px !important;}
+fieldset{border: none;}
+.has-danger .form-control-feedback,.register-error {
+    color: #d9534f;
+}
+.register-success{color: #5cb85c;}
+.has-danger .form-control {
+    border-color: #d9534f !important;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.has-success .form-control {
+    border-color: #5cb85c;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.price-control {
+    background: white !important;
+    border-bottom: 1px solid !important;
+    border-radius: 0px !important;
+    /* height: auto !important; */
+    width: 140px !important;
+}
+
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .signupform{width: 100% !important;
+    padding: 15px 0 !important;
+    margin-top: 0 !important;}
+    .signup-texts {font-size: 22px !important;}
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (max-width: 767px) {
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .signup-texts {
+    font-size: 28px;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .signupform{width: 95%;padding: 0;}
+  .signup-text {margin-top: 10px;}
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .signupform{width: 95% !important;
+    padding: 0 0 !important;
+    margin-top: 0 !important;}
+  .signup-texts {margin-top: 0;font-size: 22px !important;}
+  .signupform input[type='text'],.signupform input[type='email'],
+  .signupform input[type='number'],.signupform input[type='password'], textarea {
+    margin: 5px 0;
+    width: 260px !important;
+
+    }
+
+    .form_field, .submit_button {
+        width: 260px !important;
+        padding: 0 0;
+        margin: 5px auto;
+    }
+    .submit_button .signup-button {width: 100%;}
+    .submit_button {padding-bottom: 10px;}
+    .profile-upload {padding: 0 10px;}
+}

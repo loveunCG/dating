@@ -1,0 +1,62 @@
+
+
+<header class="header">
+  <div class="home_container">
+    <nav class="header-nav">
+      <ul class="header-menulist">
+        <li *ngIf="isLoggedIn()" class="signup-button" >Signup to <span [routerLink]="['boysignup']"> Browse</span> | <span [routerLink]="['girlsignup']"> Advertise</span></li>
+        <li *ngIf="isLoggedIn()" class="login-button" [routerLink]="['/login']">Login</li>
+        <li *ngIf="!isLoggedIn()" class="afterlogin_menu">
+          <span class="messageicon">
+             <a [routerLink]="['/messagelist']" title="Start Private Chat here."><img class="messages" src="./assets/images/msg2.png"> ({{msgcount}})</a>
+          </span>
+          <span class="profile-button desktop_header">
+        		<img class="profile-pic"  *ngIf="currentUser.images.length > 0" src="{{imageurl}}{{currentUser.images[0].image}}" />
+              <img class="profile-pic"  *ngIf="!currentUser.images && currentUser.gender=='Female' " src="./assets/images/female.jpg" />
+              <img class="profile-pic"  *ngIf="!currentUser.images && currentUser.gender=='Male' " src="./assets/images/male.jpg" />
+        		<p class="header-username">{{currentUser.first_name}} {{currentUser.last_name}}</p>
+            <span class="arrow-down" #openmenu></span>
+          </span>
+        </li>
+      </ul>
+      <div *ngIf="iconclicked" class="dropdown-menu dropdown-menu-right show">
+          <a *ngIf="currentUser.gender=='Female'" class="dropdown-item" (click)="closemenu()" [routerLink]="['/edit-girlprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a>
+          <a *ngIf="currentUser.gender=='Male'" class="dropdown-item" (click)="closemenu()" [routerLink]="['/edit-boyprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a>
+          <a class="dropdown-item" [routerLink]="['/messagelist']" (click)="closemenu()"><i class="fa fa-envelope-o"></i>Messages ({{msgcount}})</a>
+          <!-- <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment</a> -->
+          <a class="dropdown-item achange" (click)="openprofile()"><i class="fa fa-user"></i>Profile</a>
+          <!-- <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a> -->
+          <a class="dropdown-item achange" (click)="openpayments()"><i class="fa fa-usd"></i>Payments</a>
+          <!-- <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a> -->
+          <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-lock"></i>Logout</a>
+        </div>
+
+        <div class="wsmenucontainer clearfix" >
+              <div class="overlapblackbg"></div>
+              <div class="wrapper clearfix" >
+                <a id="wsnavtoggle" class="animated-arrow" *ngIf="!isLoggedIn()">
+                <img class="profile-pic"  *ngIf="currentUser.images.length > 0" src="{{imageurl}}{{currentUser.images[0].image}}" />
+                    <img class="profile-pic"  *ngIf="!currentUser.images && currentUser.gender=='Female' " src="./assets/images/female.jpg" />
+                    <img class="profile-pic"  *ngIf="!currentUser.images && currentUser.gender=='Male' " src="./assets/images/male.jpg" />
+                  <p class="header-username">{{currentUser.first_name}} {{currentUser.last_name}}</p></a>
+              </div>
+                <nav class="wsmenu clearfix">
+                  <ul class="mobile-sub wsmenu-list clearfix" *ngIf="!isLoggedIn()">
+                      <li class="menu_mobile"><a *ngIf="currentUser.gender=='Female'" class="dropdown-item" (click)="closemenu()" [routerLink]="['/edit-girlprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a></li>
+                      <li class="menu_mobile"><a *ngIf="currentUser.gender=='Male'" class="dropdown-item" (click)="closemenu()" [routerLink]="['/edit-boyprofile/'+currentUser.id]" ><i class="fa fa-bell-o"></i>Edit profile</a></li>
+                      <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+                      <!-- <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment</a></li> -->
+                      <li class="menu_mobile"><a class="dropdown-item" (click)="openprofile()"><i class="fa fa-user"></i>Profile</a></li>
+                      <!-- <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a></li> -->
+                      <li class="menu_mobile"><a class="dropdown-item" (click)="openpayments()"><i class="fa fa-usd"></i>Payments</a></li>
+                      <!-- <li class="menu_mobile"><a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a></li> -->
+                      <li class="menu_mobile"><a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-lock"></i>Logout</a>  </li>
+                  </ul>
+                </nav>
+              </div>
+
+    </nav>
+
+    <a [routerLink]="['']" class="logo-header" *ngIf="currentUrl!='/about-us'"><img class="header-logo" src="./assets/images/logo.png" /></a>
+  </div>
+</header>

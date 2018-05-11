@@ -1,0 +1,204 @@
+<div id="main-container" class="home_container">
+    <div id="sidebar">
+        <p class="title">Recent Members</p>
+        <div class="recent-list" *ngFor="let recent of recentist;let i=index;">
+            <div class="recent_image_block">
+                <div class="recent-image-section">
+                    <a [routerLink]="['/girl/'+ recent.id]">
+                        <svg *ngIf="ietrue" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svgBlur">
+
+                            <filter id="svgBlurFilter">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+                            </filter>
+
+                            <image *ngIf="recent.profile_pic[0].lock==true" attr.xlink:href="{{imageurl}}{{recent.profile_pic[0].image}}" x="0" y="0"
+                                height="190" width="190" class="blurred" filter="url(#svgBlurFilter)" />
+
+                            <image *ngIf="recent.profile_pic[0].lock==false" attr.xlink:href="{{imageurl}}{{recent.profile_pic[0].image}}" x="0" y="0"
+                                height="190" width="190" class="nonblurred" />
+
+                        </svg>
+                        <img *ngIf="!ietrue" [class.lockimage]="recent.profile_pic[0].lock==true" src="{{imageurl}}{{recent.profile_pic[0].image}}"
+                            style="pointer-events: none;" />
+                    </a>
+                    <span class="lock-back" *ngIf="recent.profile_pic[0].lock==true" (click)="unlockimg(i,2, recent.name)">
+                        <img src="./assets/images/lock.png" class="lock-icon">
+                    </span>
+
+                </div>
+                <div class="profile-content">
+                    <p class="raddress recent-p">{{recent.location}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="top-search">
+            <div class="row-1">
+                <ul class="states">
+                    <span class="label">Select State</span>
+                    <li [ngClass]="selstate=='South Australia' ? 'active' : '' " (click)="changestate('South Australia')">SA</li>
+                    <li [ngClass]="selstate=='Victoria' ? 'active' : '' " (click)="changestate('Victoria')">VIC</li>
+                    <li [ngClass]="selstate=='New South Wales' ? 'active' : '' " (click)="changestate('New South Wales')">NSW</li>
+                    <li [ngClass]="selstate=='Queensland' ? 'active' : '' " (click)="changestate('Queensland')">QLD</li>
+                    <li [ngClass]="selstate=='Western Australia' ? 'active' : '' " (click)="changestate('Western Australia')">WA</li>
+                    <li [ngClass]="selstate=='Northern Territory' ? 'active' : '' " (click)="changestate('Northern Territory')">NT</li>
+                </ul>
+            </div>
+            <div class="row-2">
+                <form [formGroup]="myform">
+                    <ul class="filter">
+                        <span class="label">Filter By</span>
+                        <li>
+                            Name
+                            <input class="search-field" type="text" formControlName="name" name="name" />
+                        </li>
+                        <li>
+                            Weight
+                            <select name="weight" class="search-field" formControlName="weight">
+                                <option value="">Any</option>
+                                <option *ngFor="let wv of weightvals" [value]="wv">{{wv}}</option>
+                            </select>
+                        </li>
+                        <li>
+                            Height
+                            <select class="search-field" name="height" formControlName="height">
+                                <option value="">Any</option>
+                                <option *ngFor="let hv of heights" [value]="hv">{{hv}}</option>
+                            </select>
+                        </li>
+
+                        <li>
+                            Suburbs
+                            <input class="search-field location" type="text" name="location" #hsearch formControlName="searchControl">
+                        </li>
+                        <!-- <li class="multidrop">
+						Suburbs
+						<ss-multiselect-dropdown name="selsuburb" [options]="sublist" formControlName="selsuburb"  [texts]="sublitText" [settings]="mySettings" (change)="onsubChange($event)"></ss-multiselect-dropdown>
+					</li> -->
+                        <li>
+                            Radius(miles)
+                            <select class="search-field" name="radius" formControlName="radius">
+                                <option value="">Any</option>
+                                <option *ngFor="let mile of miles" [value]="mile">{{mile}}</option>
+                            </select>
+                        </li>
+                        <li>
+                            <button (click)="getprofilelisting()">Search</button>
+                            <button (click)="clearfilters()">Clear</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div class="top-profile">
+            <p class="title">Top Profile</p>
+            <div class="image-side">
+                <div class="image-section vcenter" *ngFor="let pics of highlight.profile_pic;let i=index ">
+                    <div class="center_image">
+                        <svg *ngIf="ietrue" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svgBlur">
+                            <filter id="svgBlurFilter">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+                            </filter>
+                            <image *ngIf="pics.lock==true" attr.xlink:href="{{imageurl}}{{pics.image}}" x="0" y="0" height="190" width="190" class="blurred"
+                                filter="url(#svgBlurFilter)" />
+                            <image *ngIf="pics.lock==false" attr.xlink:href="{{imageurl}}{{pics.image}}" x="0" y="0" height="190" width="190" class="nonblurred"
+                            />
+                        </svg>
+                        <img *ngIf="!ietrue" src="{{imageurl}}{{pics.image}}" [class.lock]="pics.lock==true" class="top-images" style="pointer-events: none;"
+                        />
+                        <span class="lock-back" *ngIf="pics.lock==true" (click)="unlockimg(i,3,highlight.name)">
+                            <img src="./assets/images/lock.png" class="lock-icon">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="content-side">
+                <a [routerLink]="['/girl/'+ highlight.id]">
+                    <p class="name">{{highlight.name}}</p>
+                </a>
+                <p class="price"></p>
+                <p class="raddress">{{highlight.location}}</p>
+                <p class="work">{{highlight.service_location}}</p>
+                <p class="comment">Comment/Complaint
+                    <span>{{highlight.comment}}</span>
+                    <span>/{{highlight.complaint}}</span>
+                </p>
+            </div>
+        </div>
+        <div class="profile-listing" (window:resize)="onResize($event)" *ngIf="!noprofile && !searching">
+            <mat-grid-list cols="{{test}}" rowHeight="420" gutterSize="10px">
+                <mat-grid-tile *ngFor="let profile of profiledata;let i=index">
+                    <!-- | paginate: config -->
+                    <div class="profiles" [class.highlight]="profile.highlight">
+
+                        <div class="image-section">
+                            <div class="image-listing-sec vcenter">
+                                <div class="center_image">
+                                    <a [routerLink]="['/girl/'+ profile.id]">
+                                        <svg *ngIf="ietrue" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svgBlur">
+                                            <filter id="svgBlurFilter">
+                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+                                            </filter>
+
+                                            <image *ngIf="profile.profile_pic[0].lock==true" attr.xlink:href="{{imageurl}}{{profile.profile_pic[0].image}}" x="0" y="0"
+                                                height="190" width="190" class="blurred" filter="url(#svgBlurFilter)" />
+                                            <image *ngIf="profile.profile_pic[0].lock==false" attr.xlink:href="{{imageurl}}{{profile.profile_pic[0].image}}" x="0" y="0"
+                                                height="190" width="190" class="nonblurred" />
+
+                                        </svg>
+                                        <img *ngIf="!ietrue" [class.lockimage]="profile.profile_pic[0].lock==true" src="{{imageurl}}{{profile.profile_pic[0].image}}"
+                                            class="vhimage" style="pointer-events:none;" />
+                                    </a>
+                                    <span class="lock-back" *ngIf="profile.profile_pic[0].lock==true" (click)="unlockimg(i,1,profile.name)">
+                                        <img src="./assets/images/lock.png" class="lock-icon">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-content">
+                            <a [routerLink]="['/girl/'+ profile.id]">
+                                <p class="name">{{profile.name}}</p>
+                            </a>
+                            <p class="price" *ngIf="profile.profile_pic[0].lock">$ {{imgprice}}</p>
+                            <p class="price" *ngIf="!profile.profile_pic[0].lock">$ 0</p>
+                            <p class="raddress">{{profile.location}}</p>
+                            <p class="work">{{profile.service_location}}</p>
+                            <p class="comment">Comment/Complaint
+                                <span>{{profile.comments}}</span>
+                                <span>/{{profile.complaint}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <!-- <pagination-controls class="my-pagination" [id]="config.id"
+                         [maxSize]="maxSize"
+                         [directionLinks]="directionLinks"
+                         [autoHide]="autoHide"
+                         [previousLabel]="labels.previousLabel"
+                         [nextLabel]="labels.nextLabel"
+                         [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                         [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                         [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                         (pageChange)="onPageChange($event)"></pagination-controls> -->
+        </div>
+        <div class="profile-listing" *ngIf="noprofile" style="text-align: center;margin-top: 30px;">
+            No profile found matching search criteria.
+        </div>
+        <div class="profile-listing" *ngIf="searching" style="text-align: center;margin-top: 30px;">
+            Searching...
+        </div>
+    </div>
+</div>
+<div class="modal fade modal-fullscreen openimage" style="display:none;" id="imgmodel" role="dialog">
+    <div class="container">
+        <button (click)="closeimg()" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <br>
+        <div class="row">
+            <img [src]="actopenimg" width="auto">
+        </div>
+    </div>
+</div>

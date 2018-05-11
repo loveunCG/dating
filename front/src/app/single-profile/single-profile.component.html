@@ -1,0 +1,252 @@
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-offset-1 col-sm-10">
+        <div class="w3-row w3-panel p-0 w3-display-container">
+          <div class="col-md-12 text-center">
+            <div class="clock center-block text-pink">
+              <div class="hours"></div>
+              <div class="minutes"></div>
+              <div class="seconds"></div>
+              <div class="twelvehr"></div>
+            </div>
+            <!--clock end-->
+            <div class="progress center-block">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:70%"></div>
+            </div>
+            <button type="button" class="btn btn-lg bg-pink w3-round-xxlarge btn-pause">Pause</button>
+          </div>
+          <!--col end-->
+          <div class="w3-display-topright page4-top-right-text text-right">
+            <h6>Your account balance</h6>
+            <span class="text-pink">
+              <span class="add-card">Add Credit</span> $000.00</span>
+          </div>
+          <!--cole nd-->
+        </div>
+        <!--progress row emd-->
+        <div class="w3-row">
+          <a href="#" class="btn btn-lg btn-block bg-pink w3-round-xxlarge">Not Live</a>
+
+        </div>
+        <!--row end-->
+        <div class="w3-row w3-panel w3-padding-16 w3-white">
+          <!--==================1 row================-->
+          <div class="col-md-3 pl-0 page2-slider">
+            <div id="myCarousel" class="carousel slide " data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div  *ngFor="let image of sliderimages;let i = index" class="{{i==0?'item active':'item'}}">
+                  <img *ngIf="!ietrue" [src]="image.image"  class="img-adjust">
+                  <img *ngIf="image.lock" class="lock" src="./assets/images/lock.png">
+                </div>
+              </div>
+
+            </div>
+            <!--caro end-->
+            <ul class="thumb-list">
+              <li>
+                <img src="./assets/images//gallery/thumb1.png" alt="">
+              </li>
+              <li>
+                <img src="./assets/images//gallery/thumb1.png" alt="">
+              </li>
+              <li>
+                <img src="./assets/images//gallery/thumb1.png" alt="">
+              </li>
+
+            </ul>
+            <!--thumb img-->
+            <div class="read-this">
+              	<a [routerLink]="['/messages/' + girlid]"><img src="./assets/images//gmail.png" alt=""> </a> Please read this!!!</div>
+          </div>
+          <!--col 2 end-->
+          <div class="col-md-6 page2-topmiddle">
+            <h3>{{profileinfo.name}}</h3>
+            <p class="font-12">
+              <img src="./assets/images//map_marker.png" alt="" /> {{profileinfo.location}}</p>
+            <h5>Highlight Profile</h5>
+            <p>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="switch-toggle round"></span>
+              </label>
+              <span class="cycle"> $2.50 Auto cycle</span>
+            </p>
+            <p>{{profileinfo.username}}
+              <span>{{profileinfo.imgprice}}/{{profileinfo.comment}}/{{profileinfo.complaint}}</span>
+            </p>
+            <p>Age
+              <span>{{profileinfo.age}}5</span>
+            </p>
+            <p>Boob size
+              <span>{{profileinfo.weight?profileinfo.weight:'N/A'}}</span>
+            </p>
+            <p>Height
+              <span>{{profileinfo.height?profileinfo.height:0}}</span>
+            </p>
+            <p>Room & CD
+              <span>Included</span>
+            </p>
+            <p>Service Location
+              <span>{{profileinfo.service_location?profileinfo.service_location:'N/A'}}</span>
+            </p>
+            <h6>Contact info</h6>
+            <p>Preferd contact method
+              <span> Skype</span>
+            </p>
+            <p>Mobile Number
+              <a href="#" class="w3-right btn btn-link">{{profileinfo.phone}}</a>
+            </p>
+            <h6>
+              <img src="./assets/images//phone_icon_green.png" alt="" /> Contact info</h6>
+            <p class="text-bold">
+              <img src="./assets/images//gray_round.png" alt="" />{{profileinfo.whatsapp}}
+              <img src="./assets/images//viver.png" alt="" />{{profileinfo.viber}}</p>
+
+          </div>
+          <!--col 6 emd-->
+          <div class="col-md-3 p-0 text-right">
+
+          </div>
+          <!--col 3 end-->
+        </div>
+        <!--row end-->
+        <div class="w3-row w3-white w3-panel page2-row2">
+          <!--==================2 row================-->
+          <p>My Services</p>
+          <div class="w3-row check-row2">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 1
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 2
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 3
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 4
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="">Option 5
+            </label>
+
+          </div>
+          <!--check box row-->
+          <p>About Me</p>
+          <h6>{{profileinfo.aboutme}}</h6>
+          <div class="col-sm-offset-2 col-sm-8" [hidden]="videos.length<1">
+            <div class="embed-responsive embed-responsive-16by9"  *ngFor="let video of videos;let i=index" >
+              <iframe class="embed-responsive-item" [src]="video.source" frameborder="0" allow="autoplay; encrypted-media"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+          <!--youtube video-->
+        </div>
+        <!--part 2 row end-->
+        <div class="w3-row w3-white w3-panel w3-padding-16 page2-3row">
+          <!--==================3 row================-->
+          <p class="text-bold text-gray">My photo gallery</p>
+          <div class="col-sm-4">
+            <img src="./assets/images//gallery/1.png" class="img-adjust" onclick="onClick(this)">
+          </div>
+          <div class="col-sm-4">
+            <img src="./assets/images//gallery/2.png" class="img-adjust" onclick="onClick(this)">
+          </div>
+          <div class="col-sm-4">
+            <img src="./assets/images//gallery/3.png" class="img-adjust" onclick="onClick(this)">
+          </div>
+          <div class="col-sm-4">
+            <img src="./assets/images//gallery/4.png" class="img-adjust" onclick="onClick(this)">
+          </div>
+          <div class="col-sm-4">
+            <img src="./assets/images//gallery/5.png" class="img-adjust" onclick="onClick(this)">
+          </div>
+          <div class="col-sm-4">
+            <img src="./assets/images//gallery/1.png" class="img-adjust" onclick="onClick(this)">
+          </div>
+        </div>
+        <!--part 3 row end----------->
+        <!-- Modal for full size images on click-->
+        <div id="modal01" class="w3-modal w3-black" style="padding-top:0">
+          <span class="w3-button w3-black w3-xlarge w3-display-topright" onClick="w3_close()">×</span>
+          <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+            <img id="img01" class="w3-image">
+            <p id="caption"></p>
+          </div>
+        </div>
+        <!--modal end-->
+        <div class="w3-row w3-panel w3-white w3-padding-16">
+          <!--=================4 row======================-->
+          <p class="text-bold">Comments</p>
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a data-toggle="tab" href="#Comments">Comments </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#Complaints">Complaints</a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="Comments" class="tab-pane fade in active" *ngIf="comments && opencomment" >
+              <p class="resent-comment">Recent Comments</p>
+              <div class="col-sm-9" *ngFor="let comm of comments;let i=index">
+                <h6 class="comment-name">
+                  <img width="32px" height="32px"  class="img-circle" src="{{imageurl}}{{comm.images[0]?comm.images[0].image:'avatar-boy.png'}}" alt=""> {{comm.first_name}}</h6>
+                <p class="comment-text">{{comm.description}}</p>
+              </div>
+              <!--comment 1 end-->
+              <div class="col-sm-offset-2 col-sm-9">
+                <h6 class="comment-name">Your comment</h6>
+                <div *ngIf="!ifloggedin" class="input-field-firstName form_field" [ngClass]="{'has-danger': username.invalid && (username.dirty ), 'has-success': username.valid && (username.dirty )}">
+          				<input type="text" class="form-control" [(ngModel)]="commentmodel.username" #username="ngModel" name="username" placeholder="Name">
+        					<p class="error" *ngIf="namecommerror" style="color:#d9534f;">Name is required</p>
+          		 </div>
+                <textarea class="form-control" id="aboutme" [(ngModel)]="commentmodel.comment" #comment="ngModel" name="comment" required rows="4"></textarea>
+        					<p class="error" *ngIf="commerror" style="color:#d9534f;">Comment is required</p>
+                <div class="text-right">
+                  <input type="button" class="btn bg-pink btn-post" (click)="submitcomment()" value="post">
+                </div>
+              </div>
+              <!--comment 2-->
+            </div>
+            <!--==========================comments end============================-->
+            <div id="Complaints" class="tab-pane fade">
+              <p class="resent-comment">Recent Complaints</p>
+              <div class="col-sm-9" *ngFor="let comp of complaints;let i=index">
+                <h6 class="comment-name">
+                  <img width="32px" height="32px"  class="img-circle" src="{{imageurl}}{{comp.images[0]?comp.images[0].image:'avatar-boy.png'}}" alt=""> {{comp.first_name}}</h6>
+                <p class="comment-text">{{comp.description}}</p>
+             </div>
+            <div class="col-sm-offset-2 col-sm-9">
+              <h6 class="comment-name">Your Complaints</h6>
+              <div *ngIf="!ifloggedin" class="input-field-firstName form_field" [ngClass]="{'has-danger': username.invalid && (username.dirty ), 'has-success': username.valid && (username.dirty )}">
+                <input type="text" class="form-control" [(ngModel)]="complaintmodel.username" #username="ngModel" name="username" placeholder="Name">
+                <p class="error" *ngIf="namecomperror" style="color:#d9534f;">Name is required</p>
+             </div>
+              <textarea class="form-control" id="aboutme" [(ngModel)]="commentmodel.comment" #comment="ngModel" name="comment" required rows="4"></textarea>
+                <p class="error" *ngIf="comperror" style="color:#d9534f;">Complaint is required</p>
+              <div class="text-right">
+                <input type="button" class="btn bg-pink btn-post" (click)="submitcomplaint()" value="post">
+              </div>
+            </div>
+
+          </div>
+          <!--tab-content end-->
+        </div>
+        <!--part 4 row end-->
+      </div>
+      <!--main col end-->
+    </div>
+    <!--row end-->
+  </div>

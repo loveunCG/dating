@@ -1,0 +1,109 @@
+.closebutton{
+  right: -20px;
+  position: relative;
+  background: transparent;
+  border: none;
+  float: right;
+  top: -20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+input.form-control,select.form-control {
+    font-size: 16px;
+    color: rgb(84,82,79);
+    font-family: "Karla";
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 3px;
+    border-style: none;
+    width: 343px;
+    height: 50px;
+    background-color: #f6f6f6;
+}
+
+fieldset{border: none;}
+.has-danger .form-control-feedback,.register-error {
+    color: #d9534f;
+}
+.register-success{color: #5cb85c;}
+.has-danger .form-control {
+    border-color: #d9534f !important;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.has-success .form-control {
+    border-color: #5cb85c;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.col-2,.col-1,.col-3,.col-4{
+    column-count: 3;
+}
+.col-5,.col-6{
+    column-count: 2;
+}
+.upload-label{
+       margin: 0px;
+    font-size: 16px;
+    letter-spacing: 0px;
+    color: rgb(34,34,34);
+    font-family: "Karla";
+}
+.p-thumbnails,.profile-upload{
+    display: inline-block;
+    vertical-align: middle;
+}
+span.delete-back {
+      background: #fff;
+    border-radius: 100%;
+    padding: 10px;
+    position: absolute;
+    bottom: 79%;
+    right: 10px;
+    height: 15px;
+    width: 15px;
+}
+img.delete-icon{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+.profile-upload{
+    /*border: 1px dashed;*/
+    padding: 22px 0px;
+    text-align: center;
+}
+.upload-video{
+        background: #f8f8f8;
+    height: 223px;
+    width: 230px;
+    display: inline-block;
+    border: dashed;
+    border-width: 1px;
+}
+label.label-left {
+   font-size: 15px;
+    letter-spacing: 2px;
+    color: rgb(37,37,37);
+    font-family: "Karla";
+}
+.submit-section{
+    text-align: center;
+    margin: 15px 0;
+}
+.edit-submit:hover {
+    color: #ff2121;
+    background: #fff;
+    border: 1px solid #ff2121;
+}
+.edit-submit {
+    width: 160px;
+    height: 31px;
+    background-color: #ff2121;
+    font-size: 22px;
+    color: rgb(255,255,255);
+    font-family: "Karla";
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}

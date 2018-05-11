@@ -1,0 +1,160 @@
+<!-- BEGIN: Subheader -->
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title">
+				Dashboard
+			</h3>
+		</div>
+		<!-- <div>
+			<span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
+				<span class="m-subheader__daterange-label">
+					<span class="m-subheader__daterange-title"></span>
+					<span class="m-subheader__daterange-date m--font-brand"></span>
+				</span>
+				<a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+					<i class="la la-angle-down"></i>
+				</a>
+			</span>
+		</div> -->
+	</div>
+</div>
+<!-- END: Subheader -->
+<div class="m-content">
+	<!--Begin::Main Portlet-->
+	<div class="m-portlet">
+		<div class="m-portlet__body m-portlet__body--no-padding">
+			<div class="row m-row--no-padding m-row--col-separator-xl">
+				<div class="col-md-12 col-lg-12 col-xl-4">
+					<!--begin:: Widgets/Stats2-1 -->
+					<div class="m-widget1">
+						<div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Total visitors
+									</h3>
+									<span class="m-widget1__desc">
+										Total visitors until now
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-brand">
+										{{visitors}}
+									</span>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Orders
+									</h3>
+									<span class="m-widget1__desc">
+										Weekly Customer Orders
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-danger">
+										+1,800
+									</span>
+								</div>
+							</div>
+						</div> -->
+
+					</div>
+					<!--end:: Widgets/Stats2-1 -->
+				</div>
+				<div class="col-md-12 col-lg-12 col-xl-4">
+					<!--begin:: Widgets/Stats2-2 -->
+					<div class="m-widget1">
+						<div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Total earnings
+									</h3>
+									<span class="m-widget1__desc">
+										Total admin earnings until now
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-accent">
+										${{adminearnings}}
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--begin:: Widgets/Stats2-2 -->
+				</div>
+				<div class="col-md-12 col-lg-12 col-xl-4">
+					<!--begin:: Widgets/Stats2-3 -->
+					<div class="m-widget1">
+						<div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Total users
+									</h3>
+									<span class="m-widget1__desc">
+										Total registered users
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-success">
+										30
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--begin:: Widgets/Stats2-3 -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--End::Main Portlet-->
+
+	<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Latest users list
+					</h3>
+				</div>
+			</div>
+
+		</div>
+		<div class="m-portlet__body">
+			  		<!--begin: Datatable -->
+			<div class="m_datatable" id="ajax_data"></div>
+			<!--end: Datatable -->
+		</div>
+	</div>
+
+
+	<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Total earnings
+					</h3>
+				</div>
+			</div>
+			<div class="m-portlet__head-tools">
+				<select onchange="getdata()" class="form-control m-input" id="selyear">
+					<option *ngFor="let year of years;let i = index" [value]="year">{{year}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<div id="m_flotcharts_6" style="height: 300px;"></div>
+		</div>
+	</div>
+
+
+</div>

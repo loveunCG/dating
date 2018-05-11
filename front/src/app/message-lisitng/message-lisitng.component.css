@@ -1,0 +1,84 @@
+.message_listing {
+    box-shadow: none;
+}
+.page_heading {margin-bottom: 5px;width: 100%;
+box-sizing: border-box;}
+.mat-header-row {
+    min-height: 40px;
+}
+.mat-cell {
+    color: #000;
+    font-family: karla;
+    font-size: 16px;
+}
+.mat-header-cell:last-child, .mat-cell:last-child {
+    flex: 0 0 53%;
+}
+.mat-header-cell:first-child, .mat-cell:first-child {
+    flex: 0 0 18%;
+}
+.mat-header-cell, .mat-cell {
+   	flex: 0 0 25%;   	
+	padding: 0 5px;
+}
+.unread {
+	font-weight: bold;
+}
+.gotouser {
+	text-transform: capitalize;
+	cursor: pointer;
+}
+.gotouser:hover, .gotouser:focus {
+	color: #f34747;
+}
+.mat-header-row, .mat-row {padding: 0;}
+.mat-header-cell {font-size: 18px;}
+@media (max-width: 991px) {
+	.mat-cell {	
+	    font-size: 16px;
+	}
+	.mat-header-cell:last-child, .mat-cell:last-child {		
+		-ms-flex: 0 0 47%;
+		flex: 0 0 47% !important;
+	}
+	.mat-header-cell:first-child, .mat-cell:first-child {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 22%;
+		flex: 0 0 22%;
+	}
+	.mat-header-cell, .mat-cell {	
+		-ms-flex: 0 0 24%;
+		flex: 0 0 24%;				
+	}
+}
+@media (max-width: 767px) {
+	.mat-cell {
+	    width: 100%;
+	    flex: 1 !important;
+	    display: inline-block;
+	    float: left;
+	}
+	.mat-header-cell, .mat-header-row {display: none !important;}
+	.mat-table, .mat-header-row, .mat-row {
+	    display: inline-block;
+	    width: 100%;
+	}
+	.mat-row {padding: 10px;}
+	
+	.mat-cell.mat-column-cdate {
+		float: right;
+		width: auto;
+		color: #999;
+		font-size: 14px;
+	}
+	.mat-cell.gotouser.mat-column-tousername {
+		float: left;
+		width: calc(100% - 160px);
+	}
+	.mat-row {
+		min-height: 10px;
+	}
+	.mat-column-lastmsg {
+		padding-top: 5px !important;
+	}
+}

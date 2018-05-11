@@ -1,0 +1,396 @@
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title m-subheader__title--separator">
+				Add user
+			</h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a routerLink="/index" class="m-nav__link m-nav__link--icon">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<a routerLink="/users" class="m-nav__link">
+						<span class="m-nav__link-text">
+							Users
+						</span>
+					</a>
+				</li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<span class="m-nav__link-text">
+						Add user
+					</span>
+				</li>
+
+      </ul>
+		</div>
+
+	</div>
+</div>
+
+<div class="m-content">
+<div class="m-portlet m-portlet--mobile">
+
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					Add new user
+				</h3>
+			</div>
+		</div>
+	</div>
+	<!--begin::Form-->
+	<form class="m-form" (ngSubmit)="f.form.valid && addUser(f)" #f="ngForm">
+
+	  <ng-template #alertAddUser></ng-template>
+
+		<div class="m-portlet__body m-stack__item m-stack__item--center m-stack__item--middle" style="width:40%;">
+	    <div class="form-group m-form__group">
+	      <label for="exampleSelect1">
+	        Select user type:
+	      </label>
+	      <!-- onchange="changeusertype(this.value)" -->
+	      <!-- ngChange="changeType()" -->
+	      <select class="form-control m-input" id="exampleSelect1" [(ngModel)]="model.regtype" #regtype="ngModel" name="regtype" (change)="changeType($event.target.value)">
+	        <option value="Female" >
+	          Girl
+	        </option>
+					<option value="Male" >
+	          Boy
+	        </option>
+	      </select>
+	    </div>
+	  </div>
+
+		<div class="m-portlet__body " id="girl" *ngIf="profilegirl">
+	    <div class="m-form__section m-form__section--first">
+
+				<div class="form-group m-form__group ">
+	        <label for="example_input_full_name">
+	          Upload profile pictures:
+	        </label>
+	        <image-upload
+	          [url]="uploadpath"
+	          [max]="1"
+	          buttonCaption="Upload"
+	          dropBoxMessage=""
+	          (removed)="onRemovedFav($event)"
+	          (uploadFinished)="onUploadFinishedFav($event)"
+	          (uploadStateChanged)="onUploadStateChangedFav($event)">
+	        </image-upload>
+
+	        <div>
+
+						<label class="m-checkbox">
+							<input type="checkbox" name="islocked" [(ngModel)]="model.islocked" #islocked="ngModel" (change)="changelocked($event.target.value)"> Lock images
+							<span></span>
+						</label>
+
+	          <!-- <input class="form-control m-input" style="width:20%;" placeholder="Enter amount" type="number" name="picprice" [(ngModel)]="model.picprice" #picprice="ngModel"> -->
+
+	        </div>
+
+	      </div>
+
+				<div class="form-group m-form__group " [ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched), 'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
+	        <label for="example_input_full_name">
+	          First Name:
+	        </label>
+	        <input type="text" class="form-control m-input" placeholder="Enter first name" [ngClass]="{
+	       'form-control-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+	       'form-control-success': firstName.valid && (firstName.dirty || firstName.touched)
+	     }" type="text" [(ngModel)]="model.firstName" #firstName="ngModel" name="firstName" required>
+
+	         <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+	           <p *ngIf="firstName.errors.required">Firstname is required </p>
+	         </div>
+
+	      </div>
+
+				<div class="form-group m-form__group " [ngClass]="{'has-danger': lastName.invalid && (lastName.dirty || lastName.touched), 'has-success': lastName.valid && (lastName.dirty || lastName.touched)}">
+	        <label for="example_input_full_name">
+	          Last Name:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter last name" [ngClass]="{
+	       'form-control-danger': lastName.invalid && (lastName.dirty || lastName.touched),
+	       'form-control-success': lastName.valid && (lastName.dirty || lastName.touched)
+	     }" type="text" [(ngModel)]="model.lastName" #lastName="ngModel" name="lastName" required>
+	       	<div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+	        	<p *ngIf="lastName.errors.required">Lastname is required</p>
+	      	</div>
+	      </div>
+
+				<div class="form-group m-form__group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched), 'has-success': email.valid && (email.dirty || email.touched)}">
+	        <label>
+	          Email address:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter email" [ngClass]="{'form-control-danger': email.invalid && (email.dirty || email.touched), 'form-control-success': email.valid && (email.dirty || email.touched)}" type="text" [(ngModel)]="model.email" #email="ngModel" name="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+	       <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+	         <span *ngIf="email.errors.required">Email is required</span>
+	         <span *ngIf="email.errors.pattern">Email format should be joe@abc.com</span>
+	       </div>
+
+	      </div>
+
+				<div class="form-group m-form__group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched), 'has-success': password.valid && (password.dirty || password.touched)}">
+	        <label>
+	          Password:
+	        </label>
+	        <input type="email" class="form-control m-input" placeholder="Enter password" [ngClass]="{
+	       'form-control-danger': password.invalid && (password.dirty || password.touched),
+	       'form-control-success': password.valid && (password.dirty || password.touched)
+	     }" type="password" [(ngModel)]="model.password" #password="ngModel" name="password" required>
+	       <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+	         <span *ngIf="password.errors.required">Password is required</span>
+	       </div>
+	      </div>
+
+	      <div class="form-group m-form__group " [ngClass]="{'has-danger': phone.invalid && (phone.dirty || phone.touched), 'has-success': phone.valid && (phone.dirty || phone.touched)}">
+	        <label for="example_input_full_name">
+	          Mobile muber:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter phone number" [ngClass]="{'form-control-danger': phone.invalid && (phone.dirty || phone.touched), 'form-control-success': phone.valid && (phone.dirty || phone.touched)}" type="text" [(ngModel)]="model.phone" #phone="ngModel" name="phone" required [textMask]="{mask: mask}">
+
+		       <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+		        <p *ngIf="phone.errors.required">Mobile number is required</p>
+		        <p *ngIf="phone.errors.pattern">Numbers only</p>
+		       </div>
+	      </div>
+
+	      <div class="form-group m-form__group " [ngClass]="{'has-danger': age.invalid && (age.dirty || age.touched), 'has-success': age.valid && (age.dirty || age.touched)}">
+	        <label for="example_input_full_name">
+	          Age:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter age" [ngClass]="{'form-control-danger': age.invalid && (age.dirty || age.touched), 'form-control-success': age.valid && (age.dirty || age.touched)}" type="number" [(ngModel)]="model.age" #age="ngModel" name="age" required>
+
+		      <div class="form-control-feedback" *ngIf="age.errors && (age.dirty || age.touched)">
+		        <p *ngIf="age.errors.required">Age is required</p>
+		      </div>
+
+	      </div>
+
+	      <!-- <div class="form-group m-form__group " [ngClass]="{'has-danger': sex.invalid && (sex.dirty || sex.touched), 'has-success': sex.valid && (sex.dirty || sex.touched)}">
+	        <label for="example_input_full_name">
+	          Sexual preference:
+	        </label>
+
+	        <input class="form-control m-input" placeholder="Enter sexual preference" [ngClass]="{'form-control-danger': sex.invalid && (sex.dirty || sex.touched), 'form-control-success': sex.valid && (sex.dirty || sex.touched)}" type="text" [(ngModel)]="model.sex" #sex="ngModel" name="sex" required>
+
+	        <div class="form-control-feedback" *ngIf="sex.errors && (sex.dirty || sex.touched)">
+	        	<p *ngIf="sex.errors.required">Sexual preference is required</p>
+	        </div>
+
+	      </div> -->
+
+	      <div class="form-group m-form__group " >
+
+	        <label for="example_input_full_name">
+	          User location:
+	        </label>
+
+					<input type="text" autocorrect="off" autocapitalize="off" spellcheck="off" placeholder="Your Location" class="form-control" #hsearch [formControl]="searchControl">
+
+	       	<!-- <div class="form-control-feedback" *ngIf="hsearch.errors && (hsearch.dirty || hsearch.touched)">
+
+	        	<p *ngIf="hsearch.errors.required">Location is required</p>
+
+	      	</div> -->
+
+	      </div>
+				<div class="form-group m-form__group " >
+
+				 <label for="example_input_full_name">
+					 State:
+				 </label>
+
+				 <input type="text" autocorrect="off" autocapitalize="off" spellcheck="off" placeholder="State" class="form-control" [(ngModel)]="model.locstate" #locstate="ngModel" name="locstate" readonly>
+
+			 </div>
+
+	      <div class="form-group m-form__group " [ngClass]="{'has-danger': service.invalid && (service.dirty || service.touched), 'has-success': service.valid && (service.dirty || service.touched)}">
+	        <label for="example_input_full_name">
+	          User service location:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter user service location" [ngClass]="{
+	       'form-control-danger': service.invalid && (service.dirty || service.touched),
+	       'form-control-success': service.valid && (service.dirty || service.touched)
+	     }" type="text" [(ngModel)]="model.service" #service="ngModel" name="service" required>
+	       <div class="form-control-feedback" *ngIf="service.errors && (service.dirty || service.touched)">
+	        <p *ngIf="service.errors.required">Service location is required</p>
+	      </div>
+	      </div>
+
+	      <div class="form-group m-form__group">
+	        <label for="example_input_full_name">
+	          About user:
+	        </label>
+
+	        <textarea class="form-control m-input" name="aboutme" [(ngModel)]="model.aboutme" #aboutme="ngModel" ></textarea>
+
+	      </div>
+
+	      <div class="form-group m-form__group" style="width:30%;">
+	        <label for="status">
+	          Status:
+	        </label>
+	        <select class="form-control m-input" id="status" [(ngModel)]="model.status" #status="ngModel" name="status">
+	          <option value="1">
+	            Inactive
+	          </option>
+	          <option value="2">
+	            Pending
+	          </option>
+	          <option value="3">
+	            Approve
+	          </option>
+	          <option value="4">
+	            Rejected
+	          </option>
+	        </select>
+	      </div>
+
+			</div>
+		</div>
+
+		<div class="m-portlet__body " id="boy" *ngIf="profileboy">
+
+	    <div class="m-form__section m-form__section--first">
+
+				<div class="form-group m-form__group ">
+	        <label for="example_input_full_name">
+	          Upload profile pictures:
+	        </label>
+	        <image-upload
+	          [url]="uploadpath"
+	          [max]="1"
+	          buttonCaption="Upload"
+	          dropBoxMessage=""
+	          (removed)="onRemovedFav($event)"
+	          (uploadFinished)="onUploadFinishedFav($event)"
+	          (uploadStateChanged)="onUploadStateChangedFav($event)">
+	        </image-upload>
+
+	      </div>
+
+	      <div class="form-group m-form__group " [ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched), 'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
+	        <label for="example_input_full_name">
+	          First Name:
+	        </label>
+	        <input type="text" class="form-control m-input" placeholder="Enter first name" [ngClass]="{
+	       'form-control-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+	       'form-control-success': firstName.valid && (firstName.dirty || firstName.touched)
+	     }" type="text" [(ngModel)]="model.firstName" #firstName="ngModel" name="firstName" required>
+	       <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+	         <p *ngIf="firstName.errors.required">Firstname is required</p>
+	       </div>
+	      </div>
+
+	      <div class="form-group m-form__group " [ngClass]="{'has-danger': lastName.invalid && (lastName.dirty || lastName.touched), 'has-success': lastName.valid && (lastName.dirty || lastName.touched)}">
+	        <label for="example_input_full_name">
+	          Last Name:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter last name" [ngClass]="{'form-control-danger': lastName.invalid && (lastName.dirty || lastName.touched), 'form-control-success': lastName.valid && (lastName.dirty || lastName.touched)}" type="text" [(ngModel)]="model.lastName" #lastName="ngModel" name="lastName" required>
+	       <div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+	        <p *ngIf="lastName.errors.required">Lastname is required</p>
+	      </div>
+	      </div>
+
+	      <div class="form-group m-form__group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched), 'has-success': email.valid && (email.dirty || email.touched)}">
+	        <label>
+	          Email address:
+	        </label>
+
+	        <input class="form-control m-input" placeholder="Enter email" [ngClass]="{'form-control-danger': email.invalid && (email.dirty || email.touched), 'form-control-success': email.valid && (email.dirty || email.touched)}" type="text" [(ngModel)]="model.email" #email="ngModel" name="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+		       <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+		         <span *ngIf="email.errors.required">Email is required</span>
+		         <span *ngIf="email.errors.pattern">Email format should be joe@abc.com</span>
+		       </div>
+
+	      </div>
+
+	      <div class="form-group m-form__group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched), 'has-success': password.valid && (password.dirty || password.touched)}">
+	        <label>
+	          Password:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter password" [ngClass]="{'form-control-danger': password.invalid && (password.dirty || password.touched), 'form-control-success': password.valid && (password.dirty || password.touched)}" type="password" [(ngModel)]="model.password" #password="ngModel" name="password" required>
+
+		       <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+		         <span *ngIf="password.errors.required">Password is required</span>
+		       </div>
+
+	      </div>
+
+				<div class="form-group m-form__group " [ngClass]="{'has-danger': phone.invalid && (phone.dirty || phone.touched), 'has-success': phone.valid && (phone.dirty || phone.touched)}">
+	        <label for="example_input_full_name">
+	          Mobile muber:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter phone number" [ngClass]="{'form-control-danger': phone.invalid && (phone.dirty || phone.touched), 'form-control-success': phone.valid && (phone.dirty || phone.touched)}" type="text" [(ngModel)]="model.phone" #phone="ngModel" name="phone" required [textMask]="{mask: mask}"
+	         pattern="\d{3}\-\d{3}-\d{4}">
+
+		       <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+		        <p *ngIf="phone.errors.required">Mobile number is required</p>
+		        <p *ngIf="phone.errors.pattern">Numbers only</p>
+		       </div>
+	      </div>
+
+	      <div class="form-group m-form__group " [ngClass]="{'has-danger': age.invalid && (age.dirty || age.touched), 'has-success': age.valid && (age.dirty || age.touched)}">
+	        <label for="example_input_full_name">
+	          Age:
+	        </label>
+	        <input class="form-control m-input" placeholder="Enter age" [ngClass]="{'form-control-danger': age.invalid && (age.dirty || age.touched), 'form-control-success': age.valid && (age.dirty || age.touched)}" type="number" [(ngModel)]="model.age" #age="ngModel" name="age" required>
+
+		      <div class="form-control-feedback" *ngIf="age.errors && (age.dirty || age.touched)">
+		        <p *ngIf="age.errors.required">Age is required</p>
+		      </div>
+
+	      </div>
+
+	      <div class="form-group m-form__group" style="width:30%;">
+	        <label for="status">
+	          Status:
+	        </label>
+	        <select class="form-control m-input" id="status" [(ngModel)]="model.status" #status="ngModel" name="status">
+	          <option value="1">
+	            Inactive
+	          </option>
+	          <option value="2">
+	            Pending
+	          </option>
+	          <option value="3">
+	            Approve
+	          </option>
+	          <option value="4">
+	            Rejected
+	          </option>
+	        </select>
+	      </div>
+
+
+	    </div>
+	  </div>
+
+		<div class="m-portlet__foot m-portlet__foot--fit">
+	    <div class="m-form__actions m-form__actions">
+	      <button type="submit" class="btn btn-primary">
+	        Submit
+	      </button>
+	    </div>
+	  </div>
+
+	</form>
+	<!--end::Form-->
+</div>
+</div>

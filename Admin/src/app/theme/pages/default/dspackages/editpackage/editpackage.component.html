@@ -1,0 +1,155 @@
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title m-subheader__title--separator">
+				Edit package
+			</h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a routerLink="/index" class="m-nav__link m-nav__link--icon">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<a routerLink="/packages" class="m-nav__link">
+						<span class="m-nav__link-text">
+							Packages
+						</span>
+					</a>
+				</li>
+				<li class="m-nav__separator">
+					-
+				</li>
+				<li class="m-nav__item">
+					<span class="m-nav__link-text">
+						Edit package
+					</span>
+				</li>
+
+      </ul>
+		</div>
+
+	</div>
+</div>
+<div class="m-content">
+<div class="m-portlet m-portlet--mobile">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					Edit package
+				</h3>
+			</div>
+		</div>
+	</div>
+	<!--begin::Form-->
+	<form class="m-form" (ngSubmit)="f.form.valid && addUser(f)" #f="ngForm">
+		<ng-template #alertAddUser></ng-template>
+
+		<div class="m-portlet__body ">
+			<div class="m-form__section m-form__section--first">
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': packagefor.invalid && (packagefor.dirty || packagefor.touched),
+			 'has-success': packagefor.valid && (packagefor.dirty || packagefor.touched)
+		 }">
+					<label for="example_input_full_name">
+						Package is for
+					</label>
+					<br>
+					<label class="m-radio">
+						<input type="radio" [(ngModel)]="model.packagefor" #packagefor="ngModel" name="packagefor" [value]="1" required> Boy
+						<span></span>
+					</label>
+					<label class="m-radio">
+						<input type="radio" [(ngModel)]="model.packagefor" #packagefor="ngModel" name="packagefor" [value]="2" required> Girl
+						<span></span>
+					</label>
+
+				 <div class="form-control-feedback" *ngIf="packagefor.errors && (packagefor.dirty || packagefor.touched)">
+					 <p *ngIf="packagefor.errors.required">Type is required</p>
+				 </div>
+				</div>
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': packagename.invalid && (packagename.dirty || packagename.touched),
+			 'has-success': packagename.valid && (packagename.dirty || packagename.touched)
+		 }">
+					<label for="example_input_full_name">
+						Name
+					</label>
+					<input type="text" class="form-control m-input" placeholder="Enter package name" [ngClass]="{
+				 'form-control-danger': packagename.invalid && (packagename.dirty || packagename.touched),
+				 'form-control-success': packagename.valid && (packagename.dirty || packagename.touched)
+			 }" [(ngModel)]="model.packagename" #packagename="ngModel" name="packagename" (input)="genHandle($event.target.value)" required>
+				 <div class="form-control-feedback" *ngIf="packagename.errors && (packagename.dirty || packagename.touched)">
+					 <p *ngIf="packagename.errors.required">Name is required</p>
+				 </div>
+				</div>
+
+				<div class="form-group m-form__group " [ngClass]="{
+			 'has-danger': desc.invalid && (desc.dirty || desc.touched),
+			 'has-success': desc.valid && (desc.dirty || desc.touched)
+		 }">
+					<label for="example_input_full_name">
+						Description
+					</label>
+					<textarea class="form-control" [(ngModel)]="model.desc" #desc="ngModel" name="desc"></textarea>
+
+				 <div class="form-control-feedback" *ngIf="desc.errors && (desc.dirty || desc.touched)">
+					 <p *ngIf="desc.errors.required">Firstname is required</p>
+				 </div>
+				</div>
+
+					<div class="form-group m-form__group " [ngClass]="{
+				 'has-danger': bonus.invalid && (bonus.dirty || bonus.touched),
+				 'has-success': bonus.valid && (bonus.dirty || bonus.touched)
+			 }">
+						<label for="example_input_full_name">
+							Bonus
+						</label>
+						<input type="text" class="form-control m-input" placeholder="Enter bonus amount" [ngClass]="{
+					 'form-control-danger': bonus.invalid && (bonus.dirty || bonus.touched),
+					 'form-control-success': bonus.valid && (bonus.dirty || bonus.touched)
+				 }" [(ngModel)]="model.bonus" #bonus="ngModel" name="bonus" required>
+					 <div class="form-control-feedback" *ngIf="bonus.errors && (bonus.dirty || bonus.touched)">
+						 <p *ngIf="bonus.errors.required">Bonus is required</p>
+					 </div>
+					</div>
+
+					<div class="form-group m-form__group " [ngClass]="{
+				 'has-danger': price.invalid && (price.dirty || price.touched),
+				 'has-success': price.valid && (price.dirty || price.touched)
+			 }">
+						<label for="example_input_full_name">
+							Price
+						</label>
+						<input type="text" class="form-control m-input" placeholder="Enter package price" [ngClass]="{
+					 'form-control-danger': price.invalid && (price.dirty || price.touched),
+					 'form-control-success': price.valid && (price.dirty || price.touched)
+				 }" [(ngModel)]="model.price" #price="ngModel" name="price" required>
+					 <div class="form-control-feedback" *ngIf="price.errors && (price.dirty || price.touched)">
+						 <p *ngIf="price.errors.required">Price is required</p>
+					 </div>
+					</div>
+
+			</div>
+		</div>
+		<div class="m-portlet__foot m-portlet__foot--fit">
+			<div class="m-form__actions m-form__actions">
+				<button type="submit" class="btn btn-primary">
+					Submit
+				</button>
+			</div>
+		</div>
+
+	</form>
+	<!--end::Form-->
+</div>
+</div>
