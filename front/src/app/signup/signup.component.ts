@@ -13,7 +13,7 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import {} from '@types/googlemaps';
 
-import { SimpleNotificationsModule } from 'angular2-notifications';
+import { SimpleNotificationsModule } from 'angular2-notifications/dist';
 
 import { environment } from '../../environments/environment';
 

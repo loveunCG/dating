@@ -88,6 +88,7 @@ import { EditboyprofileComponent } from './editboyprofile/editboyprofile.compone
 import { SearchtestinomialComponent } from './searchtestinomial/searchtestinomial.component';
 import { UnlockpictureComponent } from './unlockpicture/unlockpicture.component';
 import { OpenimageComponent } from './openimage/openimage.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { OpenimageComponent } from './openimage/openimage.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    TabsModule.forRoot(),
     AppRoutingModule,
     SharedModule,
     MatButtonModule,

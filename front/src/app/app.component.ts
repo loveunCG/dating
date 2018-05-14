@@ -4,7 +4,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Spinkit } from 'ng-http-loader/spinkits';
 import { PendingInterceptorService } from 'ng-http-loader/services/pending-interceptor.service';
 
-import { SimpleNotificationsModule } from 'angular2-notifications';
+import { SimpleNotificationsModule } from 'angular2-notifications/dist';
+import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   public spinkit = Spinkit;
   title = 'app';
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, pendingInterceptorService: PendingInterceptorService) {
+    setTheme('bs3');
     pendingInterceptorService.pendingRequestsStatus.subscribe(pending => {
             if (!pending) {
                 console.log('No tracked http requests pending anymore');

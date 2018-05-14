@@ -1,716 +1,675 @@
-<div class="profilepage home_container">
-<button _ngcontent-c3="" class="timer-button"><span id="timeleft">{{timeleft}}</span></button>
-<mat-tab-group (selectedTabChange)="loadpayjs($event)" [(selectedIndex)]="selectedIndex">
-   <mat-tab label="Edit">
-      <div class="">
-      <form class="edit-form"  novalidate [formGroup]="myform" (ngSubmit)="update(myform.value)">
-      <div class="x6 o6 ">
-         <div class="image-section1">
-            <div class="profile-image">
-               <div class="image-listing-sec">
-                  <div class="image_profile">
-                  <img [src]="firstimage" class="main-image lock" [hidden]="!firstimage">
-                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Female' " src="./assets/images/female.jpg" />
-                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Male' " src="./assets/images/male.jpg" />
-                  <span class="edit-back" [hidden]="!firstimage">
-                  <!-- <img src="./assets/images/edit.png" class="edit-icon"> -->
-                  <image-upload
-                  url="./uploads/profile"
-                  class="customClass"
-                  [max]="1"
-                  [uploadedFiles]="uimages"
-                  buttonCaption="Upload image"
-                  dropBoxMessage=""
-                  (removed)="firstiRemoved($event)"
-                  (uploadFinished)="firstiUpload($event)"
-                  (uploadStateChanged)="firstiStateChange($event)">
-                  </image-upload>
-                  </span>
-                  </div>
-               </div>
+<div class="container">
+  <tabset [justified]="true">
+    <tab heading="Preview">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-1 col-sm-10">
+            <div class="w3-row w3-panel p-0 w3-display-container">
+              <div class="col-md-12 text-center">
+                <div class="clock center-block text-pink">
+                  <div class="hours"></div>
+                  <div class="minutes"></div>
+                  <div class="seconds"></div>
+                  <div class="twelvehr"></div>
+                </div>
+                <!--clock end-->
+                <div class="progress center-block">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:70%"></div>
+                </div>
+                <button type="button" class="btn btn-lg bg-pink w3-round-xxlarge btn-pause">Pause</button>
+              </div>
+              <!--col end-->
+              <div class="w3-display-topright page4-top-right-text text-right">
+                <h6>Your account balance</h6>
+                <span class="text-pink">
+                  <span class="add-card">Add Credit</span> $000.00</span>
+              </div>
+              <!--cole nd-->
             </div>
-         </div>
-         <div class="setting-info">
-            <section class="example-section">
-               <mat-slide-toggle *ngIf="userwallet > 0" formControlName="pausetime" (change)="ptimestat()" >Pause Time</mat-slide-toggle>
-               <mat-slide-toggle *ngIf="userwallet < 1" formControlName="pausetime" (change)="ptimestat()" disabled>Pause Time</mat-slide-toggle>
-            </section>
-            <section class="example-section">
-               <mat-checkbox *ngIf="userwallet > 0" class="example-margin" formControlName="highlight">Highlight Your Profile $10</mat-checkbox>
-               <mat-checkbox *ngIf="userwallet < 1" class="example-margin" formControlName="highlight" disabled>Highlight Your Profile $10</mat-checkbox>
+            <!--progress row emd-->
+            <div class="w3-row">
+              <a href="#" class="btn btn-lg btn-block bg-pink w3-round-xxlarge">Not Live</a>
 
-            </section>
-            <p class="changepass" (click)="changepassword()">Change Your Password</p>
-            <div class="input-field-password" *ngIf="showpass"
-                [ngClass]="{
-                 'has-danger': password.invalid && (password.dirty ),
-                 'has-success': password.valid && (password.dirty )
-            }">
-      <input type="password"
-           class="form-control"
-           formControlName="password"
-           placeholder="Enter new password"
-           required>
-    <div class="form-control-feedback"
-         *ngIf="password.errors && (password.dirty )">
-      <p *ngIf="password.errors.required">Password is required</p>
-      <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
-    </div>
-  </div>
-         </div>
-
-      </div>
-      <div class="col-1">
-         <div class="input-field-firstName control_form"
-            [ngClass]="{
-            'has-danger': firstName.invalid && (firstName.dirty),
-            'has-success': firstName.valid && (firstName.dirty)
-            }">
-            <label class="label-left">First Name</label>
-            <input type="text"
-               placeholder="First Name"
-               class="form-control"
-               formControlName="firstName"
-               required>
-            <div class="form-control-feedback"
-               *ngIf="firstName.errors && (firstName.dirty)">
-               <p *ngIf="firstName.errors.required">First Name is required</p>
             </div>
-         </div>
+            <!--row end-->
+            <div class="w3-row w3-panel w3-padding-16 w3-white">
+              <!--==================1 row================-->
+              <div class="col-md-3 pl-0 page2-slider">
+                <div id="myCarousel" class="carousel slide " data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                  </ol>
 
-
-
-         <div class="input-field-lastName control_form"
-            [ngClass]="{
-            'has-danger': lastName.invalid && (lastName.dirty),
-            'has-success': lastName.valid && (lastName.dirty )
-            }">
-            <label class="label-left">Last Name</label>
-            <input type="text"
-               placeholder="Last Name"
-               class="form-control"
-               formControlName="lastName"
-               required>
-            <div class="form-control-feedback control_form"
-               *ngIf="lastName.errors && (lastName.dirty)">
-               <p *ngIf="lastName.errors.required">Last Name is required</p>
-            </div>
-         </div>
-
-         <div class="input-field-username control_form"
-            [ngClass]="{
-            'has-danger': username.invalid && (username.dirty),
-            'has-success': username.valid && (username.dirty )
-            }">
-            <label class="label-left">User Name</label>
-            <input type="text"
-               placeholder="Username"
-               class="form-control"
-               formControlName="username">
-            <div class="form-control-feedback control_form"
-               *ngIf="username.errors && (username.dirty)">
-               <p *ngIf="username.errors.required">username is required</p>
-            </div>
-         </div>
-      </div>
-      <div class="col-2">
-        <div class="input-field-height control_form"
-           [ngClass]="{
-           'has-danger': height.invalid && (height.dirty),
-           'has-success': height.valid && (height.dirty )
-           }">
-           <label class="label-left">Height</label>
-           <!-- <input type="text"
-              placeholder="Height"
-              class="form-control"
-              formControlName="height"
-              required> -->
-              <select placeholder="Height" class="form-control" formControlName="height" required>
-                <option *ngFor="let hn of heights" [value]="hn">{{hn}}</option>
-              </select>
-           <div class="form-control-feedback"
-              *ngIf="height.errors && (height.dirty)">
-              <p *ngIf="height.errors.required">Height is required</p>
-           </div>
-        </div>
-        <div class="input-field-weight control_form"
-           [ngClass]="{
-           'has-danger': weight.invalid && (weight.dirty),
-           'has-success': weight.valid && (weight.dirty )
-           }">
-           <label class="label-left">Weight</label>
-           <!-- <input type="text"
-              placeholder="Weight"
-              class="form-control"
-              formControlName="weight"
-              required> -->
-              <select placeholder="Weight" class="form-control" formControlName="weight" required>
-                <option *ngFor="let wn of weightvals" [value]="wn">{{wn}}</option>
-              </select>
-           <div class="form-control-feedback"
-              *ngIf="weight.errors && (weight.dirty)">
-              <p *ngIf="weight.errors.required">weight is required</p>
-           </div>
-        </div>
-
-
-         <div class="input-field-email control_form"
-            [ngClass]="{
-            'has-danger': email.invalid && (email.dirty),
-            'has-success': email.valid && (email.dirty)
-            }">
-            <label class="label-left">Your Email</label>
-            <input type="email"
-               class="form-control"
-               placeholder="Email"
-               formControlName="email"
-               required>
-            <div class="form-control-feedback"
-               *ngIf="email.errors && (email.dirty)">
-               <p *ngIf="email.errors.required">Email is required</p>
-               <p *ngIf="email.errors.pattern">Email format should be joe@abc.com</p>
-            </div>
-         </div>
-      </div>
-      <div class="col-3">
-        <div class="input-field-gender control_form" [ngClass]="{'has-danger': gender.invalid && (gender.dirty || gender.touched), 'has-success': gender.valid && (gender.dirty || gender.touched)}">
-           <label class="label-left">Gender</label>
-           <select class="form-control" formControlName="gender" disabled>
-              <option value="">Please select a gender</option>
-              <option *ngFor="let lang of langs"
-              [value]="lang">{{lang}}
-              </option>
-           </select>
-        </div>
-        <div class="input-field-age control_form" [ngClass]="{'has-danger': age.invalid && (age.dirty ), 'has-success': age.valid && (age.dirty )}">
-           <label class="label-left">Age</label>
-           <br>
-           <input type="number"
-              placeholder="Age"
-              class="form-control"
-              formControlName="age"
-              required>
-           <div class="form-control-feedback"
-              *ngIf="age.errors && (age.dirty )">
-              <p *ngIf="age.errors.required">Age is required</p>
-           </div>
-        </div>
-         <div class="input-field-phone control_form" [ngClass]="{'has-danger': phone.invalid && (phone.dirty), 'has-success': phone.valid && (phone.dirty )}">
-            <label class="label-left">Phone number(mobile)</label>
-            <input type="text"
-               class="form-control"
-               placeholder="Mobile Number"
-               formControlName="phone"
-               [textMask]="{mask: mask}"
-               required>
-            <div class="form-control-feedback"
-               *ngIf="phone.errors && (phone.dirty)">
-               <p *ngIf="phone.errors.required">Mobile Number is required</p>
-               <p *ngIf="phone.errors.pattern">Mobile Number is required</p>
-            </div>
-         </div>
-
-      </div>
-      <div class="col-4 half_contain">
-
-        <div class="input-field-sex control_form"
-           [ngClass]="{
-           'has-danger': sex.invalid && (sex.dirty ),
-           'has-success': sex.valid && (sex.dirty )
-           }">
-           <label class="label-left">Sexual Preference</label>
-           <input type="text" pattern="^[a-zA-Z]+$"
-              placeholder="Sexual Preference"
-              class="form-control"
-              formControlName="sex">
-           <div class="form-control-feedback"
-              *ngIf="sex.errors && (sex.dirty )">
-              <!-- <p *ngIf="sex.errors.required">Sexual Preference is required</p> -->
-              <p *ngIf="sex.errors.pattern">Only alphabets allowed.</p>
-           </div>
-        </div>
-        <div class="input-field-skype control_form"
-           [ngClass]="{
-           'has-danger': skype.invalid && (skype.dirty ),
-           'has-success': skype.valid && (skype.dirty )
-           }">
-           <label class="label-left">Skype</label>
-           <br>
-           <input type="text"
-              placeholder="Skype"
-              class="form-control"
-              formControlName="skype">
-           <div class="form-control-feedback" *ngIf="skype.errors && (skype.dirty )">
-           </div>
-        </div>
-         <div class="input-field-whatsapp control_form"
-            [ngClass]="{
-            'has-danger': whatsapp.invalid && (whatsapp.dirty),
-            'has-success': whatsapp.valid && (whatsapp.dirty )
-            }">
-            <label class="label-left">Whatsapp</label>
-            <input type="text"
-               class="form-control"
-               placeholder="Whatsapp"
-               formControlName="whatsapp"
-               [textMask]="{mask: mask}">
-            <div class="form-control-feedback" *ngIf="whatsapp.errors && (whatsapp.dirty)">
-              <p *ngIf="whatsapp.errors.pattern">Only alphabets allowed.</p>
-            </div>
-         </div>
-
-
-      </div>
-      <div class="col-5 half_contain">
-        <div class="input-field-viber control_form"
-           [ngClass]="{
-           'has-danger': viber.invalid && (viber.dirty ),
-           'has-success': viber.valid && (viber.dirty )
-           }">
-           <label class="label-left">Viber</label>
-           <br>
-           <input type="text"
-              placeholder="Viber"
-              class="form-control"
-              formControlName="viber"
-              [textMask]="{mask: mask}">
-           <div class="form-control-feedback" *ngIf="viber.errors && (viber.dirty )">
-           </div>
-        </div>
-        <div class="input-field-wechat control_form"
-           [ngClass]="{
-           'has-danger': wechat.invalid && (wechat.dirty ),
-           'has-success': wechat.valid && (wechat.dirty )
-           }">
-           <label class="label-left">Wechat</label>
-           <input type="text"
-              placeholder="Wechat"
-              class="form-control"
-              formControlName="wechat"
-              [textMask]="{mask: mask}">
-           <div class="form-control-feedback" *ngIf="wechat.errors && (wechat.dirty )">
-           </div>
-        </div>
-      </div>
-      <div class="col-3">
-         <div class="input-field-location control_form"
-            [ngClass]="{
-            'has-danger': location.invalid && (location.dirty ),
-            'has-success': location.valid && (location.dirty )
-            }">
-            <label class="label-left">Your Location</label>
-            <input type="text"
-               placeholder="Your Location"
-               class="form-control"
-               formControlName="location" #hsearch
-               required>
-            <div class="form-control-feedback"
-               *ngIf="location.errors && (location.dirty )">
-               <p *ngIf="location.errors.required">Your Location is required</p>
-            </div>
-         </div>
-
-         <div class="input-field-location control_form">
-            <label class="label-left">State</label>
-            <br>
-            <input type="text" placeholder="State" class="form-control" formControlName="locstate" readonly required>
-            <div class="form-control-feedback" *ngIf="locstate.errors && (locstate.dirty )">
-               <p *ngIf="locstate.errors.required">State is required</p>
-            </div>
-         </div>
-
-         <div class="input-field-location control_form">
-            <label class="label-left">Suburb</label>
-            <br>
-            <input type="text" placeholder="State" class="form-control" readonly [value]="suburb">
-
-         </div>
-
-         <div class="input-field-service control_form"
-            [ngClass]="{
-            'has-danger': service.invalid && (service.dirty ),
-            'has-success': service.valid && (service.dirty )
-            }">
-            <label class="label-left">Service Location</label>
-            <input type="text"
-               placeholder="Service Location"
-               class="form-control"
-               formControlName="service"
-               required>
-            <div class="form-control-feedback"
-               *ngIf="service.errors && (service.dirty )">
-               <p *ngIf="service.errors.required">Service Location is required</p>
-            </div>
-         </div>
-      </div>
-      <div class="input-field-aboutme control_form"
-         [ngClass]="{
-         'has-danger': aboutme.invalid && (aboutme.dirty ),
-         'has-success': aboutme.valid && (aboutme.dirty )
-         }">
-         <label class="label-left">About me</label>
-         <textarea
-            class="form-control"
-            formControlName="aboutme"
-            placeholder="About me"
-            id="aboutme"
-            required></textarea>
-         <div class="form-control-feedback" *ngIf="aboutme.errors && (aboutme.dirty )">
-           <p *ngIf="aboutme.errors.required">Please enter some info about you.</p>
-         </div>
-      </div>
-
-      <div class="images-section picked_images">
-         <div class="header-title-without">Images</div>
-
-         <div class="p-thumbnails">
-            <div class="profile-thumbnails" *ngIf="sliderimages">
-               <div class="profile-upload">
-            <image-upload
-            url="./uploads/profile"
-            [style]="customStyle"
-            [max]="1"
-            [uploadedFiles]="uimages"
-            buttonCaption="Upload image"
-            dropBoxMessage=""
-            (removed)="onRemoved($event)"
-            (uploadFinished)="onUploadFinished($event)"
-            (uploadStateChanged)="onUploadStateChanged($event)">
-            </image-upload>
-            <p class="upload-label">
-              <input type="checkbox" class="form-controlc" formControlName="enlock" />
-              Upload Image by Lock</p>
-            <!-- (change)="changeprice()" -->
-            <!-- <input type="text" class="form-control price-control" placeholder="Enter amount" formControlName="price" (input)="checkprice()">
-            <div class="form-control-feedback">
-        		<p *ngIf="imgerror" class="error" style="color: #d9534f;">Price is required</p>
-        		</div> -->
-            <a class="edit-submit uploadclass" (click)="addimages()">Upload</a>
-         </div>
-               <div class="image-listing-sec2" *ngFor="let image of sliderimages;let i = index">
-                  <div class="new_images">
-                    <div class="image_center">
-                      <span *ngIf="image.lock" class="lock-back"><img src="./assets/images/lock.png" class="lock-icon"></span>
-                      <img   [src]="image.image" class="image lock-edit">
-                      <span class="delete-back" (click)="deleteimg(i)">
-                      <img src="./assets/images/delete.png" class="delete-icon">
-                      </span>
-                      <span *ngIf="image.lock" class="lock_price">{{imgprice}}</span>
-
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
                     </div>
 
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
                   </div>
-                  <span class="lock-unlock">
-                    <input type="checkbox" (change)="lockunlock(i, $event)" class="check-lock-unlock" *ngIf="image.lock" checked>
-                    <input type="checkbox" (change)="lockunlock(i, $event)" class="check-lock-unlock" *ngIf="!image.lock" >
-                    Lock/Unlock Image
-                  </span>
-               </div>
+
+                </div>
+                <!--caro end-->
+                <ul class="thumb-list">
+                  <li>
+                    <img src="assets/images/gallery/thumb1.png" alt="">
+                  </li>
+                  <li>
+                    <img src="assets/images/gallery/thumb1.png" alt="">
+                  </li>
+                  <li>
+                    <img src="assets/images/gallery/thumb1.png" alt="">
+                  </li>
+
+                </ul>
+                <!--thumb img-->
+                <div class="read-this">
+                  <img src="assets/images/gmail.png" alt=""> Please read this!!!</div>
+              </div>
+              <!--col 2 end-->
+              <div class="col-md-6 page2-topmiddle">
+                <h3>Aimee</h3>
+                <p class="font-12">
+                  <img src="assets/images/map_marker.png" alt="" /> Adaillaide, SA, 5000</p>
+                <h5>Highlight Profile</h5>
+                <p>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="switch-toggle round"></span>
+                  </label>
+                  <span class="cycle"> $2.50 Auto cycle</span>
+                </p>
+                <p>Damaged
+                  <span>180/1/1</span>
+                </p>
+                <p>Age
+                  <span>20-25</span>
+                </p>
+                <p>Boob size
+                  <span>34B</span>
+                </p>
+                <p>Height
+                  <span>170cm</span>
+                </p>
+                <p>Room & CD
+                  <span>Included</span>
+                </p>
+                <p>Service Location
+                  <span>Hotel Aparrtment</span>
+                </p>
+                <h6>Contact info</h6>
+                <p>Preferd contact method
+                  <span> Text only</span>
+                </p>
+                <p>Mobile Number
+                  <a href="#" class="w3-right btn btn-link">Click here to Reveal</a>
+                </p>
+                <h6>
+                  <img src="assets/images/phone_icon_green.png" alt="" /> Contact info</h6>
+                <p class="text-bold">
+                  <img src="assets/images/gray_round.png" alt="" /> 0411 134...
+                  <img src="assets/images/viver.png" alt="" /> 0411 134...</p>
+
+              </div>
+              <!--col 6 emd-->
+              <div class="col-md-3 p-0 text-right">
+
+              </div>
+              <!--col 3 end-->
             </div>
-         </div>
-      </div>
-      <div class="videos picked_videos">
-         <div class="header-title-without">Videos</div>
-         <div class="edit-video-section">
-            <!-- <div class="upload-video" (click)="openuploadvideo()"></div> -->
-            <div class="upload-video" (click)="openuploadvideo()"><span>Upload Video</span></div>
-            <div class="video-content" *ngFor="let video of videos;let i=index">
-               <iframe *ngIf="video.type=='youtube'" width="264" height="223" [src]="video.videosource" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
-               <iframe *ngIf="video.type=='vimeo'" [src]="video.videosource" width="264" height="223" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-               <video *ngIf="video.type=='upload'" width="215" height="215" controls>
-                 <source [src]="video.videosource" >
-               </video>
-                <span class="delete-back" (click)="deletevideo(i)">
-                  <img src="./assets/images/delete.png" class="delete-icon">
-                  </span>
+            <!--row end-->
+            <div class="w3-row w3-white w3-panel page2-row2">
+              <!--==================2 row================-->
+              <p>My Services</p>
+              <div class="w3-row check-row2">
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 1
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 2
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 3
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 4
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 5
+                </label>
+
+              </div>
+              <!--check box row-->
+              <p>About Me</p>
+              <h6>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+                sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies
+                nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+                aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+                dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem
+                ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque
+                rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget
+                dui. Etiam rhoncus.</h6>
+              <div class="col-sm-offset-2 col-sm-8">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e0CvgHEiTwk" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+                </div>
+              </div>
+              <!--youtube video-->
             </div>
-         </div>
-      </div>
-      <div class="row">
-         <p  class="center register-error">{{errormsg}}</p>
-         <p  class="center register-success">{{successmsg}}</p>
-      </div>
-      <div class="submit-section"><button class="edit-submit">{{registertext}}</button></div>
-      </form>
-    </div>
-   </mat-tab>
-   <mat-tab label="Preview">
-      <div class="header">
-         <h4 class="user-name">{{profileinfo.name}}</h4>
-         <a [routerLink]="['/messagelist']"><img  class="messages" src="./assets/images/msg.png"></a>
-         <button value="Add Testimonial" class="top-button" (click)="opentestinomial()">Add Testimonial</button>
-      </div>
-      <div class="x6 o6 edit_preview">
-         <div class="image-section">
-            <div class="profile-image">
-               <div class="image-listing-sec">
-                  <div class="image_profile">
-                  <img [src]="firstimage" class="main-image lock" [hidden]="!firstimage">
-                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Female' " src="./assets/images/female.jpg" />
-                  <img class="main-image"  *ngIf="!firstimage && profileinfo.gender=='Male' " src="./assets/images/male.jpg" />
-                  <span class="lock-back" [hidden]="!firstimage">
-                  <img src="./assets/images/lock.png" class="lock-icon">
-
-                  </span></div>
-               </div>
+            <!--part 2 row end-->
+            <div class="w3-row w3-white w3-panel w3-padding-16 page2-3row">
+              <!--==================3 row================-->
+              <p class="text-bold text-gray">My photo gallery</p>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/1.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/2.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/3.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/4.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/5.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/1.png" class="img-adjust" onclick="onClick(this)">
+              </div>
             </div>
-            <div class="profile-thumbnails" *ngIf="sliderimages">
-               <div class="image-listing-sec1">
-                  <img  *ngFor="let image of sliderimages;let i = index" [src]="image.image" class="image lock"(mouseenter)="showimage(i)">
-               </div>
+            <!--part 3 row end----------->
+            <!-- Modal for full size images on click-->
+            <div id="modal01" class="w3-modal w3-black" style="padding-top:0">
+              <span class="w3-button w3-black w3-xlarge w3-display-topright" onClick="w3_close()">×</span>
+              <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+                <img id="img01" class="w3-image">
+                <p id="caption"></p>
+              </div>
             </div>
-         </div>
-         <div class="basic-info">
-            <table>
-               <tr>
-                  <td class="label">Username:</td>
-                  <td class="value" *ngIf="profileinfo.username">{{profileinfo.username}}</td>
-                  <td class="value" *ngIf="!profileinfo.username"> N/A </td>
-               </tr>
-               <tr>
-                  <td class="label">Weight:</td>
-                  <td class="value" *ngIf="profileinfo.weight">{{profileinfo.weight}}</td>
-                  <td class="value" *ngIf="!profileinfo.weight"> N/A </td>
-               </tr>
-               <tr class="show_info">
-                  <td class="label">Gender:</td>
-                  <td class="value" *ngIf="profileinfo.gender">{{profileinfo.gender}}</td>
-                  <td class="value" *ngIf="!profileinfo.gender"> N/A  </td>
-               </tr>
-               <tr class="show_info">
-                  <td class="label">Height:</td>
-                  <td class="value" *ngIf="profileinfo.height">{{profileinfo.height}}</td>
-                  <td class="value" *ngIf="!profileinfo.height"> N/A  </td>
-               </tr>
-               <tr>
-                  <td class="label">Sexual Preference:</td>
-                  <td class="value" *ngIf="profileinfo.sexual">{{profileinfo.sexual}}</td>
-                  <td class="value" *ngIf="!profileinfo.sexual"> N/A </td>
-               </tr>
-               <tr>
-                  <td class="label">Profile Location:</td>
-                  <td class="value" *ngIf="profileinfo.location">{{profileinfo.location}}</td>
-                  <td class="value" *ngIf="!profileinfo.location"> N/A </td>
-               </tr>
-               <tr>
-                  <td class="label">Work Location:</td>
-                  <td class="value" *ngIf="profileinfo.service_location">{{profileinfo.service_location}}</td>
-                  <td class="value" *ngIf="!profileinfo.service_location"> N/A </td>
-               </tr>
-               <tr>
-                  <td class="label">Mobile Number:</td>
-                  <td class="value" *ngIf="profileinfo.phone">{{profileinfo.phone}}</td>
-                  <td class="value" *ngIf="!profileinfo.phone"> N/A  </td>
-               </tr>
-               <tr>
-                  <td class="label">Email Address:</td>
-                  <td class="value" *ngIf="profileinfo.email">{{profileinfo.email}}</td>
-                  <td class="value" *ngIf="!profileinfo.email"> N/A  </td>
-               </tr>
-               <tr>
-                  <td class="label">Skype:</td>
-                  <td class="value" *ngIf="profileinfo.skype">{{profileinfo.skype}}</td>
-                  <td class="value" *ngIf="!profileinfo.skype"> N/A  </td>
-               </tr>
-               <tr>
-                  <td class="label">Whatsapp:</td>
-                  <td class="value" *ngIf="profileinfo.whatsapp">{{profileinfo.whatsapp}}</td>
-                  <td class="value" *ngIf="!profileinfo.whatsapp"> N/A  </td>
-               </tr>
-               <tr>
-                  <td class="label">Viber:</td>
-                  <td class="value" *ngIf="profileinfo.viber">{{profileinfo.viber}}</td>
-                  <td class="value" *ngIf="!profileinfo.viber"> N/A  </td>
-               </tr>
-               <tr>
-                  <td class="label">Wechat:</td>
-                  <td class="value" *ngIf="profileinfo.wechat">{{profileinfo.wechat}}</td>
-                  <td class="value" *ngIf="!profileinfo.wechat"> N/A  </td>
-               </tr>
-            </table>
-         </div>
-         <div class="extra-info">
-            <table>
-               <tr class="hide_info">
-                  <td class="label">Gender:</td>
-                  <td class="value" *ngIf="profileinfo.gender">{{profileinfo.gender}}</td>
-                  <td class="value" *ngIf="!profileinfo.gender"> N/A  </td>
-               </tr>
-               <tr class="hide_info">
-                  <td class="label">Height:</td>
-                  <td class="value" *ngIf="profileinfo.height">{{profileinfo.height}}</td>
-                  <td class="value" *ngIf="!profileinfo.height"> N/A  </td>
-               </tr>
-            </table>
-         </div>
-      </div>
-      <div class="aboutme" *ngIf="profileinfo.aboutme">
-         <div class="header-title">About me</div>
-         <div class="content">{{profileinfo.aboutme}}</div>
-      </div>
-      <div class="videos">
-         <div class="header-title" *ngIf="videos.length > 0">Videos</div>
-         <div class="video-section" *ngIf="videos.length > 0">
-            <div class="video-content" *ngFor="let video of videos;let i=index">
-              <iframe *ngIf="video.type=='youtube'" width="264" height="223" [src]="video.videosource" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
-              <iframe *ngIf="video.type=='vimeo'" [src]="video.videosource" width="264" height="223" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-              <video *ngIf="video.type=='upload'" width="215" height="215" controls>
-                <source [src]="video.videosource" >
-              </video>
-               <span class="delete-back" (click)="deletevideo(i)">
-                 <img src="./assets/images/delete.png" class="delete-icon">
-                 </span>
-            </div>
-         </div>
-         <div class="testimonial" *ngIf="tlength > 0">
-            <div class="header-title">Testimonial</div>
-            <div class="testi-content" *ngFor="let testi of testimonials;let i=index;">
-               <p class="nickname">{{testi.nickname}}</p>
-               <p class="tcomment">{{testi.comment}}</p>
-            </div>
-         </div>
-         <div class="comment" *ngIf="comments">
-            <div class="header-title">Comments</div>
-            <div class="comment-content" *ngFor="let comm of comments;let i=index">
-               <div class="top-section">
-                  <img *ngIf="comm.images" class="profile-pic" src="{{imageurl}}{{comm.images[0].image}}">
-                  <p *ngIf="comm.first_name" class="username">{{comm.first_name}}</p>
-                  <p *ngIf="!comm.first_name && comm.addedby" class="username">{{comm.addedby}}</p>
-                  <span class="deleteicon" (click)="deletecomment(i)"><img  src="./assets/images/dlt_r.png"></span>
-                  <p class="date">{{comm.date| date :  "d MMM,y"}}</p>
-               </div>
-               <p class="description">{{comm.description}}</p>
-            </div>
-         </div>
-         <div class="comment" *ngIf="complaints">
-            <div class="header-title">Complaints</div>
-            <div class="comment-content" *ngFor="let comp of complaints;let i=index">
-               <div class="top-section">
-                  <img *ngIf="comp.images" class="profile-pic" src="{{imageurl}}{{comp.images[0].image}}">
-                  <p *ngIf="comp.first_name" class="username">{{comp.first_name}}</p>
-                  <p *ngIf="!comp.first_name && comp.addedby" class="username">{{comp.addedby}}</p>
-                  <span class="deleteicon" (click)="deletecomplaint(i)"><img  src="./assets/images/dlt_r.png"></span>
-                  <p class="date">{{comp.date| date :  "d MMM,y"}}</p>
-               </div>
-               <p class="description">{{comp.description}}</p>
-            </div>
-         </div>
-      </div>
-   </mat-tab>
- <mat-tab label="Payment" class="payment_details">
-      <div class="payment_tab">
-         <mat-tab-group (selectedTabChange)="loadinnerpay($event)">
-             <mat-tab label="Packages" >
-               <div class="package_grids" (window:resize)="onResize($event)">
+            <!--modal end-->
+            <div class="w3-row w3-panel w3-white w3-padding-16">
+              <!--=================4 row======================-->
+              <p class="text-bold">Comments</p>
+              <ul class="nav nav-tabs">
+                <li class="active">
+                  <a data-toggle="tab" href="#Comments">Comments </a>
+                </li>
+                <li>
+                  <a data-toggle="tab" href="#Complaints">Complaints</a>
+                </li>
+              </ul>
 
-                  <mat-grid-list cols="{{test}}" rowHeight="{{rowheight}}">
-                     <mat-grid-tile *ngFor="let package of packages;let i = index">
-                        <div class="grid_tiles" [ngClass]="psel" id="packagediv{{package.id}}">
-                           <h1>{{package.name}}</h1>
-                           <p>{{package.desc}}</p>
-                           <span>{{package.bonus}}</span>
-                           <h2>$ {{package.price}}</h2>
-                           <button (click)="selectpackage(package.id, package.price, package.bonus)">Select Package</button>
-                        </div>
-                     </mat-grid-tile>
-
-                     <mat-grid-tile>
-                        <div class="grid_tiles enter_amount">
-                           <h1>manual payment</h1>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting </p>
-
-                             <input type="text" [(ngModel)]="model.manualamount" #manualamount="ngModel" name="manualamount" placeholder="Enter Amount" >
-
-
-
-                           <button (click)="addextra()">Add extra amount</button>
-                        </div>
-                     </mat-grid-tile>
-                  </mat-grid-list>
-                  <input type="hidden" value="" id="oldpsel">
-               </div>
-               <!-- <mat-checkbox>Highlight Your Profile, $10</mat-checkbox> -->
-
-               <input type="checkbox" name="highlightpay" [(ngModel)]="model.highlightpay" #highlightpay="ngModel" (change)="addhighlight()" id="addhighlightpro">Highlight Your Profile, ${{highlightfees}}
-
-
-               <h3 class="current_bal">Current Account Balance is $<span id="wallamount">{{userwallet}}</span></h3>
-               <h4 class="current_bal">Current earnings ${{earnings}}</h4>
-
-               <h4 class="current_bal">Total amount: {{totalpay}}</h4>
-               <input type="hidden" value="{{totalpay}}" id="finaltpay">
-               <input type="hidden" value="{{girlid}}" id="userid">
-               <input type="hidden" value="" id="bonus">
-               <div id="paypal-button" class="paypal-button"></div>
-               <p  class="center register-error" id="paymenterror"></p>
-               <p  class="center register-success" id="paymentsuccess"></p>
-               <!-- <button [disabled]="buttonstat" class="paybutton">Pay</button> -->
-            </mat-tab>
-            <mat-tab label="Transaction Log">
-               <!-- <div class="example-header">
-                 <mat-form-field>
-                   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                 </mat-form-field>
-               </div> -->
-
-               <div class="example-container mat-elevation-z8 payment_table" >
-                 <div class="control_form">
-                    <input matInput [max]="maxDate" [matDatepicker]="picker1" placeholder="Date from" class="form-control" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" #fromdate="ngModel" name="fromdate" [(ngModel)]="datemodel.fromdate" (click)="picker1.open()">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                 </div>
-                  <div class="control_form">
-                    <input matInput [max]="maxDate" [matDatepicker]="picker2" placeholder="Date to" class="form-control" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" #todate="ngModel" name="todate" [(ngModel)]="datemodel.todate" (click)="picker2.open()">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
+              <div class="tab-content">
+                <div id="Comments" class="tab-pane fade in active">
+                  <p class="resent-comment">Recent Comments</p>
+                  <div class="col-sm-9">
+                    <h6 class="comment-name">
+                      <img src="assets/images/user.png" alt=""> User Jammy2o3o3</h6>
+                    <p class="comment-text">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                      ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+                      fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
+                      vitae, justo. </p>
                   </div>
-                 <mat-table [dataSource]="dataSource" matSort matSortActive="trdate" matSortDisableClear matSortDirection="desc">
+                  <!--comment 1 end-->
+                  <div class="col-sm-offset-1 col-sm-9">
+                    <h6 class="comment-name">
+                      <img src="assets/images/user.png" alt=""> User Jammy2o3o3</h6>
+                    <p class="comment-text">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                      ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+                      fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
+                      vitae, justo. </p>
+                  </div>
+                  <!--comment 2-->
+                  <div class="col-sm-offset-2 col-sm-9">
+                    <h6 class="comment-name">Your comment</h6>
+                    <textarea rows="4"></textarea>
+                    <div class="text-right">
+                      <input type="button" class="btn bg-pink btn-post" value="post">
+                    </div>
+                  </div>
+                  <!--comment 2-->
+                </div>
+                <!--==========================comments end============================-->
+                <div id="Complaints" class="tab-pane fade">
+                  <h3>Menu 1</h3>
+                  <p>Some content in menu 1.</p>
+                </div>
 
-                   <!-- ID Column -->
-                   <ng-container matColumnDef="trdate">
-                     <mat-header-cell *matHeaderCellDef > Date </mat-header-cell>
-                     <mat-cell *matCellDef="let row"> {{row.trdate}} </mat-cell>
-                   </ng-container>
-
-                   <!-- Progress Column -->
-                   <ng-container matColumnDef="trtime">
-                     <mat-header-cell *matHeaderCellDef > Time </mat-header-cell>
-                     <mat-cell *matCellDef="let row"> {{row.trtime}} </mat-cell>
-                   </ng-container>
-
-                   <!-- Name Column -->
-                   <ng-container matColumnDef="type">
-                     <mat-header-cell *matHeaderCellDef > Type </mat-header-cell>
-                     <mat-cell *matCellDef="let row"> {{row.type}} </mat-cell>
-                   </ng-container>
-
-                   <!-- Color Column -->
-                   <ng-container matColumnDef="money">
-                     <mat-header-cell *matHeaderCellDef > Money </mat-header-cell>
-                     <mat-cell *matCellDef="let row"> {{row.money}} </mat-cell>
-                   </ng-container>
-
-                   <!-- Color Column -->
-                   <ng-container matColumnDef="remark">
-                     <mat-header-cell *matHeaderCellDef > Additional Remarks </mat-header-cell>
-                     <mat-cell *matCellDef="let row"> {{row.remark}} </mat-cell>
-                   </ng-container>
-
-                   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                   <mat-row *matRowDef="let row; columns: displayedColumns;">
-                   </mat-row>
-                 </mat-table>
-                 <div *ngIf="resultsLength==0" class="norecords">
-                   No records found
-                 </div>
-                 <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="resultsLength"></mat-paginator> -->
-                 <mat-paginator [length]="resultsLength" [pageSize]="10">
-                 </mat-paginator>
-               </div>
-
-
-            </mat-tab>
-         </mat-tab-group>
+              </div>
+              <!--tab-content end-->
+            </div>
+            <!--part 4 row end-->
+          </div>
+          <!--main col end-->
+        </div>
+        <!--row end-->
       </div>
-   </mat-tab>
-</mat-tab-group>
+    </tab>
+    <tab heading="Edit">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-1 col-sm-10">
+            <div class="w3-row w3-panel p-0 w3-display-container">
+              <div class="col-md-12 text-center">
+                <div class="clock center-block text-pink">
+                  <div class="hours"></div>
+                  <div class="minutes"></div>
+                  <div class="seconds"></div>
+                  <div class="twelvehr"></div>
+                </div>
+                <!--clock end-->
+                <div class="progress center-block">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:70%"></div>
+                </div>
+                <button type="button" class="btn btn-lg bg-pink w3-round-xxlarge btn-pause">Pause</button>
+              </div>
+              <!--col end-->
+              <div class="w3-display-topright page4-top-right-text text-right">
+                <h6>Your account balance</h6>
+                <span class="text-pink">
+                  <span class="add-card">Add Credit</span> $000.00</span>
+              </div>
+              <!--cole nd-->
+            </div>
+            <!--progress row emd-->
+            <div class="w3-row">
+              <a href="#" class="btn btn-lg btn-block bg-pink w3-round-xxlarge">Not Live</a>
+
+            </div>
+            <!--row end-->
+            <h3 class=" w3-padding text-center bg-pink edit-header">Edit</h3>
+            <div class="w3-row w3-panel w3-border-0 w3-white m-0">
+              <!--==================1 row================-->
+
+              <div class="col-md-3 pl-0">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+                    <div class="item">
+                      <img src="assets/images/product/pro_4.png" alt="" class="img-adjust">
+                    </div>
+                  </div>
+                  <img src="assets/images/lock.png" alt="" class="lock" />
+                  <!-- Left and right controls -->
+                  <div class="move-arrow">
+                    <a class="left w3-display-bottomleft" href="#">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right w3-display-bottomright" href="#">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                  </div>
+                </div>
+                <!--caro end-->
+                <ul class=" center-block thumb-list">
+                  <li>
+                    <img src="assets/images/gallery/thumb1.png" alt="">
+                  </li>
+                  <li>
+                    <img src="assets/images/gallery/thumb1.png" alt="">
+                  </li>
+                  <li>
+                    <img src="assets/images/gallery/thumb1.png" alt="">
+                  </li>
+
+                </ul>
+                <!--thumb img-->
+                <div class="read-this">
+                  <img src="assets/images/gmail_red_icon.png" alt=""> Please read this!!!</div>
+              </div>
+              <!--col 2 end-->
+              <div class="col-md-9 page2-topmiddle">
+                <div class="w3-row">
+                  <div class="col-xs-6">
+                    <h3>Aimee</h3>
+                  </div>
+                  <div class="col-xs-6">
+                    <!--col 3 end-->
+                  </div>
+                </div>
+                <!--row end-->
+                <p class="font-12">
+                  <img src="assets/images/map_marker.png" alt="" /> Adaillaide, SA, 5000
+                  <button type="button" class="btn edit-all">Edit/Add</button>
+                </p>
+                <h5 class="switch-toggle-main">Highlight Profile</h5>
+                <p>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="switch-toggle round"></span>
+                  </label>
+                  <span class="cycle"> $2.50 Auto cycle
+                    <button type="button" class="btn edit-all">Edit Page</button>
+                  </span>
+                </p>
+                <p>Damaged
+                  <span>180/1/1
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <p>Age
+                  <span>20-25
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <p>Boob size
+                  <span>34B
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <p>Height
+                  <span>170cm
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <p>Room & CD
+                  <span>Included
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <p>Service Location
+                  <span>Hotel Aparrtment
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <h6>
+                  <img src="assets/images/phone_icon_green.png" alt="" /> Contact info</h6>
+                <p>Preferd contact method
+                  <span> Text only
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <p>Mobile Number
+                  <a href="#" class="w3-right btn btn-link text-green">Click here to Reveal</a>
+                </p>
+                <p class="text-bold">
+                  <span> 0411 134...
+                    <button type="button" class="btn edit-all">Edit/Add</button>
+                  </span>
+                </p>
+                <h6>Others Contacts</h6>
+                <p class="text-bold">
+                  <img src="assets/images/chart.png" alt="" /> 0411 134...
+                  <img src="assets/images/phone_icon1.png" alt="" /> 0411 134...</p>
+
+              </div>
+              <!--col 7 emd-->
+
+            </div>
+            <!--row end-->
+            <div class="w3-row w3-white w3-panel page2-row2">
+              <!--==================2 row================-->
+              <p>My Services
+                <button type="button" class="btn edit-all">Edit/Add</button>
+              </p>
+              <div class="w3-row check-row2">
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 1
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 2
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 3
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 4
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="">Option 5
+                </label>
+
+              </div>
+              <!--check box row-->
+              <p>About Me
+                <button type="button" class="btn edit-all">Edit/Add</button>
+              </p>
+              <h6>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+                sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies
+                nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+                aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+                dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem
+                ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque
+                rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget
+                dui. Etiam rhoncus.</h6>
+              <button type="button" class="btn edit-all w3-left">Edit/Upload</button>
+              <div class="col-sm-offset-2 col-sm-8">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e0CvgHEiTwk" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+                </div>
+              </div>
+              <!--youtube video-->
+            </div>
+            <!--part 2 row end-->
+            <div class="w3-row w3-white w3-panel w3-padding-16 page2-3row">
+              <!--==================3 row================-->
+              <p class="text-bold text-gray">My photo gallery
+                <button type="button" class="btn edit-all">Edit/Upload</button>
+              </p>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/1.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/2.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/3.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/4.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/5.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+              <div class="col-sm-4">
+                <img src="assets/images/gallery/1.png" class="img-adjust" onclick="onClick(this)">
+              </div>
+            </div>
+            <!--part 3 row end----------->
+            <!-- Modal for full size images on click-->
+            <div id="modal01" class="w3-modal w3-black" style="padding-top:0">
+              <span class="w3-button w3-black w3-xlarge w3-display-topright" onClick="w3_close()">×</span>
+              <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+                <img id="img01" class="w3-image">
+                <p id="caption"></p>
+              </div>
+            </div>
+            <!--modal end-->
+            <div class="w3-row w3-panel w3-white w3-padding-16">
+              <!--=================4 row======================-->
+              <p class="text-bold">Comments</p>
+              <ul class="nav nav-tabs bottom-tab">
+                <li class="active">
+                  <a data-toggle="tab" href="#Comments">Comments </a>
+                </li>
+                <li>
+                  <a data-toggle="tab" href="#Complaints">Complaints</a>
+                </li>
+                <li class="bg-pink">
+                  <a data-toggle="tab" href="#report" class="btn">Report</a>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <div id="Comments" class="tab-pane fade in active">
+                  <p class="resent-comment">Recent Comments</p>
+                  <div class="col-sm-9">
+                    <h6 class="comment-name">
+                      <img src="assets/images/user.png" alt=""> User Jammy2o3o3</h6>
+                    <p class="comment-text">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                      ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+                      fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
+                      vitae, justo. </p>
+                  </div>
+                  <!--comment 1 end-->
+                  <div class="col-sm-offset-1 col-sm-9">
+                    <h6 class="comment-name">
+                      <img src="assets/images/user.png" alt=""> User Jammy2o3o3</h6>
+                    <p class="comment-text">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                      ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+                      fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
+                      vitae, justo. </p>
+                  </div>
+                  <!--comment 2-->
+                  <div class="col-sm-offset-2 col-sm-9">
+                    <h6 class="comment-name">Your comment</h6>
+                    <textarea rows="4"></textarea>
+                    <div class="text-right">
+                      <input type="button" class="btn bg-pink btn-post" value="post">
+                    </div>
+                  </div>
+                  <!--comment 2-->
+                </div>
+                <!--==========================comments end============================-->
+                <div id="Complaints" class="tab-pane fade">
+                  <h3>Menu 1</h3>
+                  <p>Some content in menu 1.</p>
+                </div>
+                <div id="report" class="tab-pane fade">
+                  <h3>Menu 1</h3>
+                  <p>Some content in menu 1.</p>
+                </div>
+
+              </div>
+              <!--tab-content end-->
+            </div>
+            <!--part 4 row end-->
+          </div>
+          <!--main col end-->
+        </div>
+        <!--row end-->
+      </div>
+    </tab>
+    <tab heading="Price">
+      <div class="container w3-panel text-center">
+        <div class="row">
+
+
+          <div class="tab-content w3-white">
+            <div id="preview" class="tab-pane fade in active">
+              <div class="w3-row w3-row-padding ">
+                <div class="col-sm-6 text-left">
+                  <h1>Amiee</h1>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has</p>
+                </div>
+                <!--col8 end-->
+                <div class="col-sm-5 text-right">
+
+                </div>
+                <!--col end-->
+              </div>
+              <!--row end-->
+              <div class="w3-row plr-32">
+                <div class="col-sm-6 col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item text-black">Silver</li>
+                    <li class="list-group-item text-gray">pay</li>
+                    <li class="list-group-item text-black">$100.00</li>
+                    <li class="list-group-item text-green">get</li>
+                    <li class="list-group-item text-black">$10.00</li>
+                    <li class="list-group-item text-gray">Bonus</li>
+                    <li class="list-group-item text-black">Lorem Ipsum is simply dummy text of the printing </li>
+                    <li class="list-group-item">ADD</li>
+                  </ul>
+                </div>
+                <!--col emnd-->
+                <div class="col-sm-6 col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item text-black">Silver</li>
+                    <li class="list-group-item text-gray">pay</li>
+                    <li class="list-group-item text-black">$100.00</li>
+                    <li class="list-group-item text-green">get</li>
+                    <li class="list-group-item text-black">$10.00</li>
+                    <li class="list-group-item text-gray">Bonus</li>
+                    <li class="list-group-item text-black">Lorem Ipsum is simply dummy text of the printing </li>
+                    <li class="list-group-item">ADD</li>
+                  </ul>
+                </div>
+                <!--col emnd-->
+                <div class="col-sm-6 col-md-3">
+                  <ul class="list-group ">
+                    <li class="list-group-item text-black">Silver</li>
+                    <li class="list-group-item text-gray">pay</li>
+                    <li class="list-group-item text-black">$100.00</li>
+                    <li class="list-group-item text-green">get</li>
+                    <li class="list-group-item text-black">$10.00</li>
+                    <li class="list-group-item text-gray">Bonus</li>
+                    <li class="list-group-item text-black">Lorem Ipsum is simply dummy text of the printing </li>
+                    <li class="list-group-item">ADD</li>
+                  </ul>
+                </div>
+                <!--col emnd-->
+                <div class="col-sm-6 col-md-3">
+                  <ul class="list-group empty-list">
+                    <li class="list-group-item text-black">Enter</li>
+                    <li class="list-group-item text-gray">Amount</li>
+                    <li class="list-group-item text-black"></li>
+                    <li class="list-group-item">ADD</li>
+                  </ul>
+                </div>
+                <!--col emnd-->
+              </div>
+              <!--row end-->
+              <p class="text-left radio-text">
+                <input type="radio" name="check" id="radio"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+              <ul class="total-list text-left">
+                <li>Total Amount Selected</li>
+                <li>$256.00</li>
+                <li>Pay Here</li>
+                <li>
+                  <input type="button" class="btn btn-paypal" value="PayPal">
+                </li>
+              </ul>
+            </div>
+            <!--preview end-->
+            <div id="edit" class="tab-pane fade">
+              <h1>Coming Soon</h1>
+            </div>
+            <div id="recharge" class="tab-pane fade">
+              <h1>Coming Soon</h1>
+            </div>
+          </div>
+        </div>
+        <!--row end-->
+      </div>
+    </tab>
+  </tabset>
+</div>
